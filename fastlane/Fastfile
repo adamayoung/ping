@@ -15,9 +15,20 @@
 
 default_platform(:ios)
 
+before_all do
+  setup_ci
+end
+
 platform :ios do
+  desc "Fetches the provisioning profiles so you can build locally and deploy to your device"
+  lane :certs do
+    match(type: "appstore")
+    match(type: "development")
+  end
+
   desc "Build for Testing"
   lane :build_for_testing do
+    match(type: "appstore")
     scan(
       clean: true,
       build_for_testing: true
@@ -33,6 +44,7 @@ platform :ios do
 
   desc "Build for UI Testing"
   lane :build_for_ui_testing do
+    match(type: "appstore")
     scan(
       clean: true,
       build_for_testing: true,
@@ -50,8 +62,15 @@ platform :ios do
 end
 
 platform :mac do
+  desc "Fetches the provisioning profiles so you can build locally and deploy to your device"
+  lane :certs do
+    match(type: "appstore")
+    match(type: "development")
+  end
+
   desc "Build for Testing"
   lane :build_for_testing do
+    match(type: "appstore")
     scan(
       clean: true,
       build_for_testing: true,
@@ -69,6 +88,7 @@ platform :mac do
 
   desc "Build for UI Testing"
   lane :build_for_ui_testing do
+    match(type: "appstore")
     scan(
       clean: true,
       build_for_testing: true,

@@ -15,6 +15,14 @@ For _fastlane_ installation instructions, see [Installing _fastlane_](https://do
 
 ## iOS
 
+### ios certs
+
+```sh
+[bundle exec] fastlane ios certs
+```
+
+Fetches the provisioning profiles so you can build locally and deploy to your device
+
 ### ios build_for_testing
 
 ```sh
@@ -52,6 +60,14 @@ Test without Building
 
 ## Mac
 
+### mac certs
+
+```sh
+[bundle exec] fastlane mac certs
+```
+
+Fetches the provisioning profiles so you can build locally and deploy to your device
+
 ### mac build_for_testing
 
 ```sh
@@ -64,6 +80,22 @@ Build for Testing
 
 ```sh
 [bundle exec] fastlane mac test_without_building
+```
+
+Test without Building
+
+### mac build_for_ui_testing
+
+```sh
+[bundle exec] fastlane mac build_for_ui_testing
+```
+
+Build for UI Testing
+
+### mac ui_test_without_building
+
+```sh
+[bundle exec] fastlane mac ui_test_without_building
 ```
 
 Test without Building

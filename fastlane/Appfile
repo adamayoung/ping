@@ -6,3 +6,5 @@
 #     https://docs.fastlane.tools/advanced/#appfile
 
 app_identifier "uk.co.adam-young.Ping"
+apple_id("me@adam-young.co.uk") # Your Apple email address
+team_id("B43ZJ6HHUE")

@@ -10,4 +10,4 @@ scheme "Ping"
 testplan "Ping"
 code_coverage true
 skip_build true
-derived_data_path "build"
+derived_data_path "./DerivedData"
