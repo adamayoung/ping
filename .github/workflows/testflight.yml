@@ -18,8 +18,6 @@ jobs:
   build-and-archive:
     name: Build and Archive
     runs-on: macos-13
-    environment: 
-      name: testflight
 
     steps:
       - name: Checkout
