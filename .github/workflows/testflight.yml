@@ -99,6 +99,7 @@ jobs:
   deployment:
     name: TestFlight Upload
     runs-on: macos-13
+    needs: build-and-archive
     environment: 
       name: testflight
 
