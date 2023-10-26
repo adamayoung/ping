@@ -1,0 +1,25 @@
+{
+  "configurations" : [
+    {
+      "id" : "6C62798C-F08C-4E41-8C79-52207429042D",
+      "name" : "Configuration 1",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "language" : "en-GB",
+    "region" : "GB"
+  },
+  "testTargets" : [
+    {
+      "target" : {
+        "containerPath" : "container:Ping.xcodeproj",
+        "identifier" : "66D2125E2AEA905600A2C4CE",
+        "name" : "PingUITests"
+      }
+    }
+  ],
+  "version" : 1
+}

@@ -1,0 +1,32 @@
+{
+  "configurations" : [
+    {
+      "id" : "76677C8C-AA02-4A17-ACBF-9DF412E03065",
+      "name" : "Test Scheme Action",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "language" : "en-GB",
+    "region" : "GB",
+    "targetForVariableExpansion" : {
+      "containerPath" : "container:Ping.xcodeproj",
+      "identifier" : "66D212412AEA905600A2C4CE",
+      "name" : "Ping"
+    },
+    "testExecutionOrdering" : "random"
+  },
+  "testTargets" : [
+    {
+      "parallelizable" : true,
+      "target" : {
+        "containerPath" : "container:Ping.xcodeproj",
+        "identifier" : "66D212542AEA905600A2C4CE",
+        "name" : "PingTests"
+      }
+    }
+  ],
+  "version" : 1
+}
