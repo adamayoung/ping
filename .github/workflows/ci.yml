@@ -33,8 +33,8 @@ jobs:
 
       - name: Build
         run: |
-          set -o pipefail && env NSUnbufferedIO=YES && xcodebuild build-for-testing -scheme Ping -sdk macosx14.0 -testPlan Ping -destination '${{ matrix.destination }}' | xcpretty
+          set -o pipefail && env NSUnbufferedIO=YES && xcodebuild build-for-testing -scheme Ping -sdk '${{ matrix.sdk }}' -testPlan Ping -destination '${{ matrix.destination }}' | xcpretty
       
       - name: Test
         run: |
-          set -o pipefail && env NSUnbufferedIO=YES && xcodebuild test-without-building -scheme Ping -testPlan Ping -destination '${{ matrix.destination }}' | xcpretty
+          set -o pipefail && env NSUnbufferedIO=YES && xcodebuild test-without-building -scheme Ping -sdk '${{ matrix.sdk }}' -testPlan Ping -destination '${{ matrix.destination }}' | xcpretty
