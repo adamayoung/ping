@@ -9,6 +9,6 @@ then
     echo "Linting..."
     brew install swiftlint
 
-    cd $CI_WORKSPACE
+    cd $CI_PRIMARY_REPOSITORY_PATH
     swiftlint --strict
 fi
