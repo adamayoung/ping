@@ -11,7 +11,7 @@ concurrency:
   cancel-in-progress: false
 
 env:
-  DEVELOPER_DIR: /Applications/Xcode_15.0.1.app
+  DEVELOPER_DIR: /Applications/Xcode_15.0.app/Contents/Developer
   APP_NAME: Ping
 
 jobs:
@@ -72,14 +72,12 @@ jobs:
       
       - name: Export .ipa
         run: |
-          set -o pipefail && \
-          env NSUnbufferedIO=YES && \
           xcodebuild \
           -archivePath $RUNNER_TEMP/build/iOS/$APP_NAME.xcarchive \
           -exportOptionsPlist .github/appstore/ios/exportOptions.plist \
           -exportPath $RUNNER_TEMP/build/iOS \
           -allowProvisioningUpdates \
-          -exportArchive | xcpretty
+          -exportArchive
     
       - name: Upload artifact
         uses: actions/upload-artifact@v3
