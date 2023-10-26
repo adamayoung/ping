@@ -7,14 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		666F36962AEB1C0500EE6D41 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 666F36952AEB1C0500EE6D41 /* Localizable.xcstrings */; };
 		66D212462AEA905600A2C4CE /* PingApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66D212452AEA905600A2C4CE /* PingApp.swift */; };
 		66D212482AEA905600A2C4CE /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66D212472AEA905600A2C4CE /* ContentView.swift */; };
-		66D2124A2AEA905600A2C4CE /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66D212492AEA905600A2C4CE /* Item.swift */; };
-		66D2124C2AEA905600A2C4CE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 66D2124B2AEA905600A2C4CE /* Assets.xcassets */; };
 		66D212502AEA905600A2C4CE /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 66D2124F2AEA905600A2C4CE /* Preview Assets.xcassets */; };
 		66D2125A2AEA905600A2C4CE /* PingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66D212592AEA905600A2C4CE /* PingTests.swift */; };
 		66D212642AEA905600A2C4CE /* PingUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66D212632AEA905600A2C4CE /* PingUITests.swift */; };
 		66D212662AEA905600A2C4CE /* PingUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66D212652AEA905600A2C4CE /* PingUITestsLaunchTests.swift */; };
+		66D212B12AEAF36100A2C4CE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 66D212B02AEAF36100A2C4CE /* Assets.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,11 +35,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		666F36952AEB1C0500EE6D41 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
+		666F36982AEB226D00EE6D41 /* .swiftlint.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 		66D212422AEA905600A2C4CE /* Ping.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Ping.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		66D212452AEA905600A2C4CE /* PingApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PingApp.swift; sourceTree = "<group>"; };
 		66D212472AEA905600A2C4CE /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
-		66D212492AEA905600A2C4CE /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
-		66D2124B2AEA905600A2C4CE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		66D2124D2AEA905600A2C4CE /* Ping.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Ping.entitlements; sourceTree = "<group>"; };
 		66D2124F2AEA905600A2C4CE /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		66D212552AEA905600A2C4CE /* PingTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PingTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -49,6 +49,8 @@
 		66D212652AEA905600A2C4CE /* PingUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PingUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		66D212722AEA925600A2C4CE /* Ping.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = Ping.xctestplan; sourceTree = "<group>"; };
 		66D212732AEA940500A2C4CE /* PingUI.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = PingUI.xctestplan; sourceTree = "<group>"; };
+		66D212B02AEAF36100A2C4CE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		66D212B22AEAF37900A2C4CE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,6 +86,7 @@
 				66D212622AEA905600A2C4CE /* PingUITests */,
 				66D212722AEA925600A2C4CE /* Ping.xctestplan */,
 				66D212732AEA940500A2C4CE /* PingUI.xctestplan */,
+				666F36982AEB226D00EE6D41 /* .swiftlint.yml */,
 				66D212432AEA905600A2C4CE /* Products */,
 			);
 			sourceTree = "<group>";
@@ -103,9 +106,9 @@
 			children = (
 				66D212452AEA905600A2C4CE /* PingApp.swift */,
 				66D212472AEA905600A2C4CE /* ContentView.swift */,
-				66D212492AEA905600A2C4CE /* Item.swift */,
-				66D2124B2AEA905600A2C4CE /* Assets.xcassets */,
+				66D212AF2AEAF36100A2C4CE /* Resources */,
 				66D2124D2AEA905600A2C4CE /* Ping.entitlements */,
+				66D212B22AEAF37900A2C4CE /* Info.plist */,
 				66D2124E2AEA905600A2C4CE /* Preview Content */,
 			);
 			path = Ping;
@@ -136,6 +139,15 @@
 			path = PingUITests;
 			sourceTree = "<group>";
 		};
+		66D212AF2AEAF36100A2C4CE /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				66D212B02AEAF36100A2C4CE /* Assets.xcassets */,
+				666F36952AEB1C0500EE6D41 /* Localizable.xcstrings */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -143,6 +155,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 66D212692AEA905600A2C4CE /* Build configuration list for PBXNativeTarget "Ping" */;
 			buildPhases = (
+				666F36972AEB20CE00EE6D41 /* Lint */,
 				66D2123E2AEA905600A2C4CE /* Sources */,
 				66D2123F2AEA905600A2C4CE /* Frameworks */,
 				66D212402AEA905600A2C4CE /* Resources */,
@@ -240,8 +253,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				66D212B12AEAF36100A2C4CE /* Assets.xcassets in Resources */,
 				66D212502AEA905600A2C4CE /* Preview Assets.xcassets in Resources */,
-				66D2124C2AEA905600A2C4CE /* Assets.xcassets in Resources */,
+				666F36962AEB1C0500EE6D41 /* Localizable.xcstrings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -261,13 +275,34 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		666F36972AEB20CE00EE6D41 /* Lint */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = Lint;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "export PATH=\"$PATH:/opt/homebrew/bin\"\n\nif [[ -z $CI ]]; then\n  if which swiftlint >/dev/null; then\n    swiftlint\n  else\n    echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\n  fi\nfi\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		66D2123E2AEA905600A2C4CE /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				66D212482AEA905600A2C4CE /* ContentView.swift in Sources */,
-				66D2124A2AEA905600A2C4CE /* Item.swift in Sources */,
 				66D212462AEA905600A2C4CE /* PingApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -357,9 +392,9 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
-				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -414,9 +449,9 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
-				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SWIFT_COMPILATION_MODE = wholemodule;
@@ -435,7 +470,11 @@
 				DEVELOPMENT_TEAM = B43ZJ6HHUE;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Ping/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = Ping;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.developer-tools";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
@@ -446,11 +485,9 @@
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 14.0;
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "uk.co.adam-young.Ping";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = auto;
@@ -458,6 +495,7 @@
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Debug;
 		};
@@ -473,7 +511,11 @@
 				DEVELOPMENT_TEAM = B43ZJ6HHUE;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Ping/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = Ping;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.developer-tools";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
@@ -484,11 +526,9 @@
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 14.0;
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "uk.co.adam-young.Ping";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = auto;
@@ -496,6 +536,7 @@
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Release;
 		};
@@ -508,9 +549,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = B43ZJ6HHUE;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
-				MACOSX_DEPLOYMENT_TARGET = 14.0;
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "uk.co.adam-young.PingTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = auto;
@@ -519,6 +558,7 @@
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Ping.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Ping";
+				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Debug;
 		};
@@ -531,9 +571,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = B43ZJ6HHUE;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
-				MACOSX_DEPLOYMENT_TARGET = 14.0;
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "uk.co.adam-young.PingTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = auto;
@@ -542,6 +580,7 @@
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Ping.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Ping";
+				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Release;
 		};
@@ -553,9 +592,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = B43ZJ6HHUE;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
-				MACOSX_DEPLOYMENT_TARGET = 14.0;
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "uk.co.adam-young.PingUITests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = auto;
@@ -564,6 +601,7 @@
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_TARGET_NAME = Ping;
+				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Debug;
 		};
@@ -575,9 +613,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = B43ZJ6HHUE;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
-				MACOSX_DEPLOYMENT_TARGET = 14.0;
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "uk.co.adam-young.PingUITests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = auto;
@@ -586,6 +622,7 @@
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_TARGET_NAME = Ping;
+				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Release;
 		};
