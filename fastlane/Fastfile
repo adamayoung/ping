@@ -16,8 +16,73 @@
 default_platform(:ios)
 
 platform :ios do
-  desc "Description of what the lane does"
-  lane :custom_lane do
-    # add actions here: https://docs.fastlane.tools/actions
+  desc "Build for Testing"
+  lane :build_for_testing do
+    scan(
+      clean: true,
+      build_for_testing: true
+    )
+  end
+
+  desc "Test without Building"
+  lane :test_without_building do
+    scan(
+      test_without_building: true
+    )
+  end
+
+  desc "Build for UI Testing"
+  lane :build_for_ui_testing do
+    scan(
+      clean: true,
+      build_for_testing: true,
+      testplan: "PingUI"
+    )
+  end
+
+  desc "Test without Building"
+  lane :ui_test_without_building do
+    scan(
+      test_without_building: true,
+      testplan: "PingUI"
+    )
+  end
+end
+
+platform :mac do
+  desc "Build for Testing"
+  lane :build_for_testing do
+    scan(
+      clean: true,
+      build_for_testing: true,
+      destination: "platform=macOS"
+    )
+  end
+
+  desc "Test without Building"
+  lane :test_without_building do
+    scan(
+      test_without_building: true,
+      destination: "platform=macOS"
+    )
+  end
+
+  desc "Build for UI Testing"
+  lane :build_for_ui_testing do
+    scan(
+      clean: true,
+      build_for_testing: true,
+      testplan: "PingUI",
+      destination: "platform=macOS"
+    )
+  end
+
+  desc "Test without Building"
+  lane :ui_test_without_building do
+    scan(
+      testplan: "PingUI",
+      test_without_building: true,
+      destination: "platform=macOS"
+    )
   end
 end
