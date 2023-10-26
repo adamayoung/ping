@@ -23,8 +23,10 @@ jobs:
         include:
           - name: iPhone
             destination: platform=iOS Simulator,name=iPhone 15,OS=17.0.1
+            sdk: iphonesimulator17.0
           - name: macOS
             destination: platform=macOS
+            sdk: macosx14.0
 
     steps:
       - name: Checkout
@@ -32,7 +34,7 @@ jobs:
 
       - name: Build
         run: |
-          set -o pipefail && env NSUnbufferedIO=YES && xcodebuild build-for-testing -scheme Ping -testPlan Ping -destination '${{ matrix.destination }}' | xcpretty
+          set -o pipefail && env NSUnbufferedIO=YES && xcodebuild build-for-testing -scheme Ping -sdk macosx14.0 -testPlan Ping -destination '${{ matrix.destination }}' | xcpretty
       
       - name: Test
         run: |

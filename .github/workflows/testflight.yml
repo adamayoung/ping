@@ -65,7 +65,7 @@ jobs:
           env NSUnbufferedIO=YES && \
           xcodebuild clean archive \
           -scheme $APP_NAME \
-          -sdk iphoneos \
+          -sdk iphoneos17.0 \
           -configuration AppStoreDistribution \
           -archivePath $RUNNER_TEMP/build/iOS/$APP_NAME.xcarchive \
            | xcpretty
