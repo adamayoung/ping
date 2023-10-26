@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		66D212462AEA905600A2C4CE /* PingApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66D212452AEA905600A2C4CE /* PingApp.swift */; };
 		66D212482AEA905600A2C4CE /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66D212472AEA905600A2C4CE /* ContentView.swift */; };
-		66D2124A2AEA905600A2C4CE /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66D212492AEA905600A2C4CE /* Item.swift */; };
 		66D2124C2AEA905600A2C4CE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 66D2124B2AEA905600A2C4CE /* Assets.xcassets */; };
 		66D212502AEA905600A2C4CE /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 66D2124F2AEA905600A2C4CE /* Preview Assets.xcassets */; };
 		66D2125A2AEA905600A2C4CE /* PingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66D212592AEA905600A2C4CE /* PingTests.swift */; };
@@ -38,7 +37,6 @@
 		66D212422AEA905600A2C4CE /* Ping.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Ping.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		66D212452AEA905600A2C4CE /* PingApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PingApp.swift; sourceTree = "<group>"; };
 		66D212472AEA905600A2C4CE /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
-		66D212492AEA905600A2C4CE /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
 		66D2124B2AEA905600A2C4CE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		66D2124D2AEA905600A2C4CE /* Ping.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Ping.entitlements; sourceTree = "<group>"; };
 		66D2124F2AEA905600A2C4CE /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
@@ -104,7 +102,6 @@
 			children = (
 				66D212452AEA905600A2C4CE /* PingApp.swift */,
 				66D212472AEA905600A2C4CE /* ContentView.swift */,
-				66D212492AEA905600A2C4CE /* Item.swift */,
 				66D212752AEA9CFE00A2C4CE /* Resources */,
 				66D2124D2AEA905600A2C4CE /* Ping.entitlements */,
 				66D212742AEA9BFE00A2C4CE /* Info.plist */,
@@ -277,7 +274,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				66D212482AEA905600A2C4CE /* ContentView.swift in Sources */,
-				66D2124A2AEA905600A2C4CE /* Item.swift in Sources */,
 				66D212462AEA905600A2C4CE /* PingApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
