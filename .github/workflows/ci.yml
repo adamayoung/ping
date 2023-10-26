@@ -56,11 +56,11 @@ jobs:
 
       - name: Build
         run: |
-          set -o pipefail && env NSUnbufferedIO=YES && xcodebuild build-for-testing -scheme Ping -testPlan Ping -destination 'platform=iOS Simulator,name=iPhone 15,OS=17.0' | xcpretty
+          set -o pipefail && env NSUnbufferedIO=YES && xcodebuild build-for-testing -scheme Ping -testPlan Ping -destination 'platform=iOS Simulator,name=iPhone 15,OS=17.0' CODE_SIGN_IDENTITY='' CODE_SIGNING_REQUIRED=NO | xcpretty
       
       - name: Test
         run: |
-          set -o pipefail && env NSUnbufferedIO=YES && xcodebuild test-without-building -scheme Ping -testPlan Ping -destination 'platform=iOS Simulator,name=iPhone 15,OS=17.0' | xcpretty
+          set -o pipefail && env NSUnbufferedIO=YES && xcodebuild test-without-building -scheme Ping -testPlan Ping -destination 'platform=iOS Simulator,name=iPhone 15,OS=17.0' CODE_SIGN_IDENTITY='' CODE_SIGNING_REQUIRED=NO | xcpretty
 
   build-and-test-macos:
     name: Build and Test (macOS)
@@ -71,8 +71,8 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Build
-        run: set -o pipefail && env NSUnbufferedIO=YES && xcodebuild build-for-testing -scheme Ping -testPlan Ping -destination 'platform=macOS' | xcpretty
+        run: set -o pipefail && env NSUnbufferedIO=YES && xcodebuild build-for-testing -scheme Ping -testPlan Ping -destination 'platform=macOS' CODE_SIGN_IDENTITY='' CODE_SIGNING_REQUIRED=NO | xcpretty
       
       - name: Test
-        run: set -o pipefail && env NSUnbufferedIO=YES && xcodebuild test-without-building -scheme Ping -testPlan Ping -destination 'platform=macOS' | xcpretty
+        run: set -o pipefail && env NSUnbufferedIO=YES && xcodebuild test-without-building -scheme Ping -testPlan Ping -destination 'platform=macOS' CODE_SIGN_IDENTITY='' CODE_SIGNING_REQUIRED=NO | xcpretty
         
