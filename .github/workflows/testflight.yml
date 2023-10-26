@@ -1,4 +1,4 @@
-name: CI
+name: TestFlight
 
 on:
   pull_request:
@@ -17,6 +17,8 @@ jobs:
   build-and-deploy:
     name: Build and Deploy
     runs-on: macos-13
+    environment: 
+      name: testflight
 
     steps:
       - name: Checkout
