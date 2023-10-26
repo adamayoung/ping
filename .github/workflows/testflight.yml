@@ -70,7 +70,7 @@ jobs:
           -archivePath $RUNNER_TEMP/build/iOS/$APP_NAME.xcarchive \
            | xcpretty
       
-      - name: Exporting .ipa
+      - name: Export .ipa
         run: |
           set -o pipefail && \
           env NSUnbufferedIO=YES && \
@@ -92,7 +92,7 @@ jobs:
         if: ${{ always() }}
         run: |
           security delete-keychain $RUNNER_TEMP/app-signing.keychain-db
-          rm ~/Library/MobileDevice/Provisioning\ Profiles/build_pp.mobileprovision
+          rm -rf ~/Library/MobileDevice/Provisioning\ Profiles
   
   deployment:
     name: TestFlight Upload
