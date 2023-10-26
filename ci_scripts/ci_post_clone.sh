@@ -7,8 +7,8 @@ set -e
 if [ $CI_XCODEBUILD_ACTION = 'analyze' ];
 then
     echo "Linting..."
-    brew install swiftlint
+    
 
-    cd $CI_PRIMARY_REPOSITORY_PATH
+    cd $CI_WORKSPACE
     swiftlint --strict
 fi
