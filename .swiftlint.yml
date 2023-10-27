@@ -13,6 +13,7 @@ cyclomatic_complexity:
 identifier_name:
   excluded:
     - app
+    - id
 
 line_length:
   ignores_urls: true

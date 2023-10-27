@@ -8,6 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		666F36962AEB1C0500EE6D41 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 666F36952AEB1C0500EE6D41 /* Localizable.xcstrings */; };
+		66CC7BE52AEBC96A007BADF2 /* SiteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66CC7BE42AEBC96A007BADF2 /* SiteView.swift */; };
+		66CC7C222AEBCDAC007BADF2 /* PingKit in Frameworks */ = {isa = PBXBuildFile; productRef = 66CC7C212AEBCDAC007BADF2 /* PingKit */; };
+		66CC7C242AEBD295007BADF2 /* AddSiteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66CC7C232AEBD295007BADF2 /* AddSiteView.swift */; };
+		66CC7C292AEBECD7007BADF2 /* SitesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66CC7C282AEBECD7007BADF2 /* SitesView.swift */; };
+		66CC7C2C2AEBF2A3007BADF2 /* SummaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66CC7C2B2AEBF2A3007BADF2 /* SummaryView.swift */; };
+		66CC7C2E2AEBF310007BADF2 /* MenuItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66CC7C2D2AEBF310007BADF2 /* MenuItem.swift */; };
 		66D212462AEA905600A2C4CE /* PingApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66D212452AEA905600A2C4CE /* PingApp.swift */; };
 		66D212482AEA905600A2C4CE /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66D212472AEA905600A2C4CE /* ContentView.swift */; };
 		66D212502AEA905600A2C4CE /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 66D2124F2AEA905600A2C4CE /* Preview Assets.xcassets */; };
@@ -15,8 +21,6 @@
 		66D212642AEA905600A2C4CE /* PingUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66D212632AEA905600A2C4CE /* PingUITests.swift */; };
 		66D212662AEA905600A2C4CE /* PingUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66D212652AEA905600A2C4CE /* PingUITestsLaunchTests.swift */; };
 		66D212B12AEAF36100A2C4CE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 66D212B02AEAF36100A2C4CE /* Assets.xcassets */; };
-		AFC083672AEBC5C800FCA4DA /* AppTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFC083662AEBC5C800FCA4DA /* AppTabView.swift */; };
-		AFC0836A2AEBC68D00FCA4DA /* SitesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFC083692AEBC68D00FCA4DA /* SitesView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -39,6 +43,11 @@
 /* Begin PBXFileReference section */
 		666F36952AEB1C0500EE6D41 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 		666F36982AEB226D00EE6D41 /* .swiftlint.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
+		66CC7BE42AEBC96A007BADF2 /* SiteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SiteView.swift; sourceTree = "<group>"; };
+		66CC7C232AEBD295007BADF2 /* AddSiteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddSiteView.swift; sourceTree = "<group>"; };
+		66CC7C282AEBECD7007BADF2 /* SitesView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SitesView.swift; sourceTree = "<group>"; };
+		66CC7C2B2AEBF2A3007BADF2 /* SummaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryView.swift; sourceTree = "<group>"; };
+		66CC7C2D2AEBF310007BADF2 /* MenuItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuItem.swift; sourceTree = "<group>"; };
 		66D212422AEA905600A2C4CE /* Ping.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Ping.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		66D212452AEA905600A2C4CE /* PingApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PingApp.swift; sourceTree = "<group>"; };
 		66D212472AEA905600A2C4CE /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -53,8 +62,6 @@
 		66D212732AEA940500A2C4CE /* PingUI.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = PingUI.xctestplan; sourceTree = "<group>"; };
 		66D212B02AEAF36100A2C4CE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		66D212B22AEAF37900A2C4CE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
-		AFC083662AEBC5C800FCA4DA /* AppTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppTabView.swift; sourceTree = "<group>"; };
-		AFC083692AEBC68D00FCA4DA /* SitesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SitesView.swift; sourceTree = "<group>"; };
 		AFDC620C2AEBA0440082E898 /* PingKit */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = PingKit; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -63,6 +70,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				66CC7C222AEBCDAC007BADF2 /* PingKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -83,6 +91,45 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		66CC7BE32AEBC961007BADF2 /* Site */ = {
+			isa = PBXGroup;
+			children = (
+				66CC7BE42AEBC96A007BADF2 /* SiteView.swift */,
+			);
+			path = Site;
+			sourceTree = "<group>";
+		};
+		66CC7C202AEBCDAC007BADF2 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		66CC7C252AEBD2AE007BADF2 /* AddSite */ = {
+			isa = PBXGroup;
+			children = (
+				66CC7C232AEBD295007BADF2 /* AddSiteView.swift */,
+			);
+			path = AddSite;
+			sourceTree = "<group>";
+		};
+		66CC7C272AEBECD7007BADF2 /* Sites */ = {
+			isa = PBXGroup;
+			children = (
+				66CC7C282AEBECD7007BADF2 /* SitesView.swift */,
+			);
+			path = Sites;
+			sourceTree = "<group>";
+		};
+		66CC7C2A2AEBF296007BADF2 /* Summary */ = {
+			isa = PBXGroup;
+			children = (
+				66CC7C2B2AEBF2A3007BADF2 /* SummaryView.swift */,
+			);
+			path = Summary;
+			sourceTree = "<group>";
+		};
 		66D212392AEA905600A2C4CE = {
 			isa = PBXGroup;
 			children = (
@@ -94,6 +141,7 @@
 				66D212732AEA940500A2C4CE /* PingUI.xctestplan */,
 				666F36982AEB226D00EE6D41 /* .swiftlint.yml */,
 				66D212432AEA905600A2C4CE /* Products */,
+				66CC7C202AEBCDAC007BADF2 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -111,8 +159,12 @@
 			isa = PBXGroup;
 			children = (
 				66D212452AEA905600A2C4CE /* PingApp.swift */,
-				AFC083682AEBC68200FCA4DA /* Sites */,
-				AFC083652AEBC57700FCA4DA /* Navigation */,
+				66D212472AEA905600A2C4CE /* ContentView.swift */,
+				66CC7C2D2AEBF310007BADF2 /* MenuItem.swift */,
+				66CC7C272AEBECD7007BADF2 /* Sites */,
+				66CC7C2A2AEBF296007BADF2 /* Summary */,
+				66CC7C252AEBD2AE007BADF2 /* AddSite */,
+				66CC7BE32AEBC961007BADF2 /* Site */,
 				66D212AF2AEAF36100A2C4CE /* Resources */,
 				66D2124D2AEA905600A2C4CE /* Ping.entitlements */,
 				66D212B22AEAF37900A2C4CE /* Info.plist */,
@@ -155,23 +207,6 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
-		AFC083652AEBC57700FCA4DA /* Navigation */ = {
-			isa = PBXGroup;
-			children = (
-				66D212472AEA905600A2C4CE /* ContentView.swift */,
-				AFC083662AEBC5C800FCA4DA /* AppTabView.swift */,
-			);
-			path = Navigation;
-			sourceTree = "<group>";
-		};
-		AFC083682AEBC68200FCA4DA /* Sites */ = {
-			isa = PBXGroup;
-			children = (
-				AFC083692AEBC68D00FCA4DA /* SitesView.swift */,
-			);
-			path = Sites;
-			sourceTree = "<group>";
-		};
 		AFDC620B2AEBA0110082E898 /* Packages */ = {
 			isa = PBXGroup;
 			children = (
@@ -197,6 +232,9 @@
 			dependencies = (
 			);
 			name = Ping;
+			packageProductDependencies = (
+				66CC7C212AEBCDAC007BADF2 /* PingKit */,
+			);
 			productName = Ping;
 			productReference = 66D212422AEA905600A2C4CE /* Ping.app */;
 			productType = "com.apple.product-type.application";
@@ -334,10 +372,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AFC083672AEBC5C800FCA4DA /* AppTabView.swift in Sources */,
-				AFC0836A2AEBC68D00FCA4DA /* SitesView.swift in Sources */,
+				66CC7BE52AEBC96A007BADF2 /* SiteView.swift in Sources */,
+				66CC7C2E2AEBF310007BADF2 /* MenuItem.swift in Sources */,
+				66CC7C242AEBD295007BADF2 /* AddSiteView.swift in Sources */,
+				66CC7C292AEBECD7007BADF2 /* SitesView.swift in Sources */,
 				66D212482AEA905600A2C4CE /* ContentView.swift in Sources */,
 				66D212462AEA905600A2C4CE /* PingApp.swift in Sources */,
+				66CC7C2C2AEBF2A3007BADF2 /* SummaryView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -700,6 +741,13 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		66CC7C212AEBCDAC007BADF2 /* PingKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = PingKit;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 66D2123A2AEA905600A2C4CE /* Project object */;
 }

@@ -1,5 +1,5 @@
-import XCTest
 @testable import PingKit
+import XCTest
 
 final class PingKitTests: XCTestCase {
     func testExample() throws {
