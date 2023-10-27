@@ -15,6 +15,8 @@
 		66D212642AEA905600A2C4CE /* PingUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66D212632AEA905600A2C4CE /* PingUITests.swift */; };
 		66D212662AEA905600A2C4CE /* PingUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66D212652AEA905600A2C4CE /* PingUITestsLaunchTests.swift */; };
 		66D212B12AEAF36100A2C4CE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 66D212B02AEAF36100A2C4CE /* Assets.xcassets */; };
+		AFC083672AEBC5C800FCA4DA /* AppTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFC083662AEBC5C800FCA4DA /* AppTabView.swift */; };
+		AFC0836A2AEBC68D00FCA4DA /* SitesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFC083692AEBC68D00FCA4DA /* SitesView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +53,9 @@
 		66D212732AEA940500A2C4CE /* PingUI.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = PingUI.xctestplan; sourceTree = "<group>"; };
 		66D212B02AEAF36100A2C4CE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		66D212B22AEAF37900A2C4CE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		AFC083662AEBC5C800FCA4DA /* AppTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppTabView.swift; sourceTree = "<group>"; };
+		AFC083692AEBC68D00FCA4DA /* SitesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SitesView.swift; sourceTree = "<group>"; };
+		AFDC620C2AEBA0440082E898 /* PingKit */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = PingKit; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,6 +87,7 @@
 			isa = PBXGroup;
 			children = (
 				66D212442AEA905600A2C4CE /* Ping */,
+				AFDC620B2AEBA0110082E898 /* Packages */,
 				66D212582AEA905600A2C4CE /* PingTests */,
 				66D212622AEA905600A2C4CE /* PingUITests */,
 				66D212722AEA925600A2C4CE /* Ping.xctestplan */,
@@ -105,7 +111,8 @@
 			isa = PBXGroup;
 			children = (
 				66D212452AEA905600A2C4CE /* PingApp.swift */,
-				66D212472AEA905600A2C4CE /* ContentView.swift */,
+				AFC083682AEBC68200FCA4DA /* Sites */,
+				AFC083652AEBC57700FCA4DA /* Navigation */,
 				66D212AF2AEAF36100A2C4CE /* Resources */,
 				66D2124D2AEA905600A2C4CE /* Ping.entitlements */,
 				66D212B22AEAF37900A2C4CE /* Info.plist */,
@@ -146,6 +153,31 @@
 				666F36952AEB1C0500EE6D41 /* Localizable.xcstrings */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		AFC083652AEBC57700FCA4DA /* Navigation */ = {
+			isa = PBXGroup;
+			children = (
+				66D212472AEA905600A2C4CE /* ContentView.swift */,
+				AFC083662AEBC5C800FCA4DA /* AppTabView.swift */,
+			);
+			path = Navigation;
+			sourceTree = "<group>";
+		};
+		AFC083682AEBC68200FCA4DA /* Sites */ = {
+			isa = PBXGroup;
+			children = (
+				AFC083692AEBC68D00FCA4DA /* SitesView.swift */,
+			);
+			path = Sites;
+			sourceTree = "<group>";
+		};
+		AFDC620B2AEBA0110082E898 /* Packages */ = {
+			isa = PBXGroup;
+			children = (
+				AFDC620C2AEBA0440082E898 /* PingKit */,
+			);
+			path = Packages;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -302,6 +334,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AFC083672AEBC5C800FCA4DA /* AppTabView.swift in Sources */,
+				AFC0836A2AEBC68D00FCA4DA /* SitesView.swift in Sources */,
 				66D212482AEA905600A2C4CE /* ContentView.swift in Sources */,
 				66D212462AEA905600A2C4CE /* PingApp.swift in Sources */,
 			);
