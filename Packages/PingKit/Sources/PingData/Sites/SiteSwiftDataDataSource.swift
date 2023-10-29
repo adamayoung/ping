@@ -35,7 +35,7 @@ public actor SiteSwiftDataDataSource: SiteDataSource {
     public func save(_ site: PingDomain.Site) async throws {
         let siteModel = Site(site: site)
 
-        try await model.save(data: siteModel)
+        try await model.save(siteModel)
     }
 
     public func `delete`(_ id: UUID) async throws {

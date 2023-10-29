@@ -53,6 +53,13 @@
         "identifier" : "PingDomainTests",
         "name" : "PingDomainTests"
       }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:Packages\/PingKit",
+        "identifier" : "PingDataTests",
+        "name" : "PingDataTests"
+      }
     }
   ],
   "version" : 1

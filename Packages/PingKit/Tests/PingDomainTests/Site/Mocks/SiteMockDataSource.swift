@@ -20,4 +20,12 @@ final class SiteMockDataSource: SiteDataSource {
         return try sitesResult.get()
     }
 
+    func save(_ site: Site) async throws {
+
+    }
+
+    func delete(_ id: UUID) async throws {
+
+    }
+
 }

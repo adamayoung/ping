@@ -32,8 +32,15 @@ actor BackgroundModelActor<T: PersistentModel>: ModelActor {
         return list
     }
 
-    func save(data: T) throws {
-        context.insert(data)
+    func save(_ model: T) throws {
+        try save([model])
+    }
+
+    func save(_ models: [T]) throws {
+        models.forEach {
+            context.insert($0)
+        }
+
         try context.save()
     }
 

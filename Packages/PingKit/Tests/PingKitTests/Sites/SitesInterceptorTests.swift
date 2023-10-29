@@ -72,20 +72,20 @@ final class SitesInterceptorTests: XCTestCase {
         }
     }
 
-    func testSaveReturnsAddActionWithSite() async {
+    func testAddReturnsFetchAction() async {
         let state = SitesState()
         let expectedSite = Site(
             id: UUID(uuidString: "C26FF5CF-5337-4725-B9E5-2B4491CFF855")!,
             name: "Google",
             url: URL(string: "https://www.google.com")!
         )
-        let action = SitesAction.save(expectedSite)
+        let action = SitesAction.add(expectedSite)
 
         let newAction = await sitesInterceptor(state: state, action: action, dependencies: dependencies)
 
         switch newAction {
-        case .add(let site):
-            XCTAssertEqual(site, expectedSite)
+        case .fetch:
+            XCTAssertTrue(true)
 
         default:
             XCTFail("Unexpected action returned")

@@ -16,4 +16,12 @@ final class SitesMockDependencies: SitesDependencies {
         try sitesResult.get()
     }
 
+    func add(site: PingKit.Site) async throws {
+
+    }
+
+    func remove(id: PingKit.Site.ID) async throws {
+
+    }
+
 }

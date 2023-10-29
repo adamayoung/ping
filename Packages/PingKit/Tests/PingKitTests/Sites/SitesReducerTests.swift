@@ -20,30 +20,6 @@ final class SitesReducerTests: XCTestCase {
         XCTAssertEqual(newState.all, expectedSites)
     }
 
-    func testAddAddsSiteToAllSites() {
-        let state = SitesState(
-            all: [googleSite, twitterSite]
-        )
-        let expectedSites = [googleSite, twitterSite, microsoftSite]
-        let action = SitesAction.add(microsoftSite)
-
-        let newState = sitesReducer(state: state, action: action)
-
-        XCTAssertEqual(newState.all, expectedSites)
-    }
-
-    func testRemoveRemovesSiteFromAllSites() {
-        let state = SitesState(
-            all: [githubSite, googleSite, twitterSite]
-        )
-        let expectedSites = [githubSite, twitterSite]
-        let action = SitesAction.remove(googleSite)
-
-        let newState = sitesReducer(state: state, action: action)
-
-        XCTAssertEqual(newState.all, expectedSites)
-    }
-
 }
 
 extension SitesReducerTests {
