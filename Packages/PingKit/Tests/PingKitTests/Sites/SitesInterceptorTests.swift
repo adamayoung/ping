@@ -22,26 +22,10 @@ final class SitesInterceptorTests: XCTestCase {
         super.tearDown()
     }
 
-    func testFetchReturnsSetActionWithSites() async {
+    func testFetchActionReturnsSetActionWithSites() async {
         let state = SitesState()
         let action = SitesAction.fetch
-        let expectedSites = [
-            Site(
-                id: UUID(uuidString: "C26FF5CF-5337-4725-B9E5-2B4491CFF855")!,
-                name: "Google",
-                url: URL(string: "https://www.google.com")!
-            ),
-            Site(
-                id: UUID(uuidString: "FBFCD00D-B8FF-4421-AE52-AA84EF212E52")!,
-                name: "GitHub",
-                url: URL(string: "https://github.com")!
-            ),
-            Site(
-                id: UUID(uuidString: "D7874391-0048-40B5-9569-C7D8DBBA329A")!,
-                name: "Twitter",
-                url: URL(string: "https://twitter.com")!
-            )
-        ]
+        let expectedSites = [Site.google, Site.gitHub, Site.twitter]
         dependencies.sitesResult = .success(expectedSites)
 
         let newAction = await sitesInterceptor(state: state, action: action, dependencies: dependencies)
@@ -55,7 +39,7 @@ final class SitesInterceptorTests: XCTestCase {
         }
     }
 
-    func testFetchWhenErrorReturnsSetActionWithEmptySites() async {
+    func testFetchActionWhenErrorReturnsSetActionWithEmptySites() async {
         let state = SitesState()
         let action = SitesAction.fetch
         let error = SitesInterceptorError()
@@ -72,14 +56,19 @@ final class SitesInterceptorTests: XCTestCase {
         }
     }
 
-    func testAddReturnsFetchAction() async {
+    func testAddActionAddsSite() async {
         let state = SitesState()
-        let expectedSite = Site(
-            id: UUID(uuidString: "C26FF5CF-5337-4725-B9E5-2B4491CFF855")!,
-            name: "Google",
-            url: URL(string: "https://www.google.com")!
-        )
+        let expectedSite = Site.google
         let action = SitesAction.add(expectedSite)
+
+        _ = await sitesInterceptor(state: state, action: action, dependencies: dependencies)
+
+        XCTAssertEqual(dependencies.lastAddedSite, expectedSite)
+    }
+
+    func testAddActionReturnsFetchAction() async {
+        let state = SitesState()
+        let action = SitesAction.add(.google)
 
         let newAction = await sitesInterceptor(state: state, action: action, dependencies: dependencies)
 
@@ -90,6 +79,40 @@ final class SitesInterceptorTests: XCTestCase {
         default:
             XCTFail("Unexpected action returned")
         }
+    }
+
+    func testRemoveActionRemovesSite() async {
+        let state = SitesState()
+        let expectedSite = Site.google
+        let action = SitesAction.remove(expectedSite)
+
+        _ = await sitesInterceptor(state: state, action: action, dependencies: dependencies)
+
+        XCTAssertEqual(dependencies.lastRemovedSiteID, expectedSite.id)
+    }
+
+    func testRemoveActionReturnsFetchAction() async {
+        let state = SitesState()
+        let action = SitesAction.remove(.google)
+
+        let newAction = await sitesInterceptor(state: state, action: action, dependencies: dependencies)
+
+        switch newAction {
+        case .fetch:
+            XCTAssertTrue(true)
+
+        default:
+            XCTFail("Unexpected action returned")
+        }
+    }
+
+    func testSetActionReturnsNil() async {
+        let state = SitesState()
+        let action = SitesAction.set([.google])
+
+        let newAction = await sitesInterceptor(state: state, action: action, dependencies: dependencies)
+
+        XCTAssertNil(newAction)
     }
 
 }

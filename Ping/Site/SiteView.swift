@@ -32,7 +32,7 @@ struct SiteView: View {
             }
         }
         .confirmationDialog("CONFIRM_DELETE_SITE", isPresented: $isConfirmDeleteAlertPresented) {
-            Button {
+            Button(role: .destructive) {
                 removeSite()
             } label: {
                 Text("DELETE")

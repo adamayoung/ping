@@ -16,12 +16,16 @@ final class SitesMockDependencies: SitesDependencies {
         try sitesResult.get()
     }
 
-    func add(site: PingKit.Site) async throws {
+    private(set) var lastAddedSite: Site?
 
+    func add(site: Site) async throws {
+        lastAddedSite = site
     }
 
-    func remove(id: PingKit.Site.ID) async throws {
+    private(set) var lastRemovedSiteID: Site.ID?
 
+    func remove(id: Site.ID) async throws {
+        lastRemovedSiteID = id
     }
 
 }

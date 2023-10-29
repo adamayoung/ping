@@ -14,11 +14,6 @@ func sitesReducer(state: SitesState, action: SitesAction) -> SitesState {
     case .set(let sites):
         state.all = sites
 
-    case .remove(let site):
-        var sites = state.all
-        sites.removeAll(where: { $0.id == site.id })
-        state.all = sites
-
     default:
         break
     }

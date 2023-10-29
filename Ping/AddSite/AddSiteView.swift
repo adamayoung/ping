@@ -38,6 +38,9 @@ struct AddSiteView: View {
             }
         }
         .accessibilityIdentifier("addSiteView")
+        .onAppear {
+            nameFieldIsFocused = true
+        }
         .onChange(of: url) { _, _ in
             validateForm()
         }

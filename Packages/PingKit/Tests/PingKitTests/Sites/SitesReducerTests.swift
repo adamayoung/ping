@@ -10,9 +10,18 @@ import XCTest
 
 final class SitesReducerTests: XCTestCase {
 
-    func testSetSetsSites() {
+    func testFetchActionDoesNotAlterState() {
         let state = SitesState()
-        let expectedSites = [githubSite, googleSite, twitterSite]
+        let action = SitesAction.fetch
+
+        let newState = sitesReducer(state: state, action: action)
+
+        XCTAssertEqual(newState, state)
+    }
+
+    func testSetActionSetsSites() {
+        let state = SitesState()
+        let expectedSites = [Site.gitHub, Site.google, Site.twitter]
         let action = SitesAction.set(expectedSites)
 
         let newState = sitesReducer(state: state, action: action)
@@ -20,40 +29,22 @@ final class SitesReducerTests: XCTestCase {
         XCTAssertEqual(newState.all, expectedSites)
     }
 
-}
+    func testAddActionDoesNotAlterState() {
+        let state = SitesState()
+        let action = SitesAction.add(.gitHub)
 
-extension SitesReducerTests {
+        let newState = sitesReducer(state: state, action: action)
 
-    var googleSite: Site {
-        Site(
-            id: UUID(uuidString: "C26FF5CF-5337-4725-B9E5-2B4491CFF855")!,
-            name: "Google",
-            url: URL(string: "https://www.google.com")!
-        )
+        XCTAssertEqual(newState, state)
     }
 
-    var twitterSite: Site {
-        Site(
-            id: UUID(uuidString: "D7874391-0048-40B5-9569-C7D8DBBA329A")!,
-            name: "Twitter",
-            url: URL(string: "https://twitter.com")!
-        )
-    }
+    func testRemoveActionDoesNotAlterState() {
+        let state = SitesState()
+        let action = SitesAction.remove(.gitHub)
 
-    var githubSite: Site {
-        Site(
-            id: UUID(uuidString: "FBFCD00D-B8FF-4421-AE52-AA84EF212E52")!,
-            name: "GitHub",
-            url: URL(string: "https://github.com")!
-        )
-    }
+        let newState = sitesReducer(state: state, action: action)
 
-    var microsoftSite: Site {
-        Site(
-            id: UUID(uuidString: "D86808FA-E0BE-467D-BB38-7092FDD95A5C")!,
-            name: "Microsoft",
-            url: URL(string: "https://microsoft.com")!
-        )
+        XCTAssertEqual(newState, state)
     }
 
 }

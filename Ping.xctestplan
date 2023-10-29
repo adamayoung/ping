@@ -9,20 +9,6 @@
     }
   ],
   "defaultOptions" : {
-    "codeCoverage" : {
-      "targets" : [
-        {
-          "containerPath" : "container:Ping.xcodeproj",
-          "identifier" : "66D212412AEA905600A2C4CE",
-          "name" : "Ping"
-        },
-        {
-          "containerPath" : "container:Packages\/PingKit",
-          "identifier" : "PingKit",
-          "name" : "PingKit"
-        }
-      ]
-    },
     "language" : "en-GB",
     "region" : "GB",
     "targetForVariableExpansion" : {

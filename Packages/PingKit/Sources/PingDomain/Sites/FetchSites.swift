@@ -17,10 +17,7 @@ public final class FetchSites: FetchSitesUseCase {
 
     public func execute() async throws -> [Site] {
         let sites = try await siteDataSource.sites()
-        let sortedSites = sites.sorted(by: {
-            $0.name.localizedStandardCompare($1.name) == .orderedAscending
-        })
-        return sortedSites
+        return sites
     }
 
 }

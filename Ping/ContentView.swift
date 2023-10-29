@@ -14,7 +14,6 @@ struct ContentView: View {
     @State private var path: [MenuItem] = []
 
     var body: some View {
-
         NavigationSplitView {
             SitesView(menuItem: $menuItem)
         } detail: {
