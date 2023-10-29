@@ -19,6 +19,7 @@ final class PingUITestsLaunchTests: XCTestCase {
 
     func testLaunch() throws {
         let app = XCUIApplication()
+        app.launchArguments = ["-uitest"]
         app.launch()
 
         let attachment = XCTAttachment(screenshot: app.screenshot())

@@ -53,4 +53,13 @@ final class SiteTests: UITestCase {
             .verifySiteNotPresent(withID: siteID)
     }
 
+    func testDeleteSiteFromSitesList() throws {
+        let siteID = try XCTUnwrap(UUID(uuidString: "C26FF5CF-5337-4725-B9E5-2B4491CFF855"))
+
+        SitesScreen(app: app)
+            .verifySitesVisible()
+            .swipLeftAndDeleteSite(withID: siteID)
+            .verifySiteNotPresent(withID: siteID)
+    }
+
 }

@@ -86,6 +86,7 @@ extension SitesView {
             }
             .accessibilityIdentifier("siteNavigationLink-\(site.id.uuidString)")
         }
+        .onDelete(perform: delete)
     }
 
     private var macOSAddSiteView: some View {
@@ -109,6 +110,16 @@ extension SitesView {
     private func fetchData() async {
         if sites.isEmpty {
             await store.send(.sites(.fetch))
+        }
+    }
+
+    private func delete(at offsets: IndexSet) {
+        guard let site = (offsets.map { sites[$0] }).first else {
+            return
+        }
+
+        Task {
+            await store.send(.sites(.remove(site)))
         }
     }
 
