@@ -2,7 +2,7 @@
   "configurations" : [
     {
       "id" : "76677C8C-AA02-4A17-ACBF-9DF412E03065",
-      "name" : "Test Scheme Action",
+      "name" : "Default",
       "options" : {
 
       }
@@ -20,11 +20,31 @@
   },
   "testTargets" : [
     {
-      "parallelizable" : true,
       "target" : {
         "containerPath" : "container:Ping.xcodeproj",
         "identifier" : "66D212542AEA905600A2C4CE",
         "name" : "PingTests"
+      }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:Packages\/PingKit",
+        "identifier" : "PingKitTests",
+        "name" : "PingKitTests"
+      }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:Packages\/PingKit",
+        "identifier" : "PingDomainTests",
+        "name" : "PingDomainTests"
+      }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:Packages\/PingKit",
+        "identifier" : "PingDataTests",
+        "name" : "PingDataTests"
       }
     }
   ],
