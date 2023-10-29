@@ -11,14 +11,58 @@ import SwiftUI
 struct SiteView: View {
 
     var site: Site
+    var onDelete: (() -> Void)?
+
+    @Environment(PingStore.self) private var store
+    @State private var isConfirmDeleteAlertPresented = false
 
     var body: some View {
-        Text(verbatim: site.url.absoluteString)
-            .navigationTitle(site.name)
+        ScrollView {
+            Text(verbatim: site.url.absoluteString)
+        }
+        .navigationTitle(site.name)
+        .toolbar {
+            ToolbarItem {
+                Button(role: .destructive) {
+                    confirmRemove()
+                } label: {
+                    Label("DELETE_SITE", systemImage: "trash")
+                }
+                .accessibilityIdentifier("deleteSiteButton")
+            }
+        }
+        .confirmationDialog("CONFIRM_DELETE_SITE", isPresented: $isConfirmDeleteAlertPresented) {
+            Button {
+                removeSite()
+            } label: {
+                Text("DELETE")
+            }
+            .accessibilityIdentifier("confirmDeleteSiteButton")
+
+            Button("CANCEL", role: .cancel) { }
+                .accessibilityIdentifier("cancelDeleteSiteButton")
+        }
+    }
+
+    private func confirmRemove() {
+        isConfirmDeleteAlertPresented = true
+    }
+
+    private func removeSite() {
+        Task {
+            await store.send(.sites(.remove(site)))
+        }
+
+        onDelete?()
     }
 
 }
 
 #Preview {
-    SiteView(site: .preview)
+    let store = PingStore.preview
+
+    return NavigationStack {
+        SiteView(site: .preview)
+    }
+    .environment(store)
 }

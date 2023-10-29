@@ -2,15 +2,17 @@
   "configurations" : [
     {
       "id" : "6C62798C-F08C-4E41-8C79-52207429042D",
-      "name" : "Configuration 1",
+      "name" : "Default",
       "options" : {
 
       }
     }
   ],
   "defaultOptions" : {
+    "codeCoverage" : false,
     "language" : "en-GB",
-    "region" : "GB"
+    "region" : "GB",
+    "testExecutionOrdering" : "random"
   },
   "testTargets" : [
     {

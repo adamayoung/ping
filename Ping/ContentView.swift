@@ -11,6 +11,7 @@ import SwiftUI
 struct ContentView: View {
 
     @State private var menuItem: MenuItem? = .default
+    @State private var path: [MenuItem] = []
 
     var body: some View {
 
@@ -22,7 +23,9 @@ struct ContentView: View {
                 SummaryView()
 
             case .site(let site):
-                SiteView(site: site)
+                SiteView(site: site) {
+                    menuItem = nil
+                }
 
             default:
                 ContentUnavailableView {

@@ -12,40 +12,24 @@ public typealias PingStore = Store<PingState, PingAction, PingDependencies>
 extension PingStore {
 
     public convenience init(
-        state: PingState = PingState()
+        state: PingState = PingState(),
+        inMemoryStorage: Bool = false
     ) {
         self.init(
             state: state,
-            dependencies: PingLiveDependencies()
+            dependencies: PingLiveDependencies(inMemoryStorage: inMemoryStorage)
         )
     }
 
     convenience init(
         state: PingState = PingState(),
-        dependencies: PingDependencies = PingLiveDependencies()
+        dependencies: PingDependencies
     ) {
         self.init(
             state: state,
             reduce: pingReducer,
             intercept: pingInterceptor,
             dependencies: dependencies
-        )
-    }
-
-}
-
-extension PingStore {
-
-    public static var preview: PingStore {
-        .init(
-            state: .preview,
-            reduce: { state, _ in
-                state
-            },
-            intercept: { _, _, _ in
-                nil
-            },
-            dependencies: PingLiveDependencies()
         )
     }
 

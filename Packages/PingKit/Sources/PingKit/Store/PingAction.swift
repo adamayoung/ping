@@ -9,11 +9,6 @@ import Foundation
 
 public enum PingAction {
 
-    case fetchSites
-    case fetchSitesError(Error)
-    case setSites([Site])
-
-    case saveSite(Site)
-    case addSite(Site)
+    case sites(SitesAction)
 
 }

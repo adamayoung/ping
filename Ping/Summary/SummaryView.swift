@@ -13,7 +13,7 @@ struct SummaryView: View {
     @Environment(PingStore.self) private var store
 
     private var sites: [Site] {
-        store.sites
+        store.sites.all
     }
 
     var body: some View {
@@ -29,5 +29,10 @@ struct SummaryView: View {
 }
 
 #Preview {
-    SummaryView()
+    let store = PingStore.preview
+
+    return NavigationStack {
+        SummaryView()
+    }
+    .environment(store)
 }

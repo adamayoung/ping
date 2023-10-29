@@ -13,15 +13,14 @@ func pingInterceptor(
     dependencies: PingDependencies
 ) async -> PingAction? {
     switch action {
-    case .fetchSites:
-        let sites = Site.previews
-        return .setSites(sites)
+    case .sites(let sitesAction):
+        let newAction = await sitesInterceptor(state: state.sites, action: sitesAction, dependencies: dependencies)
 
-    case .saveSite(let site):
-        return .addSite(site)
+        guard let action = newAction else {
+            return nil
+        }
 
-    default:
-        return nil
+        return .sites(action)
     }
 
 }

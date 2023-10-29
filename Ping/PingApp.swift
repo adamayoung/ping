@@ -11,13 +11,25 @@ import SwiftUI
 @main
 struct PingApp: App {
 
-    @State private var store = PingStore()
+    @State private var store = PingStore.app
 
     var body: some Scene {
         WindowGroup {
             ContentView()
                 .environment(store)
         }
+    }
+
+}
+
+extension PingStore {
+
+    static var app: PingStore {
+        if CommandLine.arguments.contains("-uitest") {
+            return PingStore.test
+        }
+
+        return PingStore()
     }
 
 }

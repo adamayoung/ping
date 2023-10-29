@@ -2,13 +2,27 @@
   "configurations" : [
     {
       "id" : "76677C8C-AA02-4A17-ACBF-9DF412E03065",
-      "name" : "Test Scheme Action",
+      "name" : "Default",
       "options" : {
 
       }
     }
   ],
   "defaultOptions" : {
+    "codeCoverage" : {
+      "targets" : [
+        {
+          "containerPath" : "container:Ping.xcodeproj",
+          "identifier" : "66D212412AEA905600A2C4CE",
+          "name" : "Ping"
+        },
+        {
+          "containerPath" : "container:Packages\/PingKit",
+          "identifier" : "PingKit",
+          "name" : "PingKit"
+        }
+      ]
+    },
     "language" : "en-GB",
     "region" : "GB",
     "targetForVariableExpansion" : {
@@ -20,11 +34,24 @@
   },
   "testTargets" : [
     {
-      "parallelizable" : true,
       "target" : {
         "containerPath" : "container:Ping.xcodeproj",
         "identifier" : "66D212542AEA905600A2C4CE",
         "name" : "PingTests"
+      }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:Packages\/PingKit",
+        "identifier" : "PingKitTests",
+        "name" : "PingKitTests"
+      }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:Packages\/PingKit",
+        "identifier" : "PingDomainTests",
+        "name" : "PingDomainTests"
       }
     }
   ],

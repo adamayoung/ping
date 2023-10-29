@@ -13,6 +13,7 @@ struct AddSiteView: View {
     @Environment(PingStore.self) private var store
     @Environment(\.dismiss) private var dismiss
 
+    @State private var isValid = false
     @State private var name: String = ""
     @FocusState private var nameFieldIsFocused: Bool
     @State private var url: String = ""
@@ -23,17 +24,22 @@ struct AddSiteView: View {
             Section {
                 TextField("SITE_NAME", text: $name)
                     .focused($nameFieldIsFocused)
+                    .accessibilityIdentifier("siteNameField")
 
                 TextField("URL", text: $url)
                     #if os(iOS)
                     .keyboardType(.URL)
                     .textInputAutocapitalization(.never)
                     #endif
-
                     .disableAutocorrection(true)
                     .textContentType(.URL)
                     .focused($urlFieldIsFocused)
+                    .accessibilityIdentifier("siteURLField")
             }
+        }
+        .accessibilityIdentifier("addSiteView")
+        .onChange(of: url) { _, _ in
+            validateForm()
         }
         .navigationTitle("ADD_SITE")
         #if os(iOS)
@@ -46,6 +52,8 @@ struct AddSiteView: View {
                 } label: {
                     Text("CANCEL")
                 }
+                .accessibilityIdentifier("cancelButton")
+                .accessibilityLabel("CANCEL")
             }
 
             ToolbarItem(placement: .primaryAction) {
@@ -54,6 +62,8 @@ struct AddSiteView: View {
                 } label: {
                     Text("ADD")
                 }
+                .accessibilityIdentifier("addButton")
+                .accessibilityLabel("ADD_SITE")
                 .disabled(!isValid)
             }
         }
@@ -63,18 +73,20 @@ struct AddSiteView: View {
 
 extension AddSiteView {
 
-    private var isValid: Bool {
+    private func validateForm() {
         if name.isEmpty {
-            return false
+            isValid = false
+            return
         }
 
         let url = URL(string: url)
 
         if url?.scheme == nil || url?.host() == nil {
-            return false
+            isValid = false
+            return
         }
 
-        return true
+        isValid = true
     }
 
     private func addSite() {
@@ -85,7 +97,7 @@ extension AddSiteView {
         )
 
         Task {
-            await store.send(.addSite(site))
+            await store.send(.sites(.add(site)))
         }
 
         dismiss()

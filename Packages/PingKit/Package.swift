@@ -18,7 +18,13 @@ let package = Package(
     ],
 
     targets: [
-        .target(name: "PingKit"),
-        .testTarget(name: "PingKitTests", dependencies: ["PingKit"])
+        .target(name: "PingKit", dependencies: ["PingDomain", "PingData"]),
+        .testTarget(name: "PingKitTests", dependencies: ["PingKit"]),
+
+        .target(name: "PingDomain"),
+        .testTarget(name: "PingDomainTests", dependencies: ["PingDomain"]),
+
+        .target(name: "PingData", dependencies: ["PingDomain"]),
+        .testTarget(name: "PingDataTests", dependencies: ["PingData"])
     ]
 )

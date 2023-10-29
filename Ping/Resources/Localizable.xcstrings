@@ -1,6 +1,9 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
+    "" : {
+
+    },
     "ADD" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -34,23 +37,42 @@
         }
       }
     },
+    "CONFIRM_DELETE_SITE" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Are you sure you want to delete this site?"
+          }
+        }
+      }
+    },
+    "DELETE" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Delete"
+          }
+        }
+      }
+    },
+    "DELETE_SITE" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Delete Site"
+          }
+        }
+      }
+    },
     "NAME" : {
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Name"
-          }
-        }
-      }
-    },
-    "No Site selected" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "No SIte"
           }
         }
       }
@@ -62,6 +84,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "No Site Selected"
+          }
+        }
+      }
+    },
+    "NO_SITES" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No Sites"
           }
         }
       }

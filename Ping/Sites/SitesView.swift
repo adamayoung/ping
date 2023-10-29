@@ -10,33 +10,38 @@ import SwiftUI
 
 struct SitesView: View {
 
-    @Environment(PingStore.self) private var store
     @Binding var menuItem: MenuItem?
+
+    @Environment(PingStore.self) private var store
     @State private var showingSheet = false
 
     private var sites: [Site] {
-        store.sites
+        store.sites.all
     }
 
     var body: some View {
         List(selection: $menuItem) {
             #if os(macOS)
             Section {
-                NavigationLink(value: MenuItem.summary) {
-                    Label("SUMMARY", systemImage: "globe")
-                }
+                summaryRow
+            }
+            Section("SITES") {
+                siteRows
+            }
+            #else
+            Section {
+                siteRows
             }
             #endif
-
-            Section("SITES") {
-                ForEach(sites) { site in
-                    NavigationLink(value: MenuItem.site(site)) {
-                        Label(site.name, systemImage: "globe")
-                    }
-                }
-            }
-
         }
+        .scrollDisabled(sites.isEmpty)
+        #if os(iOS)
+        .overlay {
+            if sites.isEmpty {
+                NoSitesView()
+            }
+        }
+        #endif
         #if os(macOS)
         .listStyle(.sidebar)
         #endif
@@ -47,28 +52,64 @@ struct SitesView: View {
                 } label: {
                     Label("ADD_SITE", systemImage: "plus")
                 }
+                .accessibilityIdentifier("addSiteToolbarButton")
             }
         }
         .sheet(isPresented: $showingSheet) {
             #if os(macOS)
-            AddSiteView()
-                .padding()
-                .frame(width: 300)
-                .environment(store)
+            macOSAddSiteView
             #else
-            NavigationView {
-                AddSiteView()
-                    .environment(store)
-            }
+            iOSAddSiteView
             #endif
         }
         .navigationTitle("SITES")
         .task {
-            if sites.isEmpty {
-                await store.send(.fetchSites)
-            }
+            await fetchData()
         }
-        .alert(isPresented: <#T##Binding<Bool>#>, error: <#T##LocalizedError?#>, actions: <#T##(LocalizedError) -> View#>, message: <#T##(LocalizedError) -> View#>)
+    }
+
+}
+
+extension SitesView {
+
+    private var summaryRow: some View {
+        NavigationLink(value: MenuItem.summary) {
+            Label("SUMMARY", systemImage: "globe")
+                .accessibilityIdentifier("summaryNavigationLink")
+        }
+    }
+
+    private var siteRows: some View {
+        ForEach(sites) { site in
+            NavigationLink(value: MenuItem.site(site)) {
+                Label(site.name, systemImage: "globe")
+            }
+            .accessibilityIdentifier("siteNavigationLink-\(site.id.uuidString)")
+        }
+    }
+
+    private var macOSAddSiteView: some View {
+        AddSiteView()
+            .padding()
+            .frame(width: 300)
+            .environment(store)
+    }
+
+    private var iOSAddSiteView: some View {
+        NavigationView {
+            AddSiteView()
+                .environment(store)
+        }
+    }
+
+}
+
+extension SitesView {
+
+    private func fetchData() async {
+        if sites.isEmpty {
+            await store.send(.sites(.fetch))
+        }
     }
 
 }
@@ -76,6 +117,8 @@ struct SitesView: View {
 #Preview {
     let store = PingStore.preview
 
-    return SitesView(menuItem: .constant(.summary))
-        .environment(store)
+    return NavigationStack {
+        SitesView(menuItem: .constant(.summary))
+    }
+    .environment(store)
 }

@@ -7,4 +7,4 @@
 
 import Foundation
 
-public protocol PingDependencies { }
+public protocol PingDependencies: SitesDependencies { }
