@@ -39,6 +39,17 @@ func sitesInterceptor(
 
         return .fetch
 
+    case .checkSiteStatus(let site):
+        let siteStatus: SiteStatus
+        do {
+            siteStatus = try await dependencies.check(site: site)
+        } catch {
+            siteStatus = .unknown
+            // fatalError("Failed deleting site")
+        }
+
+        return .setSiteStatus(site, siteStatus)
+
     default:
         return nil
     }

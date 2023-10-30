@@ -12,17 +12,23 @@ import SwiftData
 final class Site {
 
     var id: UUID
+
     var name: String
+
     var url: URL
+
+    var statuses: [SiteStatus]?
 
     init(
         id: UUID,
         name: String,
-        url: URL
+        url: URL,
+        statuses: [SiteStatus]?
     ) {
         self.id = id
         self.name = name
         self.url = url
+        self.statuses = statuses
     }
 
 }

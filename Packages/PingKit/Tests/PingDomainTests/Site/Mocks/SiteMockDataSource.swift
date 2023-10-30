@@ -12,6 +12,16 @@ final class SiteMockDataSource: SiteDataSource {
 
     init() { }
 
+    private(set) var siteWithIDCalled = false
+    var siteWithIDResult: Result<Site?, Error> = .success(nil)
+    private(set) var lastSiteWithIDSiteID: Site.ID?
+
+    func site(withID id: Site.ID) async throws -> PingDomain.Site? {
+        siteWithIDCalled = true
+        lastSiteWithIDSiteID = id
+        return try siteWithIDResult.get()
+    }
+
     private(set) var sitesCalled = false
     var sitesResult: Result<[Site], Error> = .success([])
 

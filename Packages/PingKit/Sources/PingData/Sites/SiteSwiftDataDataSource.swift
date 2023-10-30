@@ -23,6 +23,19 @@ public actor SiteSwiftDataDataSource: SiteDataSource {
         self.model = model
     }
 
+    public func site(withID id: PingDomain.Site.ID) async throws -> PingDomain.Site? {
+        let predicate = #Predicate<Site> { site in
+            site.id == id
+        }
+
+        guard let siteModel = try await model.fetch(predicate: predicate).first else {
+            return nil
+        }
+
+        let site = PingDomain.Site(site: siteModel)
+        return site
+    }
+
     public func sites() async throws -> [PingDomain.Site] {
         let fetchDescriptor = FetchDescriptor<Site>(sortBy: [SortDescriptor(\.name)])
         let siteModels = try await model.fetch(descriptor: fetchDescriptor)

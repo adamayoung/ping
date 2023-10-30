@@ -14,7 +14,8 @@ extension Site {
         self.init(
             id: site.id,
             name: site.name,
-            url: site.url
+            url: site.url,
+            statuses: nil
         )
     }
 

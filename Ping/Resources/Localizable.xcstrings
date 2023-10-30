@@ -98,6 +98,9 @@
         }
       }
     },
+    "REFRESH_SITE_STATUS" : {
+
+    },
     "SITE_NAME" : {
       "extractionState" : "manual",
       "localizations" : {

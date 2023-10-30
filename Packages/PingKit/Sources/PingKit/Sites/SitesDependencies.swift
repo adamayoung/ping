@@ -15,4 +15,6 @@ public protocol SitesDependencies {
 
     func remove(id: Site.ID) async throws
 
+    func check(site: Site) async throws -> SiteStatus
+
 }

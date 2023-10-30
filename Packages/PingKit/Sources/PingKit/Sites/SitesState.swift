@@ -10,11 +10,18 @@ import Foundation
 public struct SitesState: Equatable {
 
     public internal(set) var all: [Site]
+    public internal(set) var statuses: [Site.ID: SiteStatus]
 
     public init(
-        all: [Site] = []
+        all: [Site] = [],
+        statuses: [Site.ID: SiteStatus] = [:]
     ) {
         self.all = all
+        self.statuses = statuses
+    }
+
+    public func status(for site: Site) -> SiteStatus {
+        statuses[site.id, default: .unknown]
     }
 
 }

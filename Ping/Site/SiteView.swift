@@ -16,12 +16,47 @@ struct SiteView: View {
     @Environment(PingStore.self) private var store
     @State private var isConfirmDeleteAlertPresented = false
 
+    private var siteStatus: SiteStatus {
+        store.sites.status(for: site)
+    }
+
+    private var siteStatusLabel: String {
+        switch siteStatus {
+        case .checking:
+            return "Checking..."
+
+        case .success:
+            return "Success"
+
+        case .failure:
+            return "Failure"
+
+        case .unknown:
+            return "Unknown"
+        }
+    }
+
     var body: some View {
         ScrollView {
-            Text(verbatim: site.url.absoluteString)
+            VStack {
+                Text(verbatim: site.url.absoluteString)
+                Text(verbatim: siteStatusLabel)
+            }
+
         }
         .navigationTitle(site.name)
         .toolbar {
+            ToolbarItem {
+                Button {
+                    Task {
+                        await store.send(.sites(.checkSiteStatus(site)))
+                    }
+                } label: {
+                    Label("REFRESH_SITE_STATUS", systemImage: "arrow.clockwise")
+                }
+                .accessibilityIdentifier("refreshSiteStatusButton")
+            }
+
             ToolbarItem {
                 Button(role: .destructive) {
                     confirmRemove()
