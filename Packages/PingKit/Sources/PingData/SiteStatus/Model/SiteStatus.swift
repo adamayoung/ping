@@ -13,33 +13,22 @@ final class SiteStatus {
 
     var id: UUID
 
-    var statusCode: SiteStatusCode
-
-    @Relationship(deleteRule: .cascade, inverse: \Site.statuses)
     var site: Site
+
+    var statusCode: SiteStatusCode
 
     var timestamp: Date
 
     init(
         id: UUID,
-        statusCode: SiteStatusCode,
         site: Site,
+        statusCode: SiteStatusCode,
         timestamp: Date = .now
     ) {
         self.id = id
-        self.statusCode = statusCode
         self.site = site
+        self.statusCode = statusCode
         self.timestamp = timestamp
-    }
-
-}
-
-extension SiteStatus {
-
-    enum SiteStatusCode: Codable {
-        case unknown
-        case success
-        case failure
     }
 
 }

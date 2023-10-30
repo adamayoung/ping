@@ -1,5 +1,5 @@
 //
-//  SiteStatus+Mapper.swift
+//  SiteStatusCode+Mapper.swift
 //  PingKit
 //
 //  Created by Adam Young on 29/10/2023.
@@ -8,10 +8,10 @@
 import Foundation
 import PingDomain
 
-extension SiteStatus {
+extension SiteStatusCode {
 
-    init(siteStatus: PingDomain.SiteStatus) {
-        switch siteStatus {
+    init(siteStatusCode: PingDomain.SiteStatusCode) {
+        switch siteStatusCode {
         case .success:
             self = .success
 

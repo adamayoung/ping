@@ -1,16 +1,15 @@
 //
-//  SiteStatus.swift
-//  PingKit
+//  SiteStatusCode.swift
+//  PingDomain
 //
 //  Created by Adam Young on 29/10/2023.
 //
 
 import Foundation
 
-public enum SiteStatus: Equatable {
+public enum SiteStatusCode: Equatable {
 
     case unknown
-    case checking
     case success
     case failure
 

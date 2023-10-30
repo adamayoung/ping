@@ -12,7 +12,8 @@ extension ModelContainer {
 
     static func ping(inMemory: Bool = false) throws -> ModelContainer {
         let schema = Schema([
-            Site.self
+            Site.self,
+            SiteStatus.self
         ])
 
         let modelConfiguration = ModelConfiguration(

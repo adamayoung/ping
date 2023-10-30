@@ -14,6 +14,10 @@ final class Factory {
         BackgroundModelActor<Site>(container: modelContainer)
     }()
 
+    static var siteStatusModel: BackgroundModelActor<SiteStatus> = {
+        BackgroundModelActor<SiteStatus>(container: modelContainer)
+    }()
+
 }
 
 extension Factory {

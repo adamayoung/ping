@@ -37,11 +37,12 @@ extension PingLiveDependencies: SitesDependencies {
         try await useCase.execute(id: id)
     }
 
-    func check(site: Site) async throws -> SiteStatus {
-        let useCase = checkSiteUseCase()
-        let siteStatusModel = try await useCase.execute(siteID: site.id)
-        let siteStatus = SiteStatus(siteStatus: siteStatusModel)
-        return siteStatus
+    func check(site: Site) async throws -> SiteStatusCode {
+        let useCase = checkSiteStatusUseCase()
+        let siteModel = PingDomain.Site(site: site)
+        let siteStatusModel = try await useCase.execute(site: siteModel)
+        let siteStatusCode = SiteStatusCode(siteStatusCode: siteStatusModel.statusCode)
+        return siteStatusCode
     }
 
 }
@@ -60,8 +61,10 @@ extension PingLiveDependencies {
         RemoveSite(siteDataSource: siteDataSource())
     }
 
-    private func checkSiteUseCase() -> some CheckSiteUseCase {
-        CheckSite(siteStatusService: siteStatusService(), siteDataSource: siteDataSource())
+    private func checkSiteStatusUseCase() -> some CheckSiteStatusUseCase {
+        CheckSiteStatus(
+            siteStatusService: siteStatusService()
+        )
     }
 
 }

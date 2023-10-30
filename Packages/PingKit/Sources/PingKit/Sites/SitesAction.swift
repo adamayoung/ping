@@ -16,5 +16,5 @@ public enum SitesAction {
     case remove(Site)
 
     case checkSiteStatus(Site)
-    case setSiteStatus(Site, SiteStatus)
+    case setSiteStatus(Site, SiteStatusCode)
 }

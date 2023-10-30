@@ -16,12 +16,12 @@ struct SiteView: View {
     @Environment(PingStore.self) private var store
     @State private var isConfirmDeleteAlertPresented = false
 
-    private var siteStatus: SiteStatus {
+    private var siteStatusCode: SiteStatusCode {
         store.sites.status(for: site)
     }
 
     private var siteStatusLabel: String {
-        switch siteStatus {
+        switch siteStatusCode {
         case .checking:
             return "Checking..."
 

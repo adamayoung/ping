@@ -24,12 +24,16 @@ struct PingApp: App {
 
 extension PingStore {
 
-    static var app: PingStore {
-        if CommandLine.arguments.contains("-uitest") {
+    fileprivate static var app: PingStore {
+        if Self.isUITesting {
             return PingStore.test
         }
 
         return PingStore()
+    }
+
+    private static var isUITesting: Bool {
+        CommandLine.arguments.contains("-uitest")
     }
 
 }

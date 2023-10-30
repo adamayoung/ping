@@ -22,6 +22,27 @@ public final class SiteStatusURLSessionService: SiteStatusService {
 
         let (_, response) = try await urlSession.data(for: urlRequest)
 
+        let statusCode = statusCode(for: response)
+
+        let status = PingDomain.SiteStatus(
+            id: UUID(),
+            siteID: site.id,
+            statusCode: statusCode,
+            timestamp: Date()
+        )
+
+        return status
+    }
+
+}
+
+extension SiteStatusURLSessionService {
+
+    private func isValidStatusCode(_ statusCode: Int) -> Bool {
+        (200...299).contains(statusCode)
+    }
+
+    private func statusCode(for response: URLResponse) -> PingDomain.SiteStatusCode {
         guard let httpResponse = response as? HTTPURLResponse else {
             return .unknown
         }
@@ -31,14 +52,6 @@ public final class SiteStatusURLSessionService: SiteStatusService {
         }
 
         return .success
-    }
-
-}
-
-extension SiteStatusURLSessionService {
-
-    private func isValidStatusCode(_ statusCode: Int) -> Bool {
-        (200...299).contains(statusCode)
     }
 
 }

@@ -9,8 +9,8 @@ import Foundation
 
 public protocol SiteStatusDataSource {
 
-    func statuses(for siteID: UUID) async throws -> [SiteStatus]
+    func statuses(for siteID: Site.ID) async throws -> [SiteStatus]
 
-    func save(status: SiteStatus, for siteID: UUID) async throws
+    func save(siteStatus: SiteStatus, for siteID: Site.ID) async throws
 
 }

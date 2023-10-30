@@ -28,4 +28,18 @@ final class SitesMockDependencies: SitesDependencies {
         lastRemovedSiteID = id
     }
 
+    var checkResult: Result<PingKit.SiteStatusCode, Error> = .failure(SitesMockDependenciesError())
+    private(set) var lastCheckSite: Site?
+
+    func check(site: PingKit.Site) async throws -> PingKit.SiteStatusCode {
+        lastCheckSite = site
+        return try checkResult.get()
+    }
+
+}
+
+extension SitesMockDependencies {
+
+    struct SitesMockDependenciesError: Error { }
+
 }

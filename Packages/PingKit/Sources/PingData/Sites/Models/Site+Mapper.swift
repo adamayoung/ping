@@ -15,7 +15,7 @@ extension Site {
             id: site.id,
             name: site.name,
             url: site.url,
-            statuses: nil
+            statuses: []
         )
     }
 
