@@ -14,22 +14,23 @@ final class SiteSwiftDataDataSourceTests: XCTestCase {
 
     var dataSource: SiteSwiftDataDataSource!
     var modelContainer: ModelContainer!
-    var model: BackgroundModelActor<PingData.Site>!
+    var modelActor: BackgroundModelActor!
 
     override func setUpWithError() throws {
         super.setUp()
         modelContainer = try ModelContainer.ping(inMemory: true)
-        model = BackgroundModelActor<PingData.Site>(container: modelContainer)
-        dataSource = SiteSwiftDataDataSource(model: model)
+        modelActor = BackgroundModelActor(container: modelContainer)
+        dataSource = SiteSwiftDataDataSource(modelActor: modelActor)
     }
 
     override func tearDown() {
         dataSource = nil
-        model = nil
+        modelActor = nil
         modelContainer = nil
         super.tearDown()
     }
 
+    @MainActor
     func testSites() async throws {
         let googleSite = PingData.Site(
             id: try XCTUnwrap(UUID(uuidString: "C26FF5CF-5337-4725-B9E5-2B4491CFF855")),
@@ -47,13 +48,16 @@ final class SiteSwiftDataDataSourceTests: XCTestCase {
             url: try XCTUnwrap(URL(string: "https://twitter.com"))
         )
 
-        try await model.save([twitterSite, googleSite, gitHubSite])
+        try await modelActor.insert(twitterSite)
+        try await modelActor.insert(googleSite)
+        try await modelActor.insert(gitHubSite)
 
-        let sites = try await dataSource.sites()
+        let sites = try await dataSource.fetchAll()
 
         XCTAssertFalse(sites.isEmpty)
     }
 
+    @MainActor
     func testSaveSavesSite() async throws {
         let expectedSiteID = try XCTUnwrap(UUID(uuidString: "C26FF5CF-5337-4725-B9E5-2B4491CFF855"))
         let siteToSave = PingDomain.Site(
@@ -64,7 +68,8 @@ final class SiteSwiftDataDataSourceTests: XCTestCase {
 
         try await dataSource.save(siteToSave)
 
-        let siteModels = try await model.fetch()
+        let fetchDescriptor = FetchDescriptor<PingData.Site>()
+        let siteModels = try await modelActor.fetch(fetchDescriptor)
 
         XCTAssertEqual(siteModels.count, 1)
         let site = try XCTUnwrap(siteModels.first)
@@ -72,6 +77,7 @@ final class SiteSwiftDataDataSourceTests: XCTestCase {
         XCTAssertEqual(site.id, expectedSiteID)
     }
 
+    @MainActor
     func testDeleteDeletesSite() async throws {
         let googleSite = PingData.Site(
             id: try XCTUnwrap(UUID(uuidString: "C26FF5CF-5337-4725-B9E5-2B4491CFF855")),
@@ -83,11 +89,13 @@ final class SiteSwiftDataDataSourceTests: XCTestCase {
             name: "GitHub",
             url: try XCTUnwrap(URL(string: "https://github.com"))
         )
-        try await model.save([googleSite, gitHubSite])
+        try await modelActor.insert(googleSite)
+        try await modelActor.insert(gitHubSite)
 
         try await dataSource.delete(googleSite.id)
 
-        let siteModels = try await model.fetch()
+        let fetchDescriptor = FetchDescriptor<PingData.Site>()
+        let siteModels = try await modelActor.fetch(fetchDescriptor)
 
         XCTAssertEqual(siteModels.count, 1)
         let site = try XCTUnwrap(siteModels.first)

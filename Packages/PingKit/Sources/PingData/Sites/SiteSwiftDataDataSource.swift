@@ -11,24 +11,21 @@ import SwiftData
 
 public actor SiteSwiftDataDataSource: SiteDataSource {
 
-    private let model: BackgroundModelActor<Site>
+    private let modelActor: BackgroundModelActor
 
     public init() {
-        self.init(
-            model: Factory.siteModel
-        )
+        self.init(modelActor: Factory.modelActor)
     }
 
-    init(model: BackgroundModelActor<Site>) {
-        self.model = model
+    init(modelActor: BackgroundModelActor) {
+        self.modelActor = modelActor
     }
 
-    public func site(withID id: PingDomain.Site.ID) async throws -> PingDomain.Site? {
-        let predicate = #Predicate<Site> { site in
-            site.id == id
-        }
+    public func fetch(withID id: PingDomain.Site.ID) async throws -> PingDomain.Site? {
+        let predicate = #Predicate<Site> { $0.id == id }
+        let fetchDescriptor = FetchDescriptor<Site>(predicate: predicate)
 
-        guard let siteModel = try await model.fetch(predicate: predicate).first else {
+        guard let siteModel = try await modelActor.fetch(fetchDescriptor).first else {
             return nil
         }
 
@@ -36,9 +33,9 @@ public actor SiteSwiftDataDataSource: SiteDataSource {
         return site
     }
 
-    public func sites() async throws -> [PingDomain.Site] {
+    public func fetchAll() async throws -> [PingDomain.Site] {
         let fetchDescriptor = FetchDescriptor<Site>(sortBy: [SortDescriptor(\.name)])
-        let siteModels = try await model.fetch(descriptor: fetchDescriptor)
+        let siteModels = try await modelActor.fetch(fetchDescriptor)
 
         let sites = siteModels.map(PingDomain.Site.init)
 
@@ -47,15 +44,14 @@ public actor SiteSwiftDataDataSource: SiteDataSource {
 
     public func save(_ site: PingDomain.Site) async throws {
         let siteModel = Site(site: site)
-
-        try await model.save(siteModel)
+        try await modelActor.insert(siteModel)
+        try await modelActor.save()
     }
 
     public func `delete`(_ id: UUID) async throws {
-        let predicate = #Predicate<Site> { site in
-            site.id == id
-        }
-        try await model.delete(predicate: predicate)
+        let predicate = #Predicate<Site> { $0.id == id }
+        try await modelActor.delete(predicate)
+        try await modelActor.save()
     }
 
 }

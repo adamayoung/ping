@@ -94,7 +94,6 @@ extension AddSiteView {
 
     private func addSite() {
         let site = Site(
-            id: UUID(),
             name: name,
             url: URL(string: url)!
         )

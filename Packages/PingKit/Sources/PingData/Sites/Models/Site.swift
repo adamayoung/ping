@@ -17,11 +17,11 @@ final class Site {
 
     var url: URL
 
-    @Relationship(deleteRule: .nullify, inverse: \SiteStatus.site)
+    @Relationship(deleteRule: .cascade, inverse: \SiteStatus.site)
     var statuses: [SiteStatus]
 
     init(
-        id: UUID,
+        id: UUID = UUID(),
         name: String,
         url: URL,
         statuses: [SiteStatus] = []

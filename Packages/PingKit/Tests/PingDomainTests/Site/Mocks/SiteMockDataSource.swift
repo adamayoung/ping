@@ -12,22 +12,22 @@ final class SiteMockDataSource: SiteDataSource {
 
     init() { }
 
-    private(set) var siteWithIDCalled = false
-    var siteWithIDResult: Result<Site?, Error> = .success(nil)
-    private(set) var lastSiteWithIDSiteID: Site.ID?
+    private(set) var fetchCalled = false
+    var fetchResult: Result<Site?, Error> = .success(nil)
+    private(set) var lastFetchID: Site.ID?
 
-    func site(withID id: Site.ID) async throws -> PingDomain.Site? {
-        siteWithIDCalled = true
-        lastSiteWithIDSiteID = id
-        return try siteWithIDResult.get()
+    func fetch(withID id: Site.ID) async throws -> PingDomain.Site? {
+        fetchCalled = true
+        lastFetchID = id
+        return try fetchResult.get()
     }
 
-    private(set) var sitesCalled = false
-    var sitesResult: Result<[Site], Error> = .success([])
+    private(set) var fetchAllCalled = false
+    var fetchAllResult: Result<[Site], Error> = .success([])
 
-    func sites() async throws -> [Site] {
-        sitesCalled = true
-        return try sitesResult.get()
+    func fetchAll() async throws -> [Site] {
+        fetchAllCalled = true
+        return try fetchAllResult.get()
     }
 
     private(set) var saveCalled = false

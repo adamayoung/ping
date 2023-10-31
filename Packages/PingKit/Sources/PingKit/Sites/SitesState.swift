@@ -10,18 +10,18 @@ import Foundation
 public struct SitesState: Equatable {
 
     public internal(set) var all: [Site]
-    public internal(set) var statuses: [Site.ID: SiteStatusCode]
+    public internal(set) var siteStatuses: [Site.ID: SiteStatus]
 
     public init(
         all: [Site] = [],
-        statuses: [Site.ID: SiteStatusCode] = [:]
+        siteStatuses: [Site.ID: SiteStatus] = [:]
     ) {
         self.all = all
-        self.statuses = statuses
+        self.siteStatuses = siteStatuses
     }
 
-    public func status(for site: Site) -> SiteStatusCode {
-        statuses[site.id, default: .unknown]
+    public func siteStatus(for site: Site) -> SiteStatus {
+        siteStatuses[site.id, default: SiteStatus(statusCode: .unknown)]
     }
 
 }

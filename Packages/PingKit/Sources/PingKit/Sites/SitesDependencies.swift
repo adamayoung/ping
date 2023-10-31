@@ -15,6 +15,10 @@ public protocol SitesDependencies {
 
     func remove(id: Site.ID) async throws
 
-    func check(site: Site) async throws -> SiteStatusCode
+    func latestSiteStatuses() async throws -> [Site.ID: SiteStatus]
+
+    func siteStatus(site: Site) async throws -> SiteStatus
+
+    func store(siteStatus: SiteStatus, for site: Site) async throws
 
 }

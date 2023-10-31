@@ -25,6 +25,7 @@ final class RemoveSiteTests: XCTestCase {
         super.tearDown()
     }
 
+    @MainActor
     func testExecute() async throws {
         let id = try XCTUnwrap(UUID(uuidString: "D7874391-0048-40B5-9569-C7D8DBBA329A"))
         siteDataSource.deleteResult = .success(())

@@ -13,6 +13,7 @@
 		6617DA9D2AED6B200072DC05 /* UITestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6617DA9C2AED6B200072DC05 /* UITestCase.swift */; };
 		6617DAA02AEDC4DF0072DC05 /* NoSitesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6617DA9F2AEDC4DF0072DC05 /* NoSitesView.swift */; };
 		666F36962AEB1C0500EE6D41 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 666F36952AEB1C0500EE6D41 /* Localizable.xcstrings */; };
+		66B0C05A2AF0657E00E48C58 /* SiteRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66B0C0592AF0657E00E48C58 /* SiteRow.swift */; };
 		66CC7BE52AEBC96A007BADF2 /* SiteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66CC7BE42AEBC96A007BADF2 /* SiteView.swift */; };
 		66CC7C222AEBCDAC007BADF2 /* PingKit in Frameworks */ = {isa = PBXBuildFile; productRef = 66CC7C212AEBCDAC007BADF2 /* PingKit */; };
 		66CC7C242AEBD295007BADF2 /* AddSiteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66CC7C232AEBD295007BADF2 /* AddSiteView.swift */; };
@@ -55,6 +56,7 @@
 		6617DA9F2AEDC4DF0072DC05 /* NoSitesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoSitesView.swift; sourceTree = "<group>"; };
 		666F36952AEB1C0500EE6D41 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 		666F36982AEB226D00EE6D41 /* .swiftlint.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
+		66B0C0592AF0657E00E48C58 /* SiteRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SiteRow.swift; sourceTree = "<group>"; };
 		66CC7BE42AEBC96A007BADF2 /* SiteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SiteView.swift; sourceTree = "<group>"; };
 		66CC7C232AEBD295007BADF2 /* AddSiteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddSiteView.swift; sourceTree = "<group>"; };
 		66CC7C282AEBECD7007BADF2 /* SitesView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SitesView.swift; sourceTree = "<group>"; };
@@ -141,6 +143,7 @@
 			children = (
 				66CC7C282AEBECD7007BADF2 /* SitesView.swift */,
 				6617DA9F2AEDC4DF0072DC05 /* NoSitesView.swift */,
+				66B0C0592AF0657E00E48C58 /* SiteRow.swift */,
 			);
 			path = Sites;
 			sourceTree = "<group>";
@@ -417,6 +420,7 @@
 				66D212482AEA905600A2C4CE /* ContentView.swift in Sources */,
 				66D212462AEA905600A2C4CE /* PingApp.swift in Sources */,
 				66CC7C2C2AEBF2A3007BADF2 /* SummaryView.swift in Sources */,
+				66B0C05A2AF0657E00E48C58 /* SiteRow.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

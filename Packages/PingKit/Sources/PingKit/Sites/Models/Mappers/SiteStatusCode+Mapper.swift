@@ -1,8 +1,8 @@
 //
 //  SiteStatusCode+Mapper.swift
-//  PingData
+//  PingKit
 //
-//  Created by Adam Young on 30/10/2023.
+//  Created by Adam Young on 29/10/2023.
 //
 
 import Foundation
@@ -12,14 +12,15 @@ extension SiteStatusCode {
 
     init(siteStatusCode: PingDomain.SiteStatusCode) {
         switch siteStatusCode {
-        case .unknown:
-            self = .unknown
-
         case .success:
             self = .success
 
         case .failure(let error):
-            self = .failure(error.localizedDescription)
+            let error = SiteStatusError(error: error)
+            self = .failure(error)
+
+        case .unknown:
+            self = .unknown
         }
     }
 
@@ -29,15 +30,18 @@ extension PingDomain.SiteStatusCode {
 
     init(siteStatusCode: SiteStatusCode) {
         switch siteStatusCode {
-        case .unknown:
-            self = .unknown
-
         case .success:
             self = .success
 
-        case .failure(let message):
-            let error = SiteStatusError(errorDescription: message)
+        case .failure(let error):
+            let error = PingDomain.SiteStatusError(error: error)
             self = .failure(error)
+
+        case .unknown:
+            self = .unknown
+
+        default:
+            self = .unknown
         }
     }
 

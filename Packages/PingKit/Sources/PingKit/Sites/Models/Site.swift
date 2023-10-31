@@ -14,7 +14,7 @@ public struct Site: Identifiable, Equatable, Hashable {
     public let url: URL
 
     public init(
-        id: UUID,
+        id: UUID = UUID(),
         name: String,
         url: URL
     ) {

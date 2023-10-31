@@ -13,15 +13,15 @@ final class SiteStatus {
 
     var id: UUID
 
-    var site: Site
+    var site: Site?
 
     var statusCode: SiteStatusCode
 
     var timestamp: Date
 
     init(
-        id: UUID,
-        site: Site,
+        id: UUID = UUID(),
+        site: Site? = nil,
         statusCode: SiteStatusCode,
         timestamp: Date = .now
     ) {

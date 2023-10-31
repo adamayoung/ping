@@ -25,9 +25,10 @@ final class FetchSitesTests: XCTestCase {
         super.tearDown()
     }
 
+    @MainActor
     func testExecute() async throws {
         let expectedSites = [Site]()
-        siteDataSource.sitesResult = .success(expectedSites)
+        siteDataSource.fetchAllResult = .success(expectedSites)
 
         let sites = try await useCase.execute()
 

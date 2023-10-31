@@ -9,9 +9,9 @@ import Foundation
 
 public protocol SiteDataSource {
 
-    func site(withID id: Site.ID) async throws -> Site?
+    func fetch(withID id: Site.ID) async throws -> Site?
 
-    func sites() async throws -> [Site]
+    func fetchAll() async throws -> [Site]
 
     func save(_ site: Site) async throws
 

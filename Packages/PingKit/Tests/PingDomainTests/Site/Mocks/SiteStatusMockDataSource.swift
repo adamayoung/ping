@@ -12,14 +12,22 @@ final class SiteStatusMockDataSource: SiteStatusDataSource {
 
     init() { }
 
-    private(set) var statusesCalled = false
-    var statusesResult: Result<[SiteStatus], Error> = .success([])
-    private(set) var lastStatusesSiteID: UUID?
+    private(set) var fetchAllCalled = false
+    var fetchAllResult: Result<[SiteStatus], Error> = .success([])
+    private(set) var lastfetchAllSiteID: UUID?
 
-    func statuses(for siteID: Site.ID) async throws -> [SiteStatus] {
-        statusesCalled = true
-        lastStatusesSiteID = siteID
-        return try statusesResult.get()
+    func fetchAll(for siteID: Site.ID) async throws -> [SiteStatus] {
+        fetchAllCalled = true
+        lastfetchAllSiteID = siteID
+        return try fetchAllResult.get()
+    }
+
+    func fetchAllLatest() async throws -> [Site.ID: SiteStatus] {
+        return [:]
+    }
+
+    func fetch(latestFor siteID: Site.ID) async throws -> SiteStatus? {
+        return nil
     }
 
     private(set) var saveCalled = false

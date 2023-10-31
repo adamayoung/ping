@@ -9,7 +9,11 @@ import Foundation
 
 public protocol SiteStatusDataSource {
 
-    func statuses(for siteID: Site.ID) async throws -> [SiteStatus]
+    func fetchAll(for siteID: Site.ID) async throws -> [SiteStatus]
+
+    func fetchAllLatest() async throws -> [Site.ID: SiteStatus]
+
+    func fetch(latestFor siteID: Site.ID) async throws -> SiteStatus?
 
     func save(siteStatus: SiteStatus, for siteID: Site.ID) async throws
 

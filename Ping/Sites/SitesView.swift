@@ -19,6 +19,10 @@ struct SitesView: View {
         store.sites.all
     }
 
+    private func siteStatus(for site: Site) -> SiteStatus {
+        store.sites.siteStatus(for: site)
+    }
+
     var body: some View {
         List(selection: $menuItem) {
             #if os(macOS)
@@ -74,7 +78,7 @@ extension SitesView {
 
     private var summaryRow: some View {
         NavigationLink(value: MenuItem.summary) {
-            Label("SUMMARY", systemImage: "globe")
+            Label("SUMMARY", systemImage: "tablecells")
                 .accessibilityIdentifier("summaryNavigationLink")
         }
     }
@@ -82,7 +86,7 @@ extension SitesView {
     private var siteRows: some View {
         ForEach(sites) { site in
             NavigationLink(value: MenuItem.site(site)) {
-                Label(site.name, systemImage: "globe")
+                SiteRow(site: site, siteStatus: siteStatus(for: site))
             }
             .accessibilityIdentifier("siteNavigationLink-\(site.id.uuidString)")
         }
@@ -109,6 +113,7 @@ extension SitesView {
 
     private func fetchData() async {
         if sites.isEmpty {
+            await store.send(.sites(.fetchLatestSiteStatuses))
             await store.send(.sites(.fetch))
         }
     }

@@ -16,7 +16,7 @@ public final class FetchSites: FetchSitesUseCase {
     }
 
     public func execute() async throws -> [Site] {
-        let sites = try await siteDataSource.sites()
+        let sites = try await siteDataSource.fetchAll()
         return sites
     }
 

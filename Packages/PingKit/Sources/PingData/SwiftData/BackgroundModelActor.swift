@@ -8,7 +8,7 @@
 import Foundation
 import SwiftData
 
-actor BackgroundModelActor<T: PersistentModel>: ModelActor {
+actor BackgroundModelActor: ModelActor {
 
     nonisolated let modelContainer: ModelContainer
     nonisolated let modelExecutor: any ModelExecutor
@@ -21,31 +21,24 @@ actor BackgroundModelActor<T: PersistentModel>: ModelActor {
         modelExecutor = DefaultSerialModelExecutor(modelContext: context)
     }
 
-    func fetch(descriptor: FetchDescriptor<T>) throws -> [T] {
-        let list: [T] = try context.fetch(descriptor)
-        return list
+    func fetch<T: PersistentModel>(_ descriptor: FetchDescriptor<T>) throws -> [T] {
+        try context.fetch(descriptor)
     }
 
-    func fetch(predicate: Predicate<T>? = nil) throws -> [T] {
-        let fetchDescriptor = FetchDescriptor<T>(predicate: predicate)
-        let list: [T] = try context.fetch(fetchDescriptor)
-        return list
+    func insert(_ model: some PersistentModel) throws {
+        context.insert(model)
     }
 
-    func save(_ model: T) throws {
-        try save([model])
+    func `delete`(_ model: some PersistentModel) throws {
+        context.delete(model)
     }
 
-    func save(_ models: [T]) throws {
-        models.forEach {
-            context.insert($0)
-        }
+    func `delete`<T: PersistentModel>(_ predicate: Predicate<T>? = nil, includeSubclasses: Bool = true) throws {
+        try context.delete(model: T.self, where: predicate, includeSubclasses: includeSubclasses)
+    }
 
+    func save() throws {
         try context.save()
-    }
-
-    func `delete`(predicate: Predicate<T>? = nil) throws {
-        try context.delete(model: T.self, where: predicate)
     }
 
 }

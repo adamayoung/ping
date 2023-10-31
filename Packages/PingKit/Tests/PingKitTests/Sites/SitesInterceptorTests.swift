@@ -22,6 +22,7 @@ final class SitesInterceptorTests: XCTestCase {
         super.tearDown()
     }
 
+    @MainActor
     func testFetchActionReturnsSetActionWithSites() async {
         let state = SitesState()
         let action = SitesAction.fetch
@@ -39,6 +40,7 @@ final class SitesInterceptorTests: XCTestCase {
         }
     }
 
+    @MainActor
     func testFetchActionWhenErrorReturnsSetActionWithEmptySites() async {
         let state = SitesState()
         let action = SitesAction.fetch
@@ -56,6 +58,7 @@ final class SitesInterceptorTests: XCTestCase {
         }
     }
 
+    @MainActor
     func testAddActionAddsSite() async {
         let state = SitesState()
         let expectedSite = Site.google
@@ -66,6 +69,7 @@ final class SitesInterceptorTests: XCTestCase {
         XCTAssertEqual(dependencies.lastAddedSite, expectedSite)
     }
 
+    @MainActor
     func testAddActionReturnsFetchAction() async {
         let state = SitesState()
         let action = SitesAction.add(.google)
@@ -91,6 +95,7 @@ final class SitesInterceptorTests: XCTestCase {
         XCTAssertEqual(dependencies.lastRemovedSiteID, expectedSite.id)
     }
 
+    @MainActor
     func testRemoveActionReturnsFetchAction() async {
         let state = SitesState()
         let action = SitesAction.remove(.google)
@@ -106,6 +111,7 @@ final class SitesInterceptorTests: XCTestCase {
         }
     }
 
+    @MainActor
     func testSetActionReturnsNil() async {
         let state = SitesState()
         let action = SitesAction.set([.google])

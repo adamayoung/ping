@@ -18,17 +18,21 @@ public final class SiteStatusURLSessionService: SiteStatusService {
 
     public func check(site: PingDomain.Site) async throws -> PingDomain.SiteStatus {
         let url = site.url
-        let urlRequest = URLRequest(url: url, cachePolicy: .reloadIgnoringCacheData)
+        var urlRequest = URLRequest(url: url, cachePolicy: .reloadIgnoringCacheData)
+        urlRequest.timeoutInterval = 5
 
-        let (_, response) = try await urlSession.data(for: urlRequest)
-
-        let statusCode = statusCode(for: response)
+        let siteStatusCode: PingDomain.SiteStatusCode
+        do {
+            let (_, response) = try await urlSession.data(for: urlRequest)
+            siteStatusCode = Self.statusCode(for: response)
+        } catch let error {
+            let error = SiteStatusError(errorDescription: error.localizedDescription)
+            siteStatusCode = .failure(error)
+        }
 
         let status = PingDomain.SiteStatus(
-            id: UUID(),
             siteID: site.id,
-            statusCode: statusCode,
-            timestamp: Date()
+            statusCode: siteStatusCode
         )
 
         return status
@@ -38,20 +42,22 @@ public final class SiteStatusURLSessionService: SiteStatusService {
 
 extension SiteStatusURLSessionService {
 
-    private func isValidStatusCode(_ statusCode: Int) -> Bool {
-        (200...299).contains(statusCode)
-    }
-
-    private func statusCode(for response: URLResponse) -> PingDomain.SiteStatusCode {
+    private static func statusCode(for response: URLResponse) -> PingDomain.SiteStatusCode {
         guard let httpResponse = response as? HTTPURLResponse else {
             return .unknown
         }
 
         guard isValidStatusCode(httpResponse.statusCode) else {
-            return .failure
+            let errorDescription = HTTPURLResponse.localizedString(forStatusCode: httpResponse.statusCode)
+            let error = SiteStatusError(errorDescription: errorDescription)
+            return .failure(error)
         }
 
         return .success
+    }
+
+    private static func isValidStatusCode(_ statusCode: Int) -> Bool {
+        (200...299).contains(statusCode)
     }
 
 }

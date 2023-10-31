@@ -10,12 +10,8 @@ import SwiftData
 
 final class Factory {
 
-    static var siteModel: BackgroundModelActor<Site> = {
-        BackgroundModelActor<Site>(container: modelContainer)
-    }()
-
-    static var siteStatusModel: BackgroundModelActor<SiteStatus> = {
-        BackgroundModelActor<SiteStatus>(container: modelContainer)
+    static var modelActor: BackgroundModelActor = {
+        BackgroundModelActor(container: modelContainer)
     }()
 
 }

@@ -15,6 +15,10 @@ public enum SitesAction {
     case add(Site)
     case remove(Site)
 
+    case fetchLatestSiteStatuses
+    case setSiteStatuses([Site.ID: SiteStatus])
+    case setSiteStatus(Site, SiteStatus)
+
     case checkSiteStatus(Site)
-    case setSiteStatus(Site, SiteStatusCode)
+
 }

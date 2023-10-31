@@ -16,12 +16,12 @@ struct SiteView: View {
     @Environment(PingStore.self) private var store
     @State private var isConfirmDeleteAlertPresented = false
 
-    private var siteStatusCode: SiteStatusCode {
-        store.sites.status(for: site)
+    private var siteStatus: SiteStatus {
+        store.sites.siteStatus(for: site)
     }
 
     private var siteStatusLabel: String {
-        switch siteStatusCode {
+        switch siteStatus.statusCode {
         case .checking:
             return "Checking..."
 
@@ -41,6 +41,9 @@ struct SiteView: View {
             VStack {
                 Text(verbatim: site.url.absoluteString)
                 Text(verbatim: siteStatusLabel)
+                if case let .failure(error) = siteStatus.statusCode {
+                    Text(verbatim: error.localizedDescription)
+                }
             }
 
         }
@@ -93,11 +96,64 @@ struct SiteView: View {
 
 }
 
-#Preview {
-    let store = PingStore.preview
+#Preview("Success") {
+    let site = Site.preview
+
+    let store = PingStore(
+        state: PingState(
+            sites: SitesState(
+                siteStatuses: [
+                    site.id: SiteStatus.preview(.success)
+                ]
+            )
+        ),
+        inMemoryStorage: true
+    )
 
     return NavigationStack {
         SiteView(site: .preview)
+    }
+    .environment(store)
+}
+
+#Preview("Failure") {
+    let site = Site.previews[1]
+
+    let store = PingStore(
+        state: PingState(
+            sites: SitesState(
+                siteStatuses: [
+                    site.id: SiteStatus.preview(
+                        .failure(SiteStatusError(errorDescription: "Some error"))
+                    )
+                ]
+            )
+        ),
+        inMemoryStorage: true
+    )
+
+    return NavigationStack {
+        SiteView(site: site)
+    }
+    .environment(store)
+}
+
+#Preview("Unknown") {
+    let site = Site.previews[2]
+
+    let store = PingStore(
+        state: PingState(
+            sites: SitesState(
+                siteStatuses: [
+                    site.id: SiteStatus.preview(.unknown)
+                ]
+            )
+        ),
+        inMemoryStorage: true
+    )
+
+    return NavigationStack {
+        SiteView(site: site)
     }
     .environment(store)
 }

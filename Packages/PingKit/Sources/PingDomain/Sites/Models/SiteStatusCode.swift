@@ -11,6 +11,22 @@ public enum SiteStatusCode: Equatable {
 
     case unknown
     case success
-    case failure
+    case failure(SiteStatusError)
+
+    public static func == (lhs: SiteStatusCode, rhs: SiteStatusCode) -> Bool {
+        switch (lhs, rhs) {
+        case (.success, .success):
+            return true
+
+        case (.failure, .failure):
+            return true
+
+        case (.unknown, .unknown):
+            return true
+
+        default:
+            return false
+        }
+    }
 
 }

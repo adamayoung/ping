@@ -1,6 +1,6 @@
 //
-//  SiteStatus+Mapper.swift
-//  PingData
+//  SiteStatusCode+Mapper.swift
+//
 //
 //  Created by Adam Young on 30/10/2023.
 //
@@ -10,7 +10,7 @@ import PingDomain
 
 extension SiteStatus {
 
-    convenience init(siteStatus: PingDomain.SiteStatus) {
+    init(siteStatus: PingDomain.SiteStatus) {
         let statusCode = SiteStatusCode(siteStatusCode: siteStatus.statusCode)
 
         self.init(
@@ -24,11 +24,7 @@ extension SiteStatus {
 
 extension PingDomain.SiteStatus {
 
-    init?(siteStatus: SiteStatus) {
-        guard let siteID = siteStatus.site?.id else {
-            return nil
-        }
-
+    init(siteStatus: SiteStatus, siteID: Site.ID) {
         let statusCode = PingDomain.SiteStatusCode(siteStatusCode: siteStatus.statusCode)
 
         self.init(

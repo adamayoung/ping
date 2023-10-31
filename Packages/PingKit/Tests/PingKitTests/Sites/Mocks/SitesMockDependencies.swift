@@ -28,12 +28,26 @@ final class SitesMockDependencies: SitesDependencies {
         lastRemovedSiteID = id
     }
 
-    var checkResult: Result<PingKit.SiteStatusCode, Error> = .failure(SitesMockDependenciesError())
-    private(set) var lastCheckSite: Site?
+    var siteStatusResult: Result<SiteStatus, Error> = .failure(SitesMockDependenciesError())
+    private(set) var lastSiteStatusSite: Site?
 
-    func check(site: PingKit.Site) async throws -> PingKit.SiteStatusCode {
-        lastCheckSite = site
-        return try checkResult.get()
+    func siteStatus(site: Site) async throws -> SiteStatus {
+        lastSiteStatusSite = site
+        return try siteStatusResult.get()
+    }
+
+    var storeResult: Result<Void, Error> = .success(())
+    private(set) var lastStoreSiteStatues: SiteStatus?
+    private(set) var lastStoreSite: Site?
+
+    func store(siteStatus: SiteStatus, for site: PingKit.Site) async throws {
+        lastStoreSiteStatues = siteStatus
+        lastStoreSite = site
+        try storeResult.get()
+    }
+
+    func latestSiteStatuses() async throws -> [Site.ID: SiteStatus] {
+        return [:]
     }
 
 }

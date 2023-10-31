@@ -10,5 +10,5 @@ import Foundation
 enum SiteStatusCode: Codable {
     case unknown
     case success
-    case failure
+    case failure(String)
 }
