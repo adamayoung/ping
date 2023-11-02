@@ -19,6 +19,8 @@ public protocol SitesDependencies {
 
     func siteStatus(site: Site) async throws -> SiteStatus
 
+    func allSiteStatuses() async throws -> [Site.ID: SiteStatus]
+
     func store(siteStatus: SiteStatus, for site: Site) async throws
 
 }

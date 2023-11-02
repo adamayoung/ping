@@ -12,6 +12,7 @@ struct AddSiteScreen: Screen {
     let app: XCUIApplication
 
     private enum Identifiers {
+        static let view = "addSiteView"
         static let siteNameField = "siteNameField"
         static let siteURLField = "siteURLField"
         static let addButton = "addButton"
@@ -20,46 +21,76 @@ struct AddSiteScreen: Screen {
 
     @discardableResult
     func typeName(_ name: String) -> Self {
-        let nameField = app.textFields[Identifiers.siteNameField]
-        nameField.tap()
-        nameField.typeText(name)
+        siteNameField.tap()
+        siteNameField.typeText(name)
         return self
     }
 
     @discardableResult
     func typeURL(_ url: String) -> Self {
-        let urlField = app.textFields[Identifiers.siteURLField]
-        urlField.tap()
-        urlField.typeText(url)
+        siteURLField.tap()
+        siteURLField.typeText(url)
         return self
     }
 
     @discardableResult
     func verifyAddButtonIsDisabled() -> Self {
-        let button = app.buttons[Identifiers.addButton]
-        XCTAssertFalse(button.isEnabled)
+        XCTAssertFalse(addButton.isEnabled)
         return self
     }
 
     @discardableResult
     func verifyAddButtonIsEnabled() -> Self {
-        let button = app.buttons[Identifiers.addButton]
-        XCTAssertTrue(button.isEnabled)
+        XCTAssertTrue(addButton.isEnabled)
         return self
     }
 
     @discardableResult
     func tapAddButton() -> SitesScreen {
-        let button = app.buttons[Identifiers.addButton]
-        button.tap()
+        addButton.tap()
         return SitesScreen(app: app)
     }
 
     @discardableResult
     func tapCancelButton() -> SitesScreen {
-        let button = app.buttons[Identifiers.cancelButton]
-        button.tap()
+        cancelButton.tap()
         return SitesScreen(app: app)
+    }
+
+}
+
+extension AddSiteScreen {
+
+    private var siteNameField: XCUIElement {
+        #if os(macOS)
+        app.sheets.groups.textFields[Identifiers.siteNameField]
+        #else
+        app.textFields[Identifiers.siteNameField]
+        #endif
+    }
+
+    private var siteURLField: XCUIElement {
+        #if os(macOS)
+        app.sheets.groups.textFields[Identifiers.siteURLField]
+        #else
+        app.textFields[Identifiers.siteURLField]
+        #endif
+    }
+
+    private var addButton: XCUIElement {
+        #if os(macOS)
+        app.sheets.groups.buttons[Identifiers.addButton]
+        #else
+        app.buttons[Identifiers.addButton]
+        #endif
+    }
+
+    private var cancelButton: XCUIElement {
+        #if os(macOS)
+        app.sheets.groups.buttons[Identifiers.cancelButton]
+        #else
+        app.buttons[Identifiers.cancelButton]
+        #endif
     }
 
 }

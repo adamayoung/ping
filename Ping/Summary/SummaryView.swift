@@ -16,9 +16,25 @@ struct SummaryView: View {
         store.sites.all
     }
 
+    private func siteStatus(for site: Site) -> SiteStatus {
+        store.sites.siteStatus(for: site)
+    }
+
     var body: some View {
         Table(sites) {
+            TableColumn("STATUS") { site in
+                HStack {
+                    Spacer()
+                    SiteStatusLabel(site: site, siteStatus: siteStatus(for: site))
+                        .labelStyle(.iconOnly)
+                    Spacer()
+                }
+
+            }
+            .width(40)
+
             TableColumn("NAME", value: \.name)
+
             TableColumn("URL") { site in
                 Text(site.url.absoluteString)
             }
@@ -29,7 +45,7 @@ struct SummaryView: View {
 }
 
 #Preview {
-    let store = PingStore.preview
+    let store = PingStore.preview()
 
     return NavigationStack {
         SummaryView()

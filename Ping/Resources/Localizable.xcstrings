@@ -21,7 +21,18 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Add site"
+            "value" : "Add Site"
+          }
+        }
+      }
+    },
+    "ADD_SITE_TO_GET_STARTED" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Add a site to get started"
           }
         }
       }
@@ -99,7 +110,14 @@
       }
     },
     "REFRESH_SITE_STATUS" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Refresh Site Status"
+          }
+        }
+      }
     },
     "SITE_NAME" : {
       "extractionState" : "manual",
@@ -119,6 +137,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Sites"
+          }
+        }
+      }
+    },
+    "STATUS" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Status"
           }
         }
       }

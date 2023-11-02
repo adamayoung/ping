@@ -10,7 +10,7 @@ import SwiftData
 
 extension ModelContainer {
 
-    static func ping(inMemory: Bool = false) throws -> ModelContainer {
+    static func ping(inMemory: Bool) throws -> ModelContainer {
         let schema = Schema([
             Site.self,
             SiteStatus.self

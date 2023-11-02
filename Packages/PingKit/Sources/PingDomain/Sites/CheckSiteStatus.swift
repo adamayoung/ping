@@ -18,7 +18,7 @@ public final class CheckSiteStatus: CheckSiteStatusUseCase {
     }
 
     public func execute(site: Site) async throws -> SiteStatus {
-        let status = try await siteStatusService.check(site: site)
+        let status = await siteStatusService.check(site: site)
         return status
     }
 

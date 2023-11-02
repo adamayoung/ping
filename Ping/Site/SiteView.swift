@@ -40,32 +40,29 @@ struct SiteView: View {
         ScrollView {
             VStack {
                 Text(verbatim: site.url.absoluteString)
-                Text(verbatim: siteStatusLabel)
-                if case let .failure(error) = siteStatus.statusCode {
-                    Text(verbatim: error.localizedDescription)
-                }
+                SiteStatusLabel(site: site, siteStatus: siteStatus)
             }
-
         }
         .navigationTitle(site.name)
         .toolbar {
-            ToolbarItem {
+            ToolbarItem(placement: .primaryAction) {
                 Button {
-                    Task {
-                        await store.send(.sites(.checkSiteStatus(site)))
-                    }
+                    refreshSiteStatus()
                 } label: {
                     Label("REFRESH_SITE_STATUS", systemImage: "arrow.clockwise")
                 }
+                .help("REFRESH_SITE_STATUS")
+                .disabled(siteStatus.statusCode == .checking)
                 .accessibilityIdentifier("refreshSiteStatusButton")
             }
 
-            ToolbarItem {
+            ToolbarItem(placement: .destructiveAction) {
                 Button(role: .destructive) {
                     confirmRemove()
                 } label: {
                     Label("DELETE_SITE", systemImage: "trash")
                 }
+                .help("DELETE_SITE")
                 .accessibilityIdentifier("deleteSiteButton")
             }
         }
@@ -77,8 +74,16 @@ struct SiteView: View {
             }
             .accessibilityIdentifier("confirmDeleteSiteButton")
 
-            Button("CANCEL", role: .cancel) { }
-                .accessibilityIdentifier("cancelDeleteSiteButton")
+            Button("CANCEL", role: .cancel) {
+            }
+            .help("CANCEL")
+            .accessibilityIdentifier("cancelDeleteSiteButton")
+        }
+    }
+
+    private func refreshSiteStatus() {
+        Task {
+            await store.send(.sites(.checkSiteStatus(site)))
         }
     }
 
@@ -89,25 +94,25 @@ struct SiteView: View {
     private func removeSite() {
         Task {
             await store.send(.sites(.remove(site)))
+            await MainActor.run {
+                onDelete?()
+            }
         }
-
-        onDelete?()
     }
 
 }
 
 #Preview("Success") {
-    let site = Site.preview
+    let site = Site.previews[0]
 
-    let store = PingStore(
+    let store = PingStore.preview(
         state: PingState(
             sites: SitesState(
                 siteStatuses: [
-                    site.id: SiteStatus.preview(.success)
+                    site.id: SiteStatus(statusCode: .success)
                 ]
             )
-        ),
-        inMemoryStorage: true
+        )
     )
 
     return NavigationStack {
@@ -119,17 +124,35 @@ struct SiteView: View {
 #Preview("Failure") {
     let site = Site.previews[1]
 
-    let store = PingStore(
+    let store = PingStore.preview(
         state: PingState(
             sites: SitesState(
                 siteStatuses: [
-                    site.id: SiteStatus.preview(
-                        .failure(SiteStatusError(errorDescription: "Some error"))
+                    site.id: SiteStatus(
+                        statusCode: .failure(SiteStatusError(errorDescription: "Some error"))
                     )
                 ]
             )
-        ),
-        inMemoryStorage: true
+        )
+    )
+
+    return NavigationStack {
+        SiteView(site: site)
+    }
+    .environment(store)
+}
+
+#Preview("Checking") {
+    let site = Site.previews[2]
+
+    let store = PingStore.preview(
+        state: PingState(
+            sites: SitesState(
+                siteStatuses: [
+                    site.id: SiteStatus(statusCode: .checking)
+                ]
+            )
+        )
     )
 
     return NavigationStack {
@@ -139,17 +162,16 @@ struct SiteView: View {
 }
 
 #Preview("Unknown") {
-    let site = Site.previews[2]
+    let site = Site.previews[3]
 
-    let store = PingStore(
+    let store = PingStore.preview(
         state: PingState(
             sites: SitesState(
                 siteStatuses: [
-                    site.id: SiteStatus.preview(.unknown)
+                    site.id: SiteStatus(statusCode: .unknown)
                 ]
             )
-        ),
-        inMemoryStorage: true
+        )
     )
 
     return NavigationStack {

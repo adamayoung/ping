@@ -13,36 +13,25 @@ struct AddSiteView: View {
     @Environment(PingStore.self) private var store
     @Environment(\.dismiss) private var dismiss
 
-    @State private var isValid = false
-    @State private var name: String = ""
-    @FocusState private var nameFieldIsFocused: Bool
-    @State private var url: String = ""
-    @FocusState private var urlFieldIsFocused: Bool
+    @State private var formModel = AddSiteFormModel()
+    @State private var isAddingSite = false
+    @FocusState private var focusedField: Field?
+
+    enum Field: Int, Hashable {
+       case siteName
+       case siteURL
+    }
 
     var body: some View {
         Form {
             Section {
-                TextField("SITE_NAME", text: $name)
-                    .focused($nameFieldIsFocused)
-                    .accessibilityIdentifier("siteNameField")
-
-                TextField("URL", text: $url)
-                    #if os(iOS)
-                    .keyboardType(.URL)
-                    .textInputAutocapitalization(.never)
-                    #endif
-                    .disableAutocorrection(true)
-                    .textContentType(.URL)
-                    .focused($urlFieldIsFocused)
-                    .accessibilityIdentifier("siteURLField")
+                siteNameField
+                siteURLField
             }
         }
-        .accessibilityIdentifier("addSiteView")
+        .interactiveDismissDisabled(isAddingSite)
         .onAppear {
-            nameFieldIsFocused = true
-        }
-        .onChange(of: url) { _, _ in
-            validateForm()
+            focusedField = .siteName
         }
         .navigationTitle("ADD_SITE")
         #if os(iOS)
@@ -55,8 +44,9 @@ struct AddSiteView: View {
                 } label: {
                     Text("CANCEL")
                 }
+                .help("CANCEL")
+                .disabled(isAddingSite)
                 .accessibilityIdentifier("cancelButton")
-                .accessibilityLabel("CANCEL")
             }
 
             ToolbarItem(placement: .primaryAction) {
@@ -65,50 +55,66 @@ struct AddSiteView: View {
                 } label: {
                     Text("ADD")
                 }
+                .help("ADD_SITE")
+                .opacity(isAddingSite ? 0 : 1)
+                .overlay {
+                    if isAddingSite {
+                        ProgressView()
+                    }
+                }
                 .accessibilityIdentifier("addButton")
-                .accessibilityLabel("ADD_SITE")
-                .disabled(!isValid)
+                .disabled(!formModel.isValid)
             }
         }
+    }
+
+    private var siteNameField: some View {
+        TextField("SITE_NAME", text: $formModel.name)
+            .submitLabel(.next)
+            .focused($focusedField, equals: .siteName)
+            .onSubmit { focusedField = .siteURL }
+            .accessibilityIdentifier("siteNameField")
+    }
+
+    private var siteURLField: some View {
+        TextField("URL", text: $formModel.url)
+            #if os(iOS)
+            .keyboardType(.URL)
+            .textInputAutocapitalization(.never)
+            #endif
+            .submitLabel(.return)
+            .disableAutocorrection(true)
+            .textContentType(.URL)
+            .focused($focusedField, equals: .siteURL)
+            .onSubmit {
+                addSite()
+            }
+            .accessibilityIdentifier("siteURLField")
     }
 
 }
 
 extension AddSiteView {
 
-    private func validateForm() {
-        if name.isEmpty {
-            isValid = false
-            return
-        }
-
-        let url = URL(string: url)
-
-        if url?.scheme == nil || url?.host() == nil {
-            isValid = false
-            return
-        }
-
-        isValid = true
-    }
-
     private func addSite() {
-        let site = Site(
-            name: name,
-            url: URL(string: url)!
-        )
+        guard let site = formModel.site else {
+            return
+        }
 
+        isAddingSite = true
         Task {
             await store.send(.sites(.add(site)))
+            await store.send(.sites(.checkSiteStatus(site)))
+            await MainActor.run {
+                dismiss()
+            }
         }
-
-        dismiss()
     }
 
 }
 
 #Preview {
-    let store = PingStore.preview
+    let store = PingStore.preview()
 
     return AddSiteView()
         .environment(store)

@@ -12,17 +12,13 @@ struct SitesScreen: Screen {
     let app: XCUIApplication
 
     private enum Identifiers {
-        static let view = "Sidebar"
+        static let view = "sidebar"
         static let addSiteButton = "addSiteToolbarButton"
         static let summaryNavigationLink = "summaryNavigationLink"
         static func siteNavigationLink(siteID: UUID) -> String {
             return "siteNavigationLink-\(siteID.uuidString)"
         }
-        static let delete = "Delete"
-    }
-
-    private var sidebar: XCUIElement {
-        app.collectionViews[Identifiers.view]
+        static let deleteButton = "Delete"
     }
 
     @discardableResult
@@ -33,53 +29,81 @@ struct SitesScreen: Screen {
 
     @discardableResult
     func tapAddSiteButton() -> AddSiteScreen {
-        let button = app.buttons[Identifiers.addSiteButton]
-        button.tap()
+        addSiteButton.tap()
         return AddSiteScreen(app: app)
     }
 
     @discardableResult
     func tapSummary() -> SummaryScreen {
-        let button = sidebar.buttons[Identifiers.summaryNavigationLink]
-        button.tap()
+        summaryNavigationLink.tap()
         return SummaryScreen(app: app)
     }
 
     @discardableResult
     func tapSite(id: UUID) -> SiteScreen {
-        let button = sidebar.buttons[Identifiers.siteNavigationLink(siteID: id)]
-        button.tap()
+        siteNavigationLink(forSiteID: id).tap()
         return SiteScreen(app: app)
     }
 
     @discardableResult
     func swipLeftAndDeleteSite(withID id: UUID) -> SitesScreen {
-        let button = sidebar.buttons[Identifiers.siteNavigationLink(siteID: id)]
-        button.swipeLeft()
-        let deleteButton = sidebar.buttons[Identifiers.delete]
-        deleteButton.tap()
+        siteNavigationLink(forSiteID: id).swipeLeft()
+        sideBarDeleteButton.tap()
         return SitesScreen(app: app)
     }
 
     @discardableResult
-    func verifySite(withName name: String) -> Self {
-        let site = sidebar.buttons.staticTexts[name]
-        XCTAssertTrue(site.waitForExistence(timeout: 3))
+    func verifySitePresent(withName name: String) -> Self {
+        XCTAssertTrue(siteNavigationLink(forSiteName: name).waitForExistence(timeout: 3))
         return self
     }
 
     @discardableResult
     func verifySiteNotPresent(withName name: String) -> Self {
-        let site = sidebar.buttons.staticTexts[name]
-        XCTAssertFalse(site.waitForExistence(timeout: 3))
+        XCTAssertFalse(siteNavigationLink(forSiteName: name).waitForExistence(timeout: 3))
         return self
     }
 
     @discardableResult
     func verifySiteNotPresent(withID id: UUID) -> Self {
-        let button = sidebar.buttons[Identifiers.siteNavigationLink(siteID: id)]
-        XCTAssertFalse(button.waitForExistence(timeout: 3))
+        XCTAssertFalse(siteNavigationLink(forSiteID: id).waitForExistence(timeout: 3))
         return self
+    }
+
+}
+
+extension SitesScreen {
+
+    private var sidebar: XCUIElement {
+        #if os(macOS)
+        app.outlines["Sidebar"]
+        #else
+        app.collectionViews[Identifiers.view]
+        #endif
+    }
+
+    private var addSiteButton: XCUIElement {
+        #if os(macOS)
+        app.toolbars.children(matching: .button)["Add Site"].children(matching: .button)[Identifiers.addSiteButton]
+        #else
+        app.buttons[Identifiers.addSiteButton]
+        #endif
+    }
+
+    private var summaryNavigationLink: XCUIElement {
+        sidebar.buttons[Identifiers.summaryNavigationLink]
+    }
+
+    private func siteNavigationLink(forSiteID id: UUID) -> XCUIElement {
+        sidebar.buttons[Identifiers.siteNavigationLink(siteID: id)]
+    }
+
+    private func siteNavigationLink(forSiteName name: String) -> XCUIElement {
+        sidebar.buttons.staticTexts[name]
+    }
+
+    private var sideBarDeleteButton: XCUIElement {
+        sidebar.buttons[Identifiers.deleteButton]
     }
 
 }

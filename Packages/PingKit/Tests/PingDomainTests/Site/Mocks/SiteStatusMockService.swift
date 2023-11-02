@@ -12,12 +12,16 @@ final class SiteStatusMockService: SiteStatusService {
 
     init() { }
 
-    var checkSiteResult: Result<SiteStatus, Error> = .failure(SiteStatusMockServiceError())
+    var checkSiteResult: SiteStatus?
     private(set) var lastCheckSite: Site?
 
-    func check(site: Site) async throws -> SiteStatus {
+    func check(site: Site) async -> SiteStatus {
+        guard let checkSiteResult else {
+            precondition(false, "checkSiteResult not set")
+        }
+
         lastCheckSite = site
-        return try checkSiteResult.get()
+        return checkSiteResult
     }
 
 }

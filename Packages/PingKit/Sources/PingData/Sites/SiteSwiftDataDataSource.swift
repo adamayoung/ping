@@ -13,8 +13,8 @@ public actor SiteSwiftDataDataSource: SiteDataSource {
 
     private let modelActor: BackgroundModelActor
 
-    public init() {
-        self.init(modelActor: Factory.modelActor)
+    public init(inMemory: Bool) {
+        self.init(modelActor: Factory.modelActor(inMemory: inMemory))
     }
 
     init(modelActor: BackgroundModelActor) {

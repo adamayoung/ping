@@ -11,13 +11,15 @@ public typealias PingStore = Store<PingState, PingAction, PingDependencies>
 
 extension PingStore {
 
-    public convenience init(
-        state: PingState = PingState(),
-        inMemoryStorage: Bool = false
-    ) {
+    public convenience init() {
         self.init(
-            state: state,
-            dependencies: PingLiveDependencies(inMemoryStorage: inMemoryStorage)
+            state: PingState(),
+            dependencies: PingDefaultDependencies(
+                factory: PingDefaultFactory(
+                    inMemoryStorage: false,
+                    urlSession: .shared
+                )
+            )
         )
     }
 

@@ -18,6 +18,13 @@ func sitesReducer(state: SitesState, action: SitesAction) -> SitesState {
         let currentStatus = state.siteStatuses[site.id]?.withStatusCode(.checking) ?? SiteStatus(statusCode: .checking)
         state.siteStatuses[site.id] = currentStatus
 
+    case .checkAllSiteStatuses:
+        for site in state.all {
+            let currentStatus = state.siteStatuses[site.id]?.withStatusCode(.checking)
+            ?? SiteStatus(statusCode: .checking)
+            state.siteStatuses[site.id] = currentStatus
+        }
+
     case .setSiteStatuses(let siteStatuses):
         state.siteStatuses = siteStatuses
 

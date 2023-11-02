@@ -91,8 +91,10 @@ final class SiteSwiftDataDataSourceTests: XCTestCase {
         )
         try await modelActor.insert(googleSite)
         try await modelActor.insert(gitHubSite)
+        try await modelActor.save()
 
         try await dataSource.delete(googleSite.id)
+        try await modelActor.save()
 
         let fetchDescriptor = FetchDescriptor<PingData.Site>()
         let siteModels = try await modelActor.fetch(fetchDescriptor)

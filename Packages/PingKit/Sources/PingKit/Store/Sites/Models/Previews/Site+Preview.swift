@@ -33,6 +33,11 @@ extension Site {
                 id: UUID(uuidString: "D7874391-0048-40B5-9569-C7D8DBBA329A")!,
                 name: "Twitter",
                 url: URL(string: "https://twitter.com")!
+            ),
+            Site(
+                id: UUID(uuidString: "DC9434E8-B761-4193-9E6C-C1D6360D24D2")!,
+                name: "Microsoft",
+                url: URL(string: "https://microsoft.com")!
             )
         ]
     }

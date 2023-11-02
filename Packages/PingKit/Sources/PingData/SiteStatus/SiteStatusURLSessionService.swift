@@ -8,7 +8,7 @@
 import Foundation
 import PingDomain
 
-public final class SiteStatusURLSessionService: SiteStatusService {
+public final class SiteStatusURLSessionService: NSObject, SiteStatusService {
 
     private let urlSession: URLSession
 
@@ -16,14 +16,14 @@ public final class SiteStatusURLSessionService: SiteStatusService {
         self.urlSession = urlSession
     }
 
-    public func check(site: PingDomain.Site) async throws -> PingDomain.SiteStatus {
+    public func check(site: PingDomain.Site) async -> PingDomain.SiteStatus {
         let url = site.url
         var urlRequest = URLRequest(url: url, cachePolicy: .reloadIgnoringCacheData)
         urlRequest.timeoutInterval = 5
 
         let siteStatusCode: PingDomain.SiteStatusCode
         do {
-            let (_, response) = try await urlSession.data(for: urlRequest)
+            let (_, response) = try await urlSession.data(for: urlRequest, delegate: self)
             siteStatusCode = Self.statusCode(for: response)
         } catch let error {
             let error = SiteStatusError(errorDescription: error.localizedDescription)
@@ -58,6 +58,20 @@ extension SiteStatusURLSessionService {
 
     private static func isValidStatusCode(_ statusCode: Int) -> Bool {
         (200...299).contains(statusCode)
+    }
+
+}
+
+extension SiteStatusURLSessionService: URLSessionTaskDelegate {
+
+    public func urlSession(
+        _ session: URLSession,
+        task: URLSessionTask,
+        willPerformHTTPRedirection response: HTTPURLResponse,
+        newRequest request: URLRequest,
+        completionHandler: @escaping @Sendable (URLRequest?) -> Void
+    ) {
+        completionHandler(request)
     }
 
 }

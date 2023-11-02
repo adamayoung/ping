@@ -9,6 +9,6 @@ import Foundation
 
 public protocol SiteStatusService {
 
-    func check(site: Site) async throws -> SiteStatus
+    func check(site: Site) async -> SiteStatus
 
 }

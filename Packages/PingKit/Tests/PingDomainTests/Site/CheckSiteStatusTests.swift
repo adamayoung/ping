@@ -38,7 +38,7 @@ final class CheckSiteStatusTests: XCTestCase {
             statusCode: .success,
             timestamp: Date(timeIntervalSince1970: 2000)
         )
-        siteStatusService.checkSiteResult = .success(expectedSiteStatus)
+        siteStatusService.checkSiteResult = expectedSiteStatus
 
         let siteStatus = try await useCase.execute(site: site)
 

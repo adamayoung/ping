@@ -7,6 +7,7 @@
 
 import Foundation
 
+// swiftlint:disable:next function_body_length
 func sitesInterceptor(
     state: SitesState,
     action: SitesAction,
@@ -62,6 +63,16 @@ func sitesInterceptor(
         } catch { }
 
         return .setSiteStatus(site, siteStatus)
+
+    case .checkAllSiteStatuses:
+        let statuses: [Site.ID: SiteStatus]
+        do {
+            statuses = try await dependencies.allSiteStatuses()
+        } catch {
+            statuses = [:]
+        }
+
+        return .setSiteStatuses(statuses)
 
     default:
         return nil

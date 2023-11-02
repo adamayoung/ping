@@ -11,6 +11,10 @@ import SwiftUI
 @main
 struct PingApp: App {
 
+    #if os(iOS)
+    @UIApplicationDelegateAdaptor(AppDelegate.self) private var appDelegate
+    #endif
+
     @State private var store = PingStore.app
 
     var body: some Scene {
@@ -25,15 +29,11 @@ struct PingApp: App {
 extension PingStore {
 
     fileprivate static var app: PingStore {
-        if Self.isUITesting {
-            return PingStore.test
+        if CommandLine.isUITesting {
+            return PingStore.uiTest()
         }
 
         return PingStore()
-    }
-
-    private static var isUITesting: Bool {
-        CommandLine.arguments.contains("-uitest")
     }
 
 }

@@ -41,7 +41,7 @@ struct ContentView: View {
 }
 
 #Preview {
-    let store = PingStore.preview
+    let store = PingStore.preview()
 
     return ContentView()
         .environment(store)

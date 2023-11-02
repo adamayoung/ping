@@ -9,10 +9,10 @@ import Foundation
 
 public enum SiteStatusCode: Equatable {
 
-    case unknown
-    case checking
     case success
     case failure(SiteStatusError)
+    case checking
+    case unknown
 
     public static func == (lhs: SiteStatusCode, rhs: SiteStatusCode) -> Bool {
         switch (lhs, rhs) {
@@ -20,6 +20,9 @@ public enum SiteStatusCode: Equatable {
             return true
 
         case (.failure, .failure):
+            return true
+
+        case (.checking, .checking):
             return true
 
         case (.unknown, .unknown):

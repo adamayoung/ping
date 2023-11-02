@@ -9,21 +9,22 @@ import Foundation
 
 extension PingStore {
 
-    public static var preview: PingStore {
+    public static func preview(state: PingState = .preview) -> PingStore {
         PingStore(
-            state: .preview,
+            state: state,
             reduce: { state, _ in
                 state
             },
             intercept: { _, _, _ in
                 nil
             },
-            dependencies: PingLiveDependencies()
+            dependencies: PingDefaultDependencies(
+                factory: PingDefaultFactory(
+                    inMemoryStorage: true,
+                    urlSession: .shared
+                )
+            )
         )
-    }
-
-    public static var test: PingStore {
-        PingStore(state: .preview, inMemoryStorage: true)
     }
 
 }

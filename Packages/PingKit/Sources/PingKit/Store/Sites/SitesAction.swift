@@ -20,5 +20,6 @@ public enum SitesAction {
     case setSiteStatus(Site, SiteStatus)
 
     case checkSiteStatus(Site)
+    case checkAllSiteStatuses
 
 }

@@ -13,7 +13,7 @@ struct SitesView: View {
     @Binding var menuItem: MenuItem?
 
     @Environment(PingStore.self) private var store
-    @State private var showingSheet = false
+    @State private var isAddingSite = false
 
     private var sites: [Site] {
         store.sites.all
@@ -38,33 +38,55 @@ struct SitesView: View {
             }
             #endif
         }
+        .accessibilityIdentifier("sidebar")
         .scrollDisabled(sites.isEmpty)
         #if os(iOS)
         .overlay {
             if sites.isEmpty {
-                NoSitesView()
+                NoSitesView {
+                    isAddingSite.toggle()
+                }
             }
         }
         #endif
         #if os(macOS)
         .listStyle(.sidebar)
+        #else
+        .listStyle(.insetGrouped)
         #endif
         .toolbar {
-            ToolbarItem {
+            #if os(macOS)
+            ToolbarItem(placement: .primaryAction) {
                 Button {
-                    showingSheet.toggle()
+                    Task {
+                        await refreshAllSiteStatuses()
+                    }
+                } label: {
+                    Label("REFRESH_SITE_STATUS", systemImage: "arrow.clockwise")
+                }
+                .help("REFRESH_SITE_STATUS")
+                .accessibilityIdentifier("refreshAllSiteStatusesButton")
+            }
+            #endif
+
+            ToolbarItem(placement: .primaryAction) {
+                Button {
+                    isAddingSite.toggle()
                 } label: {
                     Label("ADD_SITE", systemImage: "plus")
                 }
+                .help("ADD_SITE")
                 .accessibilityIdentifier("addSiteToolbarButton")
             }
         }
-        .sheet(isPresented: $showingSheet) {
-            #if os(macOS)
-            macOSAddSiteView
-            #else
-            iOSAddSiteView
-            #endif
+        #if os(iOS)
+        .refreshable {
+            await refreshAllSiteStatuses()
+        }
+        #endif
+        .sheet(isPresented: $isAddingSite) {
+            AddSiteSheetView()
+                .environment(store)
         }
         .navigationTitle("SITES")
         .task {
@@ -93,20 +115,6 @@ extension SitesView {
         .onDelete(perform: delete)
     }
 
-    private var macOSAddSiteView: some View {
-        AddSiteView()
-            .padding()
-            .frame(width: 300)
-            .environment(store)
-    }
-
-    private var iOSAddSiteView: some View {
-        NavigationView {
-            AddSiteView()
-                .environment(store)
-        }
-    }
-
 }
 
 extension SitesView {
@@ -116,6 +124,10 @@ extension SitesView {
             await store.send(.sites(.fetchLatestSiteStatuses))
             await store.send(.sites(.fetch))
         }
+    }
+
+    private func refreshAllSiteStatuses() async {
+        await store.send(.sites(.checkAllSiteStatuses))
     }
 
     private func delete(at offsets: IndexSet) {
@@ -131,7 +143,7 @@ extension SitesView {
 }
 
 #Preview {
-    let store = PingStore.preview
+    let store = PingStore.preview()
 
     return NavigationStack {
         SitesView(menuItem: .constant(.summary))

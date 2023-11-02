@@ -36,6 +36,12 @@ final class SitesMockDependencies: SitesDependencies {
         return try siteStatusResult.get()
     }
 
+    var allSiteStatusesResult: Result<[Site.ID: SiteStatus], Error> = .failure(SitesMockDependenciesError())
+
+    func allSiteStatuses() async throws -> [Site.ID: SiteStatus] {
+        try allSiteStatusesResult.get()
+    }
+
     var storeResult: Result<Void, Error> = .success(())
     private(set) var lastStoreSiteStatues: SiteStatus?
     private(set) var lastStoreSite: Site?
