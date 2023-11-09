@@ -11,16 +11,19 @@ public struct Site: Identifiable, Equatable, Hashable {
 
     public let id: UUID
     public let name: String
-    public let url: URL
+    public let request: SiteStatusRequest
+    public let isActive: Bool
 
     public init(
         id: UUID = UUID(),
         name: String,
-        url: URL
+        request: SiteStatusRequest,
+        isActive: Bool = true
     ) {
         self.id = id
         self.name = name
-        self.url = url
+        self.request = request
+        self.isActive = isActive
     }
 
 }

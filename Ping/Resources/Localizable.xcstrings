@@ -4,6 +4,27 @@
     "" : {
 
     },
+    "%@ %@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$@ %2$@"
+          }
+        }
+      }
+    },
+    "%@_IS_UP_AND_RUNNING" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "**%@** is up and running"
+          }
+        }
+      }
+    },
     "ADD" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -48,6 +69,17 @@
         }
       }
     },
+    "CHECKING_%@" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Checking **%@**..."
+          }
+        }
+      }
+    },
     "CONFIRM_DELETE_SITE" : {
       "localizations" : {
         "en" : {
@@ -74,6 +106,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Delete Site"
+          }
+        }
+      }
+    },
+    "ERROR" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Error"
           }
         }
       }
@@ -109,6 +152,17 @@
         }
       }
     },
+    "REFRESH" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Refresh"
+          }
+        }
+      }
+    },
     "REFRESH_SITE_STATUS" : {
       "localizations" : {
         "en" : {
@@ -126,6 +180,46 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Name"
+          }
+        }
+      }
+    },
+    "SITE_STATUS_CHECKING" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Checking..."
+          }
+        }
+      }
+    },
+    "SITE_STATUS_FAILURE" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Failed"
+          }
+        }
+      }
+    },
+    "SITE_STATUS_SUCCESS" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Success"
+          }
+        }
+      }
+    },
+    "SITE_STATUS_UNKNOWN" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Unknown"
           }
         }
       }
@@ -152,12 +246,34 @@
         }
       }
     },
+    "STATUS_OF_%@_IS_UNKNOWN" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Status of **%@** is unknown"
+          }
+        }
+      }
+    },
     "SUMMARY" : {
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Summary"
+          }
+        }
+      }
+    },
+    "TROUBLE_LOADING_%@" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Trouble loading **%@**"
           }
         }
       }

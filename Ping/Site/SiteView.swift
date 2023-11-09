@@ -17,33 +17,33 @@ struct SiteView: View {
     @State private var isConfirmDeleteAlertPresented = false
 
     private var siteStatus: SiteStatus {
-        store.sites.siteStatus(for: site)
-    }
-
-    private var siteStatusLabel: String {
-        switch siteStatus.statusCode {
-        case .checking:
-            return "Checking..."
-
-        case .success:
-            return "Success"
-
-        case .failure:
-            return "Failure"
-
-        case .unknown:
-            return "Unknown"
-        }
+        store.siteStatuses.latestSiteStatus(for: site)
     }
 
     var body: some View {
-        ScrollView {
-            VStack {
-                Text(verbatim: site.url.absoluteString)
-                SiteStatusLabel(site: site, siteStatus: siteStatus)
+        List {
+            HStack {
+                Spacer()
+                SiteStatusHeaderView(site: site, siteStatus: siteStatus, refreshSiteStatus: refreshSiteStatus)
+                Spacer()
+            }
+            .listRowInsets(.none)
+            .listRowSeparator(.hidden)
+            .listRowBackground(EmptyView())
+
+            if case let .failure(error) = siteStatus.statusCode {
+                Section(header: Text("ERROR")) {
+                    Text(verbatim: error.localizedDescription)
+                }
             }
         }
+#if os(iOS)
+        .refreshable {
+            refreshSiteStatus()
+        }
+#endif
         .navigationTitle(site.name)
+#if os(macOS)
         .toolbar {
             ToolbarItem(placement: .primaryAction) {
                 Button {
@@ -66,6 +66,7 @@ struct SiteView: View {
                 .accessibilityIdentifier("deleteSiteButton")
             }
         }
+#endif
         .confirmationDialog("CONFIRM_DELETE_SITE", isPresented: $isConfirmDeleteAlertPresented) {
             Button(role: .destructive) {
                 removeSite()
@@ -81,9 +82,13 @@ struct SiteView: View {
         }
     }
 
+}
+
+extension SiteView {
+
     private func refreshSiteStatus() {
         Task {
-            await store.send(.sites(.checkSiteStatus(site)))
+            await store.send(.siteStatuses(.checkSiteStatus(site)))
         }
     }
 
@@ -107,18 +112,24 @@ struct SiteView: View {
 
     let store = PingStore.preview(
         state: PingState(
-            sites: SitesState(
-                siteStatuses: [
-                    site.id: SiteStatus(statusCode: .success)
+            siteStatuses: SiteStatusesState(
+                all: [
+                    site.id: [
+                        SiteStatus(statusCode: .success, time: 5)
+                    ]
                 ]
             )
         )
     )
 
     return NavigationStack {
-        SiteView(site: .preview)
+        SiteView(site: site)
+            #if os(iOS)
+            .navigationBarTitleDisplayMode(.inline)
+            #endif
+            .environment(store)
     }
-    .environment(store)
+    .frame(maxWidth: .infinity)
 }
 
 #Preview("Failure") {
@@ -126,11 +137,14 @@ struct SiteView: View {
 
     let store = PingStore.preview(
         state: PingState(
-            sites: SitesState(
-                siteStatuses: [
-                    site.id: SiteStatus(
-                        statusCode: .failure(SiteStatusError(errorDescription: "Some error"))
-                    )
+            siteStatuses: SiteStatusesState(
+                all: [
+                    site.id: [
+                        SiteStatus(
+                            statusCode: .failure(SiteStatusError(errorDescription: "Some error")),
+                            time: 5
+                        )
+                    ]
                 ]
             )
         )
@@ -138,8 +152,12 @@ struct SiteView: View {
 
     return NavigationStack {
         SiteView(site: site)
+            #if os(iOS)
+            .navigationBarTitleDisplayMode(.inline)
+            #endif
+            .environment(store)
     }
-    .environment(store)
+    .frame(maxWidth: .infinity)
 }
 
 #Preview("Checking") {
@@ -147,9 +165,11 @@ struct SiteView: View {
 
     let store = PingStore.preview(
         state: PingState(
-            sites: SitesState(
-                siteStatuses: [
-                    site.id: SiteStatus(statusCode: .checking)
+            siteStatuses: SiteStatusesState(
+                all: [
+                    site.id: [
+                        SiteStatus(statusCode: .checking, time: 5)
+                    ]
                 ]
             )
         )
@@ -157,8 +177,12 @@ struct SiteView: View {
 
     return NavigationStack {
         SiteView(site: site)
+            #if os(iOS)
+            .navigationBarTitleDisplayMode(.inline)
+            #endif
+            .environment(store)
     }
-    .environment(store)
+    .frame(maxWidth: .infinity)
 }
 
 #Preview("Unknown") {
@@ -166,9 +190,11 @@ struct SiteView: View {
 
     let store = PingStore.preview(
         state: PingState(
-            sites: SitesState(
-                siteStatuses: [
-                    site.id: SiteStatus(statusCode: .unknown)
+            siteStatuses: SiteStatusesState(
+                all: [
+                    site.id: [
+                        SiteStatus(statusCode: .unknown, time: 5)
+                    ]
                 ]
             )
         )
@@ -176,6 +202,10 @@ struct SiteView: View {
 
     return NavigationStack {
         SiteView(site: site)
+            #if os(iOS)
+            .navigationBarTitleDisplayMode(.inline)
+            #endif
+            .environment(store)
     }
-    .environment(store)
+    .frame(maxWidth: .infinity)
 }

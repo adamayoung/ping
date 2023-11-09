@@ -22,7 +22,7 @@ final class Factory {
 
 extension Factory {
 
-    private static var diskModelActor: BackgroundModelActor = {
+    private static var diskModelActor: some BackgroundModelActor = {
         let modelContainer: ModelContainer
         do {
             modelContainer = try ModelContainer.ping(inMemory: false)
@@ -34,7 +34,7 @@ extension Factory {
         return modelActor
     }()
 
-    private static var inMemoryModelActor: BackgroundModelActor = {
+    private static var inMemoryModelActor: some BackgroundModelActor = {
         let modelContainer: ModelContainer
         do {
             modelContainer = try ModelContainer.ping(inMemory: true)

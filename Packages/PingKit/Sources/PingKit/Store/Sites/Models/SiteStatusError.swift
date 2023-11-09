@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct SiteStatusError: LocalizedError {
+public struct SiteStatusError: LocalizedError, Equatable, Hashable {
 
     public let errorDescription: String?
 

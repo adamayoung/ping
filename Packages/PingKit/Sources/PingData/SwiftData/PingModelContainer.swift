@@ -13,6 +13,7 @@ extension ModelContainer {
     static func ping(inMemory: Bool) throws -> ModelContainer {
         let schema = Schema([
             Site.self,
+            SiteStatusRequest.self,
             SiteStatus.self
         ])
 
@@ -21,7 +22,11 @@ extension ModelContainer {
             isStoredInMemoryOnly: inMemory
         )
 
+        let date = Date(timeIntervalSince1970: 1000)
+
         return try ModelContainer(for: schema, configurations: [modelConfiguration])
     }
 
 }
+
+

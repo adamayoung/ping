@@ -7,19 +7,11 @@
 
 import Foundation
 
-public enum SitesAction {
+public enum SitesAction: Sendable {
 
-    case fetch
+    case load
     case set([Site])
-
-    case add(Site)
+    case store(Site)
     case remove(Site)
-
-    case fetchLatestSiteStatuses
-    case setSiteStatuses([Site.ID: SiteStatus])
-    case setSiteStatus(Site, SiteStatus)
-
-    case checkSiteStatus(Site)
-    case checkAllSiteStatuses
 
 }

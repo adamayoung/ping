@@ -25,7 +25,7 @@ struct SiteRow: View {
     return NavigationStack {
         List {
             ForEach(state.sites.all) { site in
-                let status = state.sites.siteStatus(for: site)
+                let status = state.siteStatuses.latestSiteStatus(for: site)
                 NavigationLink(destination: EmptyView()) {
                     SiteRow(
                         site: site,
@@ -34,8 +34,10 @@ struct SiteRow: View {
                 }
             }
         }
-#if os(macOS)
+        #if os(macOS)
         .listStyle(.sidebar)
-#endif
+        #else
+        .listStyle(.insetGrouped)
+        #endif
     }
 }

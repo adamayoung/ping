@@ -10,18 +10,24 @@ import PingDomain
 
 protocol PingFactory {
 
-    func fetchSitesUseCase() -> any FetchSitesUseCase
+    // MARK: - Sites
+
+    func allSitesUseCase() -> any AllSitesUseCase
 
     func addSiteUseCase() -> any AddSiteUseCase
 
     func removeSiteUseCase() -> any RemoveSiteUseCase
 
-    func fetchLatestSiteStatusesUseCase() -> any FetchLatestSiteStatusesUseCase
+    // MARK: - Site Statuses
 
-    func checkSiteStatusUseCase() -> any CheckSiteStatusUseCase
+    func siteStatusesForSitesUseCase() -> any SiteStatusesForSitesUseCase
 
-    func checkAllSiteStatusesUseCase() -> any CheckAllSiteStatusesUseCase
+    func siteStatusesForSiteUseCase() -> any SiteStatusesForSiteUseCase
 
-    func storeSiteStatusUseCase() -> any StoreSiteStatusUseCase
+    func checkSiteStatusForSiteUseCase() -> any CheckSiteStatusForSiteUseCase
+
+    func checkSiteStatusForSitesUseCase() -> any CheckSiteStatusForSitesUseCase
+
+    func addSiteStatusUseCase() -> any AddSiteStatusUseCase
 
 }

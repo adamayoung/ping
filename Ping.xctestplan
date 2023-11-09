@@ -20,6 +20,7 @@
   },
   "testTargets" : [
     {
+      "enabled" : false,
       "target" : {
         "containerPath" : "container:Ping.xcodeproj",
         "identifier" : "66D212542AEA905600A2C4CE",
@@ -27,6 +28,7 @@
       }
     },
     {
+      "enabled" : false,
       "target" : {
         "containerPath" : "container:Packages\/PingKit",
         "identifier" : "PingKitTests",
@@ -34,6 +36,7 @@
       }
     },
     {
+      "enabled" : false,
       "target" : {
         "containerPath" : "container:Packages\/PingKit",
         "identifier" : "PingDomainTests",

@@ -7,30 +7,11 @@
 
 import Foundation
 
-public enum SiteStatusCode: Equatable {
+public enum SiteStatusCode: Equatable, Hashable {
 
     case success
     case failure(SiteStatusError)
     case checking
     case unknown
-
-    public static func == (lhs: SiteStatusCode, rhs: SiteStatusCode) -> Bool {
-        switch (lhs, rhs) {
-        case (.success, .success):
-            return true
-
-        case (.failure, .failure):
-            return true
-
-        case (.checking, .checking):
-            return true
-
-        case (.unknown, .unknown):
-            return true
-
-        default:
-            return false
-        }
-    }
 
 }

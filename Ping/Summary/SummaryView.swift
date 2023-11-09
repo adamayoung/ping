@@ -17,7 +17,7 @@ struct SummaryView: View {
     }
 
     private func siteStatus(for site: Site) -> SiteStatus {
-        store.sites.siteStatus(for: site)
+        store.siteStatuses.latestSiteStatus(for: site)
     }
 
     var body: some View {
@@ -36,7 +36,7 @@ struct SummaryView: View {
             TableColumn("NAME", value: \.name)
 
             TableColumn("URL") { site in
-                Text(site.url.absoluteString)
+                Text(site.request.url.absoluteString)
             }
         }
         .navigationTitle("SUMMARY")

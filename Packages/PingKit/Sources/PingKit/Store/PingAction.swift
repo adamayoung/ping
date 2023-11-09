@@ -10,5 +10,6 @@ import Foundation
 public enum PingAction {
 
     case sites(SitesAction)
+    case siteStatuses(SiteStatusesAction)
 
 }

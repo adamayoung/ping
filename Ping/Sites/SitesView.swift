@@ -20,7 +20,7 @@ struct SitesView: View {
     }
 
     private func siteStatus(for site: Site) -> SiteStatus {
-        store.sites.siteStatus(for: site)
+        store.siteStatuses.latestSiteStatus(for: site)
     }
 
     var body: some View {
@@ -121,13 +121,14 @@ extension SitesView {
 
     private func fetchData() async {
         if sites.isEmpty {
-            await store.send(.sites(.fetchLatestSiteStatuses))
-            await store.send(.sites(.fetch))
+            await store.send(.sites(.load))
+            await store.send(.siteStatuses(.load(sites.map(\.id))))
+
         }
     }
 
     private func refreshAllSiteStatuses() async {
-        await store.send(.sites(.checkAllSiteStatuses))
+        await store.send(.siteStatuses(.checkSiteStatuses(sites)))
     }
 
     private func delete(at offsets: IndexSet) {
@@ -145,8 +146,10 @@ extension SitesView {
 #Preview {
     let store = PingStore.preview()
 
-    return NavigationStack {
+    return NavigationSplitView {
         SitesView(menuItem: .constant(.summary))
+    } detail: {
+        Text("Details")
     }
     .environment(store)
 }

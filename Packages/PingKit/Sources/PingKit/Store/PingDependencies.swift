@@ -7,4 +7,10 @@
 
 import Foundation
 
-public protocol PingDependencies: SitesDependencies { }
+public protocol PingDependencies {
+
+    var sites: any SitesDependencies { get }
+
+    var siteStauses: any SiteStatusesDependencies { get }
+
+}

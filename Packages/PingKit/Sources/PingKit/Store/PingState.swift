@@ -10,11 +10,14 @@ import Foundation
 public struct PingState {
 
     public internal(set) var sites: SitesState
+    public internal(set) var siteStatuses: SiteStatusesState
 
     public init(
-        sites: SitesState = SitesState()
+        sites: SitesState = SitesState(),
+        siteStatuses: SiteStatusesState = SiteStatusesState()
     ) {
         self.sites = sites
+        self.siteStatuses = siteStatuses
     }
 
 }

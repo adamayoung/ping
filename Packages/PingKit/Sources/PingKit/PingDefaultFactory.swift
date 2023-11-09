@@ -19,8 +19,10 @@ final class PingDefaultFactory: PingFactory {
         self.urlSession = urlSession
     }
 
-    func fetchSitesUseCase() -> any FetchSitesUseCase {
-        FetchSites(siteDataSource: siteDataSource())
+    // MARK: - Sites
+
+    func allSitesUseCase() -> any AllSitesUseCase {
+        AllSites(siteDataSource: siteDataSource())
     }
 
     func addSiteUseCase() -> any AddSiteUseCase {
@@ -31,20 +33,26 @@ final class PingDefaultFactory: PingFactory {
         RemoveSite(siteDataSource: siteDataSource())
     }
 
-    func fetchLatestSiteStatusesUseCase() -> any FetchLatestSiteStatusesUseCase {
-        FetchLatestSiteStatuses(siteStatusDataSource: siteStatusDataSource())
+    // MARK: - Site Statuses
+
+    func siteStatusesForSitesUseCase() -> any SiteStatusesForSitesUseCase {
+        SiteStatusesForSites(siteStatusDataSource: siteStatusDataSource())
     }
 
-    func checkSiteStatusUseCase() -> any CheckSiteStatusUseCase {
-        CheckSiteStatus(siteStatusService: siteStatusService())
+    func siteStatusesForSiteUseCase() -> any SiteStatusesForSiteUseCase {
+        SiteStatusesForSite(siteStatusDataSource: siteStatusDataSource())
     }
 
-    func checkAllSiteStatusesUseCase() -> any CheckAllSiteStatusesUseCase {
-        CheckAllSiteStatuses(siteDataSource: siteDataSource(), siteStatusService: siteStatusService())
+    func checkSiteStatusForSiteUseCase() -> any CheckSiteStatusForSiteUseCase {
+        CheckSiteStatusForSite(siteStatusService: siteStatusService())
     }
 
-    func storeSiteStatusUseCase() -> any StoreSiteStatusUseCase {
-        StoreSiteStatus(siteStatusDataSource: siteStatusDataSource())
+    func checkSiteStatusForSitesUseCase() -> any CheckSiteStatusForSitesUseCase {
+        CheckSiteStatusForSites(siteStatusService: siteStatusService())
+    }
+
+    func addSiteStatusUseCase() -> any AddSiteStatusUseCase {
+        AddSiteStatus(siteStatusDataSource: siteStatusDataSource())
     }
 
 }

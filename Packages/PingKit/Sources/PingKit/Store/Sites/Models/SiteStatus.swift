@@ -7,19 +7,22 @@
 
 import Foundation
 
-public struct SiteStatus: Identifiable, Equatable {
+public struct SiteStatus: Identifiable, Hashable, Equatable {
 
     public let id: UUID
     public let statusCode: SiteStatusCode
+    public let time: TimeInterval
     public let timestamp: Date
 
     public init(
         id: UUID = UUID(),
         statusCode: SiteStatusCode,
+        time: TimeInterval,
         timestamp: Date = .now
     ) {
         self.id = id
         self.statusCode = statusCode
+        self.time = time
         self.timestamp = timestamp
     }
 
@@ -27,6 +30,7 @@ public struct SiteStatus: Identifiable, Equatable {
         SiteStatus(
             id: id,
             statusCode: statusCode,
+            time: time,
             timestamp: .now
         )
     }

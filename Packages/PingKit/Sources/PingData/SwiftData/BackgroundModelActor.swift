@@ -8,7 +8,7 @@
 import Foundation
 import SwiftData
 
-actor BackgroundModelActor: ModelActor {
+actor BackgroundModelActor {
 
     nonisolated let modelContainer: ModelContainer
     nonisolated let modelExecutor: any ModelExecutor
@@ -33,7 +33,7 @@ actor BackgroundModelActor: ModelActor {
         context.delete(model)
     }
 
-    func `delete`<T: PersistentModel>(_ predicate: Predicate<T>? = nil, includeSubclasses: Bool = true) throws {
+    func `delete`<T: PersistentModel>(_ predicate: Predicate<T>, includeSubclasses: Bool = true) throws {
         try context.delete(model: T.self, where: predicate, includeSubclasses: includeSubclasses)
     }
 

@@ -28,7 +28,8 @@ final class AddSiteFormModel {
             return nil
         }
 
-        return Site(name: name, url: url)
+        let siteRequest = SiteStatusRequest(url: url)
+        return Site(name: name, request: siteRequest)
     }
 
     init() { }

@@ -103,8 +103,8 @@ extension AddSiteView {
 
         isAddingSite = true
         Task {
-            await store.send(.sites(.add(site)))
-            await store.send(.sites(.checkSiteStatus(site)))
+            await store.send(.sites(.store(site)))
+            await store.send(.siteStatuses(.checkSiteStatus(site)))
             await MainActor.run {
                 dismiss()
             }

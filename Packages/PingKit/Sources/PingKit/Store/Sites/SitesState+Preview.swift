@@ -11,13 +11,7 @@ extension SitesState {
 
     public static var preview: SitesState {
         SitesState(
-            all: Site.previews,
-            siteStatuses: [
-                Site.previews[0].id: SiteStatus(statusCode: .success),
-                Site.previews[1].id: SiteStatus(statusCode: .failure(SiteStatusError(errorDescription: "Some error"))),
-                Site.previews[2].id: SiteStatus(statusCode: .checking),
-                Site.previews[3].id: SiteStatus(statusCode: .unknown)
-            ]
+            all: Site.previews
         )
     }
 
