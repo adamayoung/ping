@@ -9,42 +9,19 @@ import Foundation
 import SwiftData
 
 @MainActor
-final class PingFactory: PingFactoryProvider {
+final class PingFactory {
 
-    static let shared = PingFactory()
+    static let shared: PingFactoryProvider = {
+        let appMode = AppMode()
 
-    private let appMode = AppMode()
-    private let liveFactory: PingFactoryProvider
-    private let previewFactory: PingFactoryProvider
-
-    private var factory: PingFactoryProvider {
         switch appMode {
-        case .swiftUIPreview:
-            return previewFactory
-
-        case .uiTest:
-            return previewFactory
+        case .uiTest, .swiftUIPreview:
+            return PingPreviewFactory()
 
         default:
-            return liveFactory
+            return PingLiveFactory()
         }
-    }
-
-    private init(
-        liveFactory: PingFactoryProvider = PingLiveFactory.shared,
-        previewFactory: PingFactoryProvider = PingPreviewFactory.shared
-    ) {
-        self.liveFactory = liveFactory
-        self.previewFactory = previewFactory
-    }
-
-    var modelContainer: ModelContainer {
-        factory.modelContainer
-    }
-
-    var siteStatusCheckerService: SiteStatusCheckerService {
-        factory.siteStatusCheckerService
-    }
+    }()
 
 }
 

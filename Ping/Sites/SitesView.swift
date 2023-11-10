@@ -16,24 +16,37 @@ struct SitesView: View {
     @Environment(SiteStatusCheckerService.self) private var siteStatusCheckerService
 
     @State private var isAddingSite = false
+    @State private var isAddingSiteGroup = false
 
+    @Query(sort: [SortDescriptor(\SiteGroup.name, comparator: .localizedStandard)]) private var siteGroups: [SiteGroup]
     @Query(sort: [SortDescriptor(\Site.name, comparator: .localizedStandard)]) private var sites: [Site]
     @Query(sort: [SortDescriptor(\SiteStatus.timestamp, order: .reverse)]) private var statuses: [SiteStatus]
 
     var body: some View {
         List(selection: $menuItem) {
-#if os(macOS)
+            #if os(macOS)
             Section {
                 summaryRow
             }
-            Section("SITES") {
-                siteRows
+            #endif
+
+            ForEach(siteGroups) { siteGroup in
+                let sites = sites(for: siteGroup)
+                Section {
+                    siteRows(for: sites)
+                } header: {
+                    Text(verbatim: siteGroup.name)
+                }
             }
-#else
-            Section {
-                siteRows
+
+            let otherSites = sites(for: nil)
+            if !otherSites.isEmpty {
+                Section {
+                    siteRows(for: otherSites)
+                } header: {
+                    Text("OTHER")
+                }
             }
-#endif
         }
         .accessibilityIdentifier("sidebar")
         .scrollDisabled(sites.isEmpty)
@@ -52,28 +65,53 @@ struct SitesView: View {
         .listStyle(.insetGrouped)
 #endif
         .toolbar {
-#if os(macOS)
+//#if os(macOS)
+//            ToolbarItem(placement: .primaryAction) {
+//                Button {
+//                    refreshAllSiteStatuses()
+//                } label: {
+//                    Label("REFRESH_SITE_STATUS", systemImage: "arrow.clockwise")
+//                }
+//                .help("REFRESH_SITE_STATUS")
+//                .accessibilityIdentifier("refreshAllSiteStatusesButton")
+//            }
+//#endif
             ToolbarItem(placement: .primaryAction) {
-                Button {
-                    refreshAllSiteStatuses()
-                } label: {
-                    Label("REFRESH_SITE_STATUS", systemImage: "arrow.clockwise")
-                }
-                .help("REFRESH_SITE_STATUS")
-                .accessibilityIdentifier("refreshAllSiteStatusesButton")
-            }
-#endif
+                Menu {
+                    Section {
+                        Button {
+                            refreshAllSiteStatuses()
+                        } label: {
+                            Label("CHECK_ALL", systemImage: "wifi")
+                        }
+                        .disabled(sites.isEmpty)
+                        .help("CHECK_ALL_SITE_STATUSES")
+                        .accessibilityIdentifier("checkAllToolbarButton")
+                    }
 
-            ToolbarItem(placement: .primaryAction) {
-                Button {
-                    isAddingSite.toggle()
+                    Section {
+                        Button {
+                            isAddingSite.toggle()
+                        } label: {
+                            Label("ADD_SITE", systemImage: "plus")
+                        }
+                        .help("ADD_SITE")
+                        .accessibilityIdentifier("addSiteToolbarButton")
+
+                        Button {
+                            isAddingSiteGroup.toggle()
+                        } label: {
+                            Label("ADD_SITE_GROUP", systemImage: "folder.fill.badge.plus")
+                        }
+                        .help("ADD_SITE_GROUP")
+                        .accessibilityIdentifier("addSiteGroupToolbarButton")
+                    }
                 } label: {
-                    Label("ADD_SITE", systemImage: "plus")
+                    Label("SITES_MENU", systemImage: "ellipsis.circle")
                 }
-                .help("ADD_SITE")
-                .accessibilityIdentifier("addSiteToolbarButton")
             }
         }
+
 #if os(iOS)
         .refreshable {
             refreshAllSiteStatuses()
@@ -81,6 +119,10 @@ struct SitesView: View {
 #endif
         .sheet(isPresented: $isAddingSite) {
             AddSiteSheetView()
+                .modelContext(modelContext)
+        }
+        .sheet(isPresented: $isAddingSiteGroup) {
+            AddSiteGroupSheetView()
                 .modelContext(modelContext)
         }
         .navigationTitle("SITES")
@@ -97,7 +139,9 @@ extension SitesView {
         }
     }
 
-    @MainActor private var siteRows: some View {
+    @MainActor
+    @ViewBuilder
+    private func siteRows(for sites: [Site]) -> some View {
         ForEach(sites) { site in
             NavigationLink(value: MenuItem.site(site)) {
                 SiteRow(
@@ -121,25 +165,20 @@ extension SitesView {
     }
 
     @MainActor
+    private func sites(for siteGroup: SiteGroup?) -> [Site] {
+        let siteGroupID = siteGroup?.id
+        return (try? sites.filter(#Predicate { $0.group?.id == siteGroupID })) ?? []
+    }
+
+    @MainActor
     private func refreshAllSiteStatuses() {
         for site in sites {
-            guard let requestTask = SiteRequestTask(siteRequest: site.request) else {
+            guard let requestTask = SiteStatusRequestTask(siteRequest: site.request) else {
                 continue
             }
 
             Task {
-                let (statusCode, time) = await self.siteStatusCheckerService.checkSiteStatus(using: requestTask)
-                let status = SiteStatus(statusCode: statusCode, time: time)
-
-                await MainActor.run {
-                    withAnimation {
-                        if site.statuses == nil {
-                            site.statuses = []
-                        }
-
-                        site.statuses?.append(status)
-                    }
-                }
+                await self.siteStatusCheckerService.checkSiteStatus(using: requestTask)
             }
         }
     }
@@ -149,6 +188,8 @@ extension SitesView {
             for index in offsets {
                 modelContext.delete(sites[index])
             }
+
+            try? modelContext.save()
         }
     }
 
@@ -156,7 +197,7 @@ extension SitesView {
 
 #Preview("Sites") {
     let modelContainer = PingFactory.shared.modelContainer
-    let siteStatusCheckerService = PingPreviewFactory.shared.siteStatusCheckerService
+    let siteStatusCheckerService = PingFactory.shared.siteStatusCheckerService
 
     return NavigationStack {
         SitesView(menuItem: .constant(.summary))

@@ -9,7 +9,7 @@ import Foundation
 import SwiftData
 
 @Model
-final class SiteStatus {
+final class SiteStatus: Identifiable {
 
     var id: UUID = UUID()
     var statusCode: SiteStatus.Code = SiteStatus.Code.unknown

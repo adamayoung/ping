@@ -11,9 +11,11 @@ import SwiftData
 extension ModelContainer {
 
     @MainActor static var ping: ModelContainer = {
+        let modelConfiguration = ModelConfiguration(schema: Schema.ping)
+
         let modelContainer: ModelContainer
         do {
-            modelContainer = try ModelContainer(for: Schema.ping)
+            modelContainer = try ModelContainer(for: Schema.ping, configurations: modelConfiguration)
         } catch {
             fatalError("Could not create ModelContainer: \(error)")
         }
@@ -22,7 +24,8 @@ extension ModelContainer {
     }()
 
     @MainActor static var preview: ModelContainer = {
-        let modelConfiguration = ModelConfiguration(isStoredInMemoryOnly: true, cloudKitDatabase: .none)
+        let modelConfiguration = ModelConfiguration(schema: Schema.ping, isStoredInMemoryOnly: true,
+                                                    cloudKitDatabase: .none)
 
         let modelContainer: ModelContainer
         do {

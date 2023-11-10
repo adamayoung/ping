@@ -11,7 +11,10 @@ import SwiftUI
 struct AddSiteView: View {
 
     @Environment(\.modelContext) private var modelContext
+    @Environment(SiteStatusCheckerService.self) private var siteStatusCheckerService
     @Environment(\.dismiss) private var dismiss
+
+    @Query(sort: [SortDescriptor(\SiteGroup.name, comparator: .localizedStandard)]) private var siteGroups: [SiteGroup]
 
     @State private var formModel = AddSiteFormModel()
     @State private var isAddingSite = false
@@ -28,6 +31,7 @@ struct AddSiteView: View {
             Section {
                 siteNameField
                 siteURLField
+                siteGroupPicker
             }
 
             Section("OPTIONS") {
@@ -97,6 +101,19 @@ struct AddSiteView: View {
             .accessibilityIdentifier("siteURLField")
     }
 
+    private var siteGroupPicker: some View {
+        Picker("SITE_GROUP", selection: $formModel.siteGroup) {
+            ForEach(siteGroups) { siteGroup in
+                Text(verbatim: siteGroup.name)
+                    .tag(siteGroup as SiteGroup?)
+            }
+
+            Text("NO_GROUP_ITEM")
+                .tag(nil as SiteGroup?)
+        }
+        .accessibilityIdentifier("siteGroupPicker")
+    }
+
     private var methodPicker: some View {
         Picker("METHOD", selection: $formModel.method) {
             ForEach(AddSiteFormModel.Method.allCases, id: \.self) {
@@ -106,8 +123,8 @@ struct AddSiteView: View {
         .accessibilityIdentifier("siteMethodPicker")
     }
 
-#if os(iOS)
-    private var timeoutField: some View {
+    #if os(iOS)
+    @MainActor private var timeoutField: some View {
         LabeledContent("TIMEOUT") {
             HStack {
                 TextField("TIMEOUT", value: $formModel.timeout, formatter: NumberFormatter())
@@ -116,7 +133,7 @@ struct AddSiteView: View {
                     .focused($focusedField, equals: .timeout)
                     .onSubmit { addSite() }
                     .accessibilityIdentifier("siteTimeoutField")
-                Text("ms")
+                Text("UNIT_MS")
                     .foregroundStyle(.primary)
             }
         }
@@ -124,7 +141,7 @@ struct AddSiteView: View {
     #endif
 
     #if os(macOS)
-    private var timeoutField: some View {
+    @MainActor private var timeoutField: some View {
         TextField("TIMEOUT_MS", value: $formModel.timeout, formatter: NumberFormatter())
             .multilineTextAlignment(.trailing)
             .submitLabel(.next)
@@ -138,6 +155,7 @@ struct AddSiteView: View {
 
 extension AddSiteView {
 
+    @MainActor
     private func addSite() {
         guard let site = formModel.site else {
             return
@@ -149,7 +167,17 @@ extension AddSiteView {
             modelContext.insert(site)
         }
 
-        try? modelContext.save()
+        do {
+            try modelContext.save()
+        } catch let error {
+            fatalError(error.localizedDescription)
+        }
+
+        if let requestTask = SiteStatusRequestTask(siteRequest: site.request) {
+            Task {
+                await siteStatusCheckerService.checkSiteStatus(using: requestTask)
+            }
+        }
 
         dismiss()
     }

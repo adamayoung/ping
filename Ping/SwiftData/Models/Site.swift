@@ -9,7 +9,7 @@ import Foundation
 import SwiftData
 
 @Model
-final class Site {
+final class Site: Identifiable {
 
     var id: UUID = UUID()
 
@@ -23,13 +23,11 @@ final class Site {
     @Relationship(deleteRule: .cascade)
     var statuses: [SiteStatus]?
 
+    var group: SiteGroup?
+
     var latestStatus: SiteStatus? {
         let sortedStatuses = statuses?.sorted(by: { $0.timestamp < $1.timestamp }) ?? []
         return sortedStatuses.last
-    }
-
-    var latestStatusCode: SiteStatus.Code {
-        latestStatus?.statusCode ?? .unknown
     }
 
     init(
@@ -37,13 +35,15 @@ final class Site {
         name: String,
         isActive: Bool = true,
         request: SiteStatusRequest? = nil,
-        statuses: [SiteStatus]? = []
+        statuses: [SiteStatus] = [],
+        group: SiteGroup? = nil
     ) {
         self.id = id
         self.name = name
         self.isActive = isActive
         self.request = request
         self.statuses = statuses
+        self.group = group
     }
 
 }

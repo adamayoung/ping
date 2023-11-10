@@ -26,7 +26,11 @@ extension Site {
                 url: URL.googleURLPreview
             ),
             statuses: [
-                SiteStatus(statusCode: .failure("Failed"), time: 10, timestamp: Date(timeIntervalSince1970: 1699463000))
+                SiteStatus(
+                    statusCode: .failure("Request timed out."),
+                    time: 10,
+                    timestamp: Date(timeIntervalSince1970: 1699463000)
+                )
             ]
         )
     }()

@@ -22,7 +22,7 @@ struct SiteRow: View {
 
 #Preview {
     let modelContainer = PingFactory.shared.modelContainer
-    let siteStatusCheckerService = PingPreviewFactory.shared.siteStatusCheckerService
+    let siteStatusCheckerService = PingFactory.shared.siteStatusCheckerService
     let sites = (try? modelContainer.mainContext.fetch(FetchDescriptor<Site>())) ?? []
 
     return NavigationStack {

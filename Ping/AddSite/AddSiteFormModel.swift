@@ -15,6 +15,7 @@ final class AddSiteFormModel {
 
     var name = ""
     var url = ""
+    var siteGroup: SiteGroup?
     var timeout = 10000
     var method: AddSiteFormModel.Method = .get
 
@@ -42,6 +43,7 @@ final class AddSiteFormModel {
 
         let siteRequest = SiteStatusRequest(url: url, method: method, timeout: timeout)
         site.request = siteRequest
+        site.group = siteGroup
 
         return site
     }

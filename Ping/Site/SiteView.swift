@@ -144,23 +144,12 @@ extension SiteView {
 
     @MainActor
     private func refreshSiteStatus() {
-        guard let requestTask = SiteRequestTask(siteRequest: site.request) else {
+        guard let requestTask = SiteStatusRequestTask(siteRequest: site.request) else {
             return
         }
 
         Task {
-            let (statusCode, time) = await self.siteStatusCheckerService.checkSiteStatus(using: requestTask)
-            let status = SiteStatus(statusCode: statusCode, time: time)
-
-            await MainActor.run {
-                withAnimation {
-                    if site.statuses == nil {
-                        site.statuses = []
-                    }
-
-                    site.statuses?.append(status)
-                }
-            }
+            await self.siteStatusCheckerService.checkSiteStatus(using: requestTask)
         }
     }
 
@@ -180,7 +169,7 @@ extension SiteView {
 
 #Preview("Success") {
     let modelContainer = PingFactory.shared.modelContainer
-    let siteStatusCheckerService = PingPreviewFactory.shared.siteStatusCheckerService
+    let siteStatusCheckerService = PingFactory.shared.siteStatusCheckerService
     let site = Site.gitHubPreview
 
     return NavigationStack {
@@ -192,7 +181,7 @@ extension SiteView {
 
 #Preview("Failure") {
     let modelContainer = PingFactory.shared.modelContainer
-    let siteStatusCheckerService = PingPreviewFactory.shared.siteStatusCheckerService
+    let siteStatusCheckerService = PingFactory.shared.siteStatusCheckerService
     let site = Site.googlePreview
 
     return NavigationStack {
@@ -204,7 +193,7 @@ extension SiteView {
 
 #Preview("Checking") {
     let modelContainer = PingFactory.shared.modelContainer
-    let siteStatusCheckerService = PingPreviewFactory.shared.siteStatusCheckerService
+    let siteStatusCheckerService = PingFactory.shared.siteStatusCheckerService
     let site = Site.microsoftPreview
 
     return NavigationStack {
@@ -216,7 +205,7 @@ extension SiteView {
 
 #Preview("Unknown") {
     let modelContainer = PingFactory.shared.modelContainer
-    let siteStatusCheckerService = PingPreviewFactory.shared.siteStatusCheckerService
+    let siteStatusCheckerService = PingFactory.shared.siteStatusCheckerService
     let site = Site.twitterPreview
 
     return NavigationStack {

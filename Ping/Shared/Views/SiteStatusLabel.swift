@@ -54,7 +54,7 @@ struct SiteStatusLabel: View {
 
             Group {
                 if statusCode == .unknown {
-                    Text(verbatim: "-")
+                    Text(verbatim: " - ")
                 } else {
                     Text("\(Image(systemName: "clock")) \(formattedTimestamp)")
                 }

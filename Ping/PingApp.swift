@@ -22,9 +22,37 @@ struct PingApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .onReceive(siteStatusCheckerService.siteStatusPublisher) { statusResult in
+                    addStatusResult(statusResult)
+                }
         }
         .modelContainer(sharedModelContainer)
         .environment(siteStatusCheckerService)
+    }
+
+}
+
+extension PingApp {
+
+    private func addStatusResult(_ statusResult: SiteStatusResult) {
+        let siteID = statusResult.siteID
+        var fetchDescriptor = FetchDescriptor<Site>(predicate: #Predicate { $0.id == siteID })
+        fetchDescriptor.fetchLimit = 1
+
+        guard let site = try? sharedModelContainer.mainContext.fetch(fetchDescriptor).first else {
+            return
+        }
+
+        let status = SiteStatus(statusCode: statusResult.siteStatusCode, time: statusResult.time)
+        withAnimation {
+            if site.statuses == nil {
+                site.statuses = []
+            }
+
+            site.statuses?.append(status)
+        }
+
+        try? sharedModelContainer.mainContext.save()
     }
 
 }

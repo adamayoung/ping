@@ -38,8 +38,8 @@ struct SummaryView: View {
             TableColumn("NAME", value: \.name)
 
             TableColumn("URL") { site in
-                let request = request(for: site)
-                Text(request?.url.absoluteString ?? "")
+                let requestURLString = request(for: site)?.url.absoluteString ?? " - "
+                Text(verbatim: requestURLString)
             }
         }
         .navigationTitle("SUMMARY")
@@ -64,7 +64,7 @@ extension SummaryView {
 
 #Preview {
     let modelContainer = PingFactory.shared.modelContainer
-    let siteStatusCheckerService = PingPreviewFactory.shared.siteStatusCheckerService
+    let siteStatusCheckerService = PingFactory.shared.siteStatusCheckerService
 
     return NavigationStack {
         SummaryView()

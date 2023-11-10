@@ -5,15 +5,23 @@
 //  Created by Adam Young on 09/11/2023.
 //
 
+import Combine
 import Foundation
 import SwiftData
 
 @Observable
 final class SiteStatusCheckerService: NSObject {
 
+    var siteStatusPublisher: AnyPublisher<SiteStatusResult, Never> {
+        return siteStatusSubject
+            .receive(on: RunLoop.main)
+            .eraseToAnyPublisher()
+    }
+
     private(set) var checkingSites: [UUID]
 
     private let urlSession: URLSession
+    private let siteStatusSubject = PassthroughSubject<SiteStatusResult, Never>()
 
     convenience init(urlSession: URLSession = .shared) {
         self.init(
@@ -31,13 +39,11 @@ final class SiteStatusCheckerService: NSObject {
         checkingSites.contains(siteID)
     }
 
-    func checkSiteStatus(using requestTask: SiteRequestTask) async -> (SiteStatus.Code, TimeInterval) {
+    func checkSiteStatus(using requestTask: SiteStatusRequestTask) async {
         await setIsChecking(true, for: requestTask.siteID)
 
         let siteStatusCode: SiteStatus.Code
         let startTimestamp = Date.now
-
-        try? await Task.sleep(nanoseconds: 2_000_000_000)
 
         do {
             let (_, response) = try await urlSession.data(for: requestTask.urlRequest)
@@ -51,7 +57,9 @@ final class SiteStatusCheckerService: NSObject {
 
         await setIsChecking(false, for: requestTask.siteID)
 
-        return (siteStatusCode, time)
+        let result = SiteStatusResult(siteID: requestTask.siteID, siteStatusCode: siteStatusCode, time: time)
+
+        siteStatusSubject.send(result)
     }
 
     @MainActor

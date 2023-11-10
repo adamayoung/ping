@@ -12,6 +12,7 @@ extension Schema {
 
     static var ping: Schema {
         Schema([
+            SiteGroup.self,
             Site.self,
             SiteStatusRequest.self,
             SiteStatus.self

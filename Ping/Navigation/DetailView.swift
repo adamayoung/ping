@@ -31,7 +31,7 @@ struct DetailView: View {
 
 #Preview("Summary") {
     let modelContainer = PingFactory.shared.modelContainer
-    let siteStatusCheckerService = PingPreviewFactory.shared.siteStatusCheckerService
+    let siteStatusCheckerService = PingFactory.shared.siteStatusCheckerService
 
     return NavigationStack {
         DetailView(menuItem: .constant(.summary))
@@ -42,7 +42,7 @@ struct DetailView: View {
 
 #Preview("Site") {
     let modelContainer = PingFactory.shared.modelContainer
-    let siteStatusCheckerService = PingPreviewFactory.shared.siteStatusCheckerService
+    let siteStatusCheckerService = PingFactory.shared.siteStatusCheckerService
 
     return NavigationStack {
         DetailView(menuItem: .constant(.site(Site.gitHubPreview)))

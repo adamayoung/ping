@@ -10,8 +10,6 @@ import SwiftUI
 
 struct AddSiteSheetView: View {
 
-    @Environment(\.modelContext) private var modelContext
-
     var body: some View {
         #if os(macOS)
         macOSAddSiteView

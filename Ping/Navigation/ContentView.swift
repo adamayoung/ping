@@ -33,7 +33,7 @@ struct ContentView: View {
 
 #Preview("Content") {
     let modelContainer = PingFactory.shared.modelContainer
-    let siteStatusCheckerService = PingPreviewFactory.shared.siteStatusCheckerService
+    let siteStatusCheckerService = PingFactory.shared.siteStatusCheckerService
 
     return ContentView()
         .modelContainer(modelContainer)

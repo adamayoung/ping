@@ -1,5 +1,5 @@
 //
-//  SiteRequestTask.swift
+//  SiteStatusRequestTask.swift
 //  Ping
 //
 //  Created by Adam Young on 09/11/2023.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct SiteRequestTask: Sendable {
+struct SiteStatusRequestTask: Sendable {
 
     let siteID: UUID
     let url: URL
@@ -22,7 +22,7 @@ struct SiteRequestTask: Sendable {
 
 }
 
-extension SiteRequestTask {
+extension SiteStatusRequestTask {
 
     init?(siteRequest: SiteStatusRequest?) {
         guard let siteRequest, let siteID = siteRequest.site?.id else {

@@ -11,8 +11,6 @@ import SwiftData
 @MainActor
 final class PingPreviewFactory: PingFactoryProvider {
 
-    static let shared = PingPreviewFactory()
-
     let modelContainer: ModelContainer = {
         .preview
     }()
@@ -21,7 +19,7 @@ final class PingPreviewFactory: PingFactoryProvider {
         SiteStatusCheckerService.preview(urlSession: urlSession, checkingSites: [.microsoftSiteIDPreview])
     }()
 
-    private init() { }
+    init() { }
 
 }
 
@@ -31,11 +29,11 @@ extension PingPreviewFactory {
         let configuration = URLSessionConfiguration.ephemeral
         URLProtocolMock.responseConfigs = [
             URL.googleURLPreview: (
-                HTTPURLResponse(url: URL.googleURLPreview, statusCode: 200, httpVersion: "2.0", headerFields: nil),
+                HTTPURLResponse(url: URL.googleURLPreview, statusCode: 500, httpVersion: "2.0", headerFields: nil),
                 nil
             ),
             URL.gitHubURLPreview: (
-                HTTPURLResponse(url: URL.googleURLPreview, statusCode: 500, httpVersion: "2.0", headerFields: nil),
+                HTTPURLResponse(url: URL.googleURLPreview, statusCode: 200, httpVersion: "2.0", headerFields: nil),
                 nil
             ),
             URL.twitterURLPreview: (

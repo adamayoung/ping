@@ -47,6 +47,16 @@
         }
       }
     },
+    "ADD_SITE_GROUP" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Add Site Group"
+          }
+        }
+      }
+    },
     "ADD_SITE_TO_GET_STARTED" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -65,6 +75,26 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Cancel"
+          }
+        }
+      }
+    },
+    "CHECK_ALL" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Check All"
+          }
+        }
+      }
+    },
+    "CHECK_ALL_SITE_STATUSES" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Check all Site Statuses"
           }
         }
       }
@@ -143,15 +173,22 @@
         }
       }
     },
-    "ms" : {
-
-    },
     "NAME" : {
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Name"
+          }
+        }
+      }
+    },
+    "NO_GROUP_ITEM" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "<No Group>"
           }
         }
       }
@@ -187,6 +224,16 @@
         }
       }
     },
+    "OTHER" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Other"
+          }
+        }
+      }
+    },
     "PREVIOUS_STATUS_CHECKS" : {
       "localizations" : {
         "en" : {
@@ -214,6 +261,26 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Refresh Site Status"
+          }
+        }
+      }
+    },
+    "SITE_GROUP" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Site Group"
+          }
+        }
+      }
+    },
+    "SITE_GROUP_NAME" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Site Group Name"
           }
         }
       }
@@ -266,6 +333,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Sites"
+          }
+        }
+      }
+    },
+    "SITES_MENU" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sites Menu"
           }
         }
       }
@@ -329,6 +406,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Trouble loading **%@**"
+          }
+        }
+      }
+    },
+    "UNIT_MS" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ms"
           }
         }
       }
