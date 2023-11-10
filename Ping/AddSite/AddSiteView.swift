@@ -57,7 +57,7 @@ struct AddSiteView: View {
                 }
                 .help("CANCEL")
                 .disabled(isAddingSite)
-                .accessibilityIdentifier("cancelButton")
+                .accessibilityIdentifier("cancelAddSiteButton")
             }
 
             ToolbarItem(placement: .primaryAction) {
@@ -73,7 +73,7 @@ struct AddSiteView: View {
                         ProgressView()
                     }
                 }
-                .accessibilityIdentifier("addButton")
+                .accessibilityIdentifier("addSiteButton")
                 .disabled(!formModel.isValid)
             }
         }

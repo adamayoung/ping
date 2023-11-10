@@ -38,6 +38,7 @@ struct ManageSiteGroupsView: View {
                             Image(systemName: "folder.fill")
                         }
                     }
+                    .accessibilityIdentifier("siteGroupNavigationLink-\(siteGroup.id.uuidString)")
                 }
                 .onDelete(perform: delete)
             } footer: {
@@ -54,7 +55,9 @@ struct ManageSiteGroupsView: View {
                 }
             }
         }
+        #if os(iOS)
         .listStyle(.insetGrouped)
+        #endif
         .sheet(isPresented: $isAddingSiteGroup) {
             AddSiteGroupSheetView()
                 .modelContext(modelContext)
@@ -71,7 +74,7 @@ struct ManageSiteGroupsView: View {
                     Text("CLOSE")
                 }
                 .help("CLOSE")
-                .accessibilityIdentifier("closeButton")
+                .accessibilityIdentifier("closeSiteGroupToolbarButton")
             }
 
             ToolbarItem(placement: .primaryAction) {

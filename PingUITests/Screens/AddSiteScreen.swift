@@ -13,22 +13,22 @@ struct AddSiteScreen: Screen {
 
     @discardableResult
     func typeName(_ name: String) -> Self {
-        siteNameField.tap()
-        siteNameField.typeText(name)
+        nameField.tap()
+        nameField.typeText(name)
         return self
     }
 
     @discardableResult
     func typeURL(_ url: String) -> Self {
-        siteURLField.tap()
-        siteURLField.typeText(url)
+        urlField.tap()
+        urlField.typeText(url)
         return self
     }
 
     @discardableResult
     func typeTimeout(_ timeout: Int) -> Self {
-        siteTimeoutField.tap()
-        siteTimeoutField.typeText("\(timeout)")
+        timeoutField.tap()
+        timeoutField.typeText("\(timeout)")
         return self
     }
 
@@ -45,14 +45,8 @@ struct AddSiteScreen: Screen {
     }
 
     @discardableResult
-    func assertAddButtonIsDisabled(file: StaticString = #file, line: UInt = #line) -> Self {
-        XCTAssertFalse(addButton.isEnabled, file: file, line: line)
-        return self
-    }
-
-    @discardableResult
-    func assertAddButtonIsEnabled(file: StaticString = #file, line: UInt = #line) -> Self {
-        XCTAssertTrue(addButton.isEnabled, file: file, line: line)
+    func assertAddButton(isEnabled: Bool, file: StaticString = #file, line: UInt = #line) -> Self {
+        XCTAssertEqual(addButton.isEnabled, isEnabled, file: file, line: line)
         return self
     }
 
@@ -61,36 +55,43 @@ struct AddSiteScreen: Screen {
 extension AddSiteScreen {
 
     private enum Identifiers {
-        static let view = "addSiteView"
-        static let siteNameField = "siteNameField"
-        static let siteURLField = "siteURLField"
-        static let siteMethodPicker = "siteMethodPicker"
-        static let siteTimeoutField = "siteTimeoutField"
-        static let addButton = "addButton"
-        static let cancelButton = "cancelButton"
+        static let nameField = "siteNameField"
+        static let urlField = "siteURLField"
+        static let methodPicker = "siteMethodPicker"
+        static let timeoutField = "siteTimeoutField"
+        static let addButton = "addSiteButton"
+        static let cancelButton = "cancelAddSiteButton"
     }
 
-    private var siteNameField: XCUIElement {
+    private var nameField: XCUIElement {
         #if os(macOS)
-        app.sheets.groups.textFields[Identifiers.siteNameField]
+        app.sheets.groups.textFields[Identifiers.nameField]
         #else
-        app.textFields[Identifiers.siteNameField]
+        app.textFields[Identifiers.nameField]
         #endif
     }
 
-    private var siteURLField: XCUIElement {
+    private var urlField: XCUIElement {
         #if os(macOS)
-        app.sheets.groups.textFields[Identifiers.siteURLField]
+        app.sheets.groups.textFields[Identifiers.urlField]
         #else
-        app.textFields[Identifiers.siteURLField]
+        app.textFields[Identifiers.urlField]
         #endif
     }
 
-    private var siteTimeoutField: XCUIElement {
+    private var methodPicker: XCUIElement {
+        #if os(macOS)
+        app.sheets.groups.pickers[Identifiers.methodPicker]
+        #else
+        app.pickers[Identifiers.methodPicker]
+        #endif
+    }
+
+    private var timeoutField: XCUIElement {
         #if os(macOS)
         app.sheets.groups.textFields[Identifiers.siteTimeoutField]
         #else
-        app.textFields[Identifiers.siteTimeoutField]
+        app.textFields[Identifiers.timeoutField]
         #endif
     }
 

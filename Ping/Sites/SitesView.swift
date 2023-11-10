@@ -139,6 +139,7 @@ extension SitesView {
                 } header: {
                     Text(verbatim: siteGroup.name)
                 }
+                .accessibilityIdentifier("siteSection-\(siteGroup.id)")
             }
         }
     }
@@ -151,6 +152,7 @@ extension SitesView {
             } header: {
                 Text("OTHER")
             }
+            .accessibilityIdentifier("siteSection-other")
         }
     }
 

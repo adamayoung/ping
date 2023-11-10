@@ -7,7 +7,7 @@
 
 import XCTest
 
-final class ManageSitesTests: UITestCaseBase {
+final class AddAndRemoveSitesTests: UITestCaseBase {
 
     func testAddSite() {
         let siteName = "Test Site"
@@ -16,12 +16,12 @@ final class ManageSitesTests: UITestCaseBase {
             .verifySitesVisible()
             .tapSitesActionMenuButton()
             .tapAddSiteButton()
-            .assertAddButtonIsDisabled()
+            .assertAddButton(isEnabled: false)
             .typeName(siteName)
             .typeURL("https://www.domain.com")
-            .assertAddButtonIsEnabled()
+            .assertAddButton(isEnabled: true)
             .tapAddButton()
-            .assertSitePresent(withName: siteName)
+            .assertSite(withName: siteName, isPresent: true)
     }
 
     func testCannotAddSiteWithInvalidURL() {
@@ -29,10 +29,10 @@ final class ManageSitesTests: UITestCaseBase {
             .verifySitesVisible()
             .tapSitesActionMenuButton()
             .tapAddSiteButton()
-            .assertAddButtonIsDisabled()
+            .assertAddButton(isEnabled: false)
             .typeName("Test Site")
             .typeURL("aaa")
-            .assertAddButtonIsDisabled()
+            .assertAddButton(isEnabled: false)
     }
 
     func testCancellingAddNewSite() {
@@ -46,7 +46,7 @@ final class ManageSitesTests: UITestCaseBase {
             .typeURL("https://www.domain.com")
             .tapCancelButton()
             .verifySitesVisible()
-            .assertSiteNotPresent(withName: siteName)
+            .assertSite(withName: siteName, isPresent: false)
     }
 
     func testDeleteSiteFromSitesList() {
@@ -55,7 +55,7 @@ final class ManageSitesTests: UITestCaseBase {
         initialScreen
             .verifySitesVisible()
             .swipLeftAndDeleteSite(withID: siteID)
-            .assertSiteNotPresent(withID: siteID)
+            .assertSite(withID: siteID, isPresent: false)
     }
 
 }

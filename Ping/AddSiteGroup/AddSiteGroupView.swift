@@ -39,7 +39,7 @@ struct AddSiteGroupView: View {
                     Text("CANCEL")
                 }
                 .help("CANCEL")
-                .accessibilityIdentifier("cancelButton")
+                .accessibilityIdentifier("cancelAddSiteGroupButton")
             }
 
             ToolbarItem(placement: .primaryAction) {
@@ -49,7 +49,7 @@ struct AddSiteGroupView: View {
                     Text("ADD")
                 }
                 .help("ADD_SITE_GROUP")
-                .accessibilityIdentifier("addButton")
+                .accessibilityIdentifier("addSiteGroupButton")
                 .disabled(!formModel.isValid)
             }
         }

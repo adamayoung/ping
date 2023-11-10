@@ -31,32 +31,28 @@ struct SitesScreen: Screen {
 
     @discardableResult
     func tapSite(id: UUID) -> SiteScreen {
-        siteNavigationLink(forSiteID: id).tap()
+        siteNavigationLink(withID: id).tap()
         return SiteScreen(app: app)
     }
 
     @discardableResult
     func swipLeftAndDeleteSite(withID id: UUID) -> SitesScreen {
-        siteNavigationLink(forSiteID: id).swipeLeft()
-        sideBarDeleteButton.tap()
-        return SitesScreen(app: app)
-    }
-
-    @discardableResult
-    func assertSitePresent(withName name: String, file: StaticString = #file, line: UInt = #line) -> Self {
-        XCTAssertTrue(siteNavigationLink(forSiteName: name).waitForExistence(timeout: 3), file: file, line: line)
+        siteNavigationLink(withID: id).swipeLeft()
+        rowDeleteButton.tap()
         return self
     }
 
     @discardableResult
-    func assertSiteNotPresent(withName name: String, file: StaticString = #file, line: UInt = #line) -> Self {
-        XCTAssertFalse(siteNavigationLink(forSiteName: name).waitForExistence(timeout: 3), file: file, line: line)
+    func assertSite(withID id: UUID, isPresent: Bool, file: StaticString = #file, line: UInt = #line) -> Self {
+        let navigationLink = siteNavigationLink(withID: id)
+        XCTAssertEqual(navigationLink.waitForExistence(timeout: 3), isPresent, file: file, line: line)
         return self
     }
 
     @discardableResult
-    func assertSiteNotPresent(withID id: UUID, file: StaticString = #file, line: UInt = #line) -> Self {
-        XCTAssertFalse(siteNavigationLink(forSiteID: id).waitForExistence(timeout: 3), file: file, line: line)
+    func assertSite(withName name: String, isPresent: Bool, file: StaticString = #file, line: UInt = #line) -> Self {
+        let navigationLink = siteNavigationLink(withName: name)
+        XCTAssertEqual(navigationLink.waitForExistence(timeout: 3), isPresent, file: file, line: line)
         return self
     }
 
@@ -95,15 +91,15 @@ extension SitesScreen {
         sidebar.buttons[Identifiers.summaryNavigationLink]
     }
 
-    private func siteNavigationLink(forSiteID id: UUID) -> XCUIElement {
+    private func siteNavigationLink(withID id: UUID) -> XCUIElement {
         sidebar.buttons[Identifiers.siteNavigationLink(siteID: id)]
     }
 
-    private func siteNavigationLink(forSiteName name: String) -> XCUIElement {
+    private func siteNavigationLink(withName name: String) -> XCUIElement {
         sidebar.buttons.staticTexts[name]
     }
 
-    private var sideBarDeleteButton: XCUIElement {
+    private var rowDeleteButton: XCUIElement {
         sidebar.buttons[Identifiers.deleteButton]
     }
 
