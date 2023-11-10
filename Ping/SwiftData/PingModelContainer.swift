@@ -11,10 +11,6 @@ import SwiftData
 extension ModelContainer {
 
     @MainActor static var ping: ModelContainer = {
-        if ProcessInfo.processInfo.isUITesting {
-            return .preview
-        }
-
         let modelContainer: ModelContainer
         do {
             modelContainer = try ModelContainer(for: Schema.ping)

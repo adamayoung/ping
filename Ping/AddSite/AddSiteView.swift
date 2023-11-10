@@ -103,6 +103,7 @@ struct AddSiteView: View {
                 Text($0.localizedName)
             }
         }
+        .accessibilityIdentifier("siteMethodPicker")
     }
 
 #if os(iOS)
@@ -156,7 +157,7 @@ extension AddSiteView {
 }
 
 #Preview {
-    let modelContainer = ModelContainer.preview
+    let modelContainer = PingFactory.shared.modelContainer
 
     return AddSiteView()
         .modelContainer(modelContainer)

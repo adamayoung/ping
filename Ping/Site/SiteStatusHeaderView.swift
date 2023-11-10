@@ -114,7 +114,7 @@ struct SiteStatusHeaderView: View {
 }
 
 #Preview("Checking") {
-    let modelContainer = ModelContainer.preview
+    let modelContainer = PingFactory.shared.modelContainer
     let site = Site.gitHubPreview
 
     return VStack {
@@ -130,7 +130,7 @@ struct SiteStatusHeaderView: View {
 }
 
 #Preview("Unknown") {
-    let modelContainer = ModelContainer.preview
+    let modelContainer = PingFactory.shared.modelContainer
     let site = Site.gitHubPreview
 
     return VStack {

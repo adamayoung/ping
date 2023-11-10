@@ -11,11 +11,18 @@ import SwiftData
 @Observable
 final class SiteStatusCheckerService: NSObject {
 
-    private(set) var checkingSites: [UUID] = []
+    private(set) var checkingSites: [UUID]
 
     private let urlSession: URLSession
 
-    init(urlSession: URLSession = .shared, checkingSites: [UUID] = []) {
+    convenience init(urlSession: URLSession = .shared) {
+        self.init(
+            urlSession: urlSession,
+            checkingSites: []
+        )
+    }
+
+    private init(urlSession: URLSession, checkingSites: [UUID]) {
         self.urlSession = urlSession
         self.checkingSites = checkingSites
     }
@@ -81,8 +88,8 @@ extension SiteStatusCheckerService {
 
 extension SiteStatusCheckerService {
 
-    static var preview: SiteStatusCheckerService {
-        SiteStatusCheckerService(checkingSites: [Site.microsoftPreview.id])
+    static func preview(urlSession: URLSession, checkingSites: [UUID] = []) -> SiteStatusCheckerService {
+        SiteStatusCheckerService(urlSession: urlSession, checkingSites: checkingSites)
     }
 
 }

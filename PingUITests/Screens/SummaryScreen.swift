@@ -11,20 +11,40 @@ struct SummaryScreen: Screen {
 
     let app: XCUIApplication
 
-    private enum Identifiers {
-        static let deleteButton = "deleteButton"
-    }
-
     @discardableResult
     func tapBackButton() -> SitesScreen {
-        app.navigationBars.buttons.element(boundBy: 0).tap()
+        backButton.tap()
         return SitesScreen(app: app)
     }
 
     @discardableResult
     func tapDeleteButton() -> SitesScreen {
-        app.buttons[Identifiers.deleteButton].tap()
+        deleteButton.tap()
         return SitesScreen(app: app)
+    }
+
+}
+
+extension SummaryScreen {
+
+    private enum Identifiers {
+        static let deleteButton = "deleteButton"
+    }
+
+    private var backButton: XCUIElement {
+        #if os(macOS)
+        app.sheets.groups.buttons[Identifiers.deleteButton]
+        #else
+        app.navigationBars.buttons.element(boundBy: 0)
+        #endif
+    }
+
+    private var deleteButton: XCUIElement {
+        #if os(macOS)
+        app.sheets.groups.buttons[Identifiers.deleteButton]
+        #else
+        app.buttons[Identifiers.deleteButton]
+        #endif
     }
 
 }

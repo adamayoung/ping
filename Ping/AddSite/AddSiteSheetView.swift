@@ -37,7 +37,7 @@ struct AddSiteSheetView: View {
 }
 
 #Preview {
-    let modelContainer = ModelContainer.preview
+    let modelContainer = PingFactory.shared.modelContainer
 
     return AddSiteSheetView()
         .modelContainer(modelContainer)

@@ -68,7 +68,7 @@ struct SiteStatusLabel: View {
 }
 
 #Preview {
-    let modelContainer = ModelContainer.preview
+    let modelContainer = PingFactory.shared.modelContainer
     let googleSite = Site.googlePreview
     let twitterSite = Site.twitterPreview
     let gitHubSite = Site.gitHubPreview

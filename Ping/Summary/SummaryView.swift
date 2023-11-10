@@ -63,8 +63,8 @@ extension SummaryView {
 }
 
 #Preview {
-    let modelContainer = ModelContainer.preview
-    let siteStatusCheckerService = SiteStatusCheckerService.preview
+    let modelContainer = PingFactory.shared.modelContainer
+    let siteStatusCheckerService = PingPreviewFactory.shared.siteStatusCheckerService
 
     return NavigationStack {
         SummaryView()

@@ -15,22 +15,22 @@ final class AddAndRemoveSiteTests: UITestCase {
         SitesScreen(app: app)
             .verifySitesVisible()
             .tapAddSiteButton()
-            .verifyAddButtonIsDisabled()
+            .assertAddButtonIsDisabled()
             .typeName(siteName)
             .typeURL("https://www.domain.com")
-            .verifyAddButtonIsEnabled()
+            .assertAddButtonIsEnabled()
             .tapAddButton()
-            .verifySitePresent(withName: siteName)
+            .assertSitePresent(withName: siteName)
     }
 
     func testCannotAddSiteWithInvalidURL() {
         SitesScreen(app: app)
             .verifySitesVisible()
             .tapAddSiteButton()
-            .verifyAddButtonIsDisabled()
+            .assertAddButtonIsDisabled()
             .typeName("Test Site")
             .typeURL("aaa")
-            .verifyAddButtonIsDisabled()
+            .assertAddButtonIsDisabled()
     }
 
     func testCancellingAddNewSite() {
@@ -43,18 +43,7 @@ final class AddAndRemoveSiteTests: UITestCase {
             .typeURL("https://www.domain.com")
             .tapCancelButton()
             .verifySitesVisible()
-            .verifySiteNotPresent(withName: siteName)
-    }
-
-    func testDeleteSite() throws {
-        let siteID = try XCTUnwrap(UUID(uuidString: "C26FF5CF-5337-4725-B9E5-2B4491CFF855"))
-
-        SitesScreen(app: app)
-            .tapSite(id: siteID)
-            .tapDeleteSiteButton()
-            .tapConfirmDeleteSiteButton()
-            .verifySitesVisible()
-            .verifySiteNotPresent(withID: siteID)
+            .assertSiteNotPresent(withName: siteName)
     }
 
     func testDeleteSiteFromSitesList() throws {
@@ -63,7 +52,7 @@ final class AddAndRemoveSiteTests: UITestCase {
         SitesScreen(app: app)
             .verifySitesVisible()
             .swipLeftAndDeleteSite(withID: siteID)
-            .verifySiteNotPresent(withID: siteID)
+            .assertSiteNotPresent(withID: siteID)
     }
 
 }

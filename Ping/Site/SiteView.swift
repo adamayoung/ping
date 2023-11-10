@@ -67,24 +67,26 @@ struct SiteView: View {
                 }
             }
 
-            Section("LAST_\(Self.statusesFetchLimit)_STATUS_CHECKS") {
-                ForEach(Array(statuses.prefix(10))) { status in
-                    Label(
-                        title: {
-                            VStack(alignment: .leading) {
-                                Text(status.statusCode.localizedName)
-                                if case let .failure(message) = currentStatusCode {
-                                    Text(verbatim: message)
-                                        .font(.caption)
-                                        .foregroundStyle(Color.secondary)
+            if !statuses.isEmpty {
+                Section("PREVIOUS_STATUS_CHECKS") {
+                    ForEach(Array(statuses.prefix(10))) { status in
+                        Label(
+                            title: {
+                                VStack(alignment: .leading) {
+                                    Text(status.statusCode.localizedName)
+                                    if case let .failure(message) = currentStatusCode {
+                                        Text(verbatim: message)
+                                            .font(.caption)
+                                            .foregroundStyle(Color.secondary)
+                                    }
                                 }
+                            },
+                            icon: {
+                                Image(systemName: status.statusCode.iconName)
+                                    .foregroundStyle(status.statusCode.iconColor)
                             }
-                        },
-                        icon: {
-                            Image(systemName: status.statusCode.iconName)
-                                .foregroundStyle(status.statusCode.iconColor)
-                        }
-                    )
+                        )
+                    }
                 }
             }
         }
@@ -177,8 +179,8 @@ extension SiteView {
 }
 
 #Preview("Success") {
-    let modelContainer = ModelContainer.preview
-    let siteStatusCheckerService = SiteStatusCheckerService.preview
+    let modelContainer = PingFactory.shared.modelContainer
+    let siteStatusCheckerService = PingPreviewFactory.shared.siteStatusCheckerService
     let site = Site.gitHubPreview
 
     return NavigationStack {
@@ -189,8 +191,8 @@ extension SiteView {
 }
 
 #Preview("Failure") {
-    let modelContainer = ModelContainer.preview
-    let siteStatusCheckerService = SiteStatusCheckerService.preview
+    let modelContainer = PingFactory.shared.modelContainer
+    let siteStatusCheckerService = PingPreviewFactory.shared.siteStatusCheckerService
     let site = Site.googlePreview
 
     return NavigationStack {
@@ -201,8 +203,8 @@ extension SiteView {
 }
 
 #Preview("Checking") {
-    let modelContainer = ModelContainer.preview
-    let siteStatusCheckerService = SiteStatusCheckerService.preview
+    let modelContainer = PingFactory.shared.modelContainer
+    let siteStatusCheckerService = PingPreviewFactory.shared.siteStatusCheckerService
     let site = Site.microsoftPreview
 
     return NavigationStack {
@@ -213,8 +215,8 @@ extension SiteView {
 }
 
 #Preview("Unknown") {
-    let modelContainer = ModelContainer.preview
-    let siteStatusCheckerService = SiteStatusCheckerService.preview
+    let modelContainer = PingFactory.shared.modelContainer
+    let siteStatusCheckerService = PingPreviewFactory.shared.siteStatusCheckerService
     let site = Site.twitterPreview
 
     return NavigationStack {

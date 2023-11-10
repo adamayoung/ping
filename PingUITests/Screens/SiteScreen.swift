@@ -11,42 +11,65 @@ struct SiteScreen: Screen {
 
     let app: XCUIApplication
 
+    @discardableResult
+    func tapDeleteSiteButton() -> SiteScreen {
+        deleteButton.tap()
+        return self
+    }
+
+    @discardableResult
+    func tapConfirmDeleteSiteButton() -> SitesScreen {
+        confirmDeleteSiteButton.tap()
+        return SitesScreen(app: app)
+    }
+
+    @discardableResult
+    func tapCancelDeleteSiteButton() -> Self {
+        cancelDeleteSiteButton.tap()
+        return self
+    }
+
+    @discardableResult
+    func assertScreenVisible(for siteName: String, file: StaticString = #file, line: UInt = #line) -> Self {
+        let view = app.navigationBars[siteName]
+        XCTAssertTrue(view.waitForExistence(timeout: 3), file: file, line: line)
+        return self
+    }
+
+    @discardableResult
+    func verifyRemoveAlertIsVisible(file: StaticString = #file, line: UInt = #line) -> Self {
+        XCTAssertTrue(alert.waitForExistence(timeout: 3), file: file, line: line)
+        return self
+    }
+
+}
+
+extension SiteScreen {
+
     private enum Identifiers {
         static let deleteSiteButton = "deleteSiteButton"
         static let confirmDeleteSiteButton = "confirmDeleteSiteButton"
         static let cancelDeleteSiteButton = "cancelDeleteSiteButton"
     }
 
-    @discardableResult
-    func verifyVisible(for siteName: String) -> Self {
-        let view = app.navigationBars[siteName]
-        XCTAssertTrue(view.waitForExistence(timeout: 3))
-        return self
+    private var alert: XCUIElement {
+        app.alerts.firstMatch
     }
 
-    @discardableResult
-    func tapDeleteSiteButton() -> SiteScreen {
-        app.buttons[Identifiers.deleteSiteButton].tap()
-        return self
+    private var deleteButton: XCUIElement {
+        #if os(macOS)
+        app.buttons[Identifiers.deleteSiteButton]
+        #else
+        app.buttons[Identifiers.deleteSiteButton]
+        #endif
     }
 
-    @discardableResult
-    func verifyRemoveAlertIsVisible() -> Self {
-        let confirmAlert = app.alerts.firstMatch
-        XCTAssertTrue(confirmAlert.waitForExistence(timeout: 3))
-        return self
+    private var confirmDeleteSiteButton: XCUIElement {
+        app.alerts.firstMatch.buttons[Identifiers.confirmDeleteSiteButton]
     }
 
-    @discardableResult
-    func tapConfirmDeleteSiteButton() -> SitesScreen {
-        app.scrollViews.otherElements.buttons[Identifiers.confirmDeleteSiteButton].tap()
-        return SitesScreen(app: app)
-    }
-
-    @discardableResult
-    func tapCancelDeleteSiteButton() -> Self {
-        app.alerts.firstMatch.buttons[Identifiers.cancelDeleteSiteButton].tap()
-        return self
+    private var cancelDeleteSiteButton: XCUIElement {
+        app.alerts.firstMatch.buttons[Identifiers.cancelDeleteSiteButton]
     }
 
 }

@@ -21,8 +21,8 @@ struct SiteRow: View {
 }
 
 #Preview {
-    let modelContainer = ModelContainer.preview
-    let siteStatusCheckerService = SiteStatusCheckerService.preview
+    let modelContainer = PingFactory.shared.modelContainer
+    let siteStatusCheckerService = PingPreviewFactory.shared.siteStatusCheckerService
     let sites = (try? modelContainer.mainContext.fetch(FetchDescriptor<Site>())) ?? []
 
     return NavigationStack {

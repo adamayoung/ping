@@ -45,6 +45,11 @@
 		66D2125A2AEA905600A2C4CE /* MenuItemTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66D212592AEA905600A2C4CE /* MenuItemTests.swift */; };
 		66D212642AEA905600A2C4CE /* AddAndRemoveSiteTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66D212632AEA905600A2C4CE /* AddAndRemoveSiteTests.swift */; };
 		66D212B12AEAF36100A2C4CE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 66D212B02AEAF36100A2C4CE /* Assets.xcassets */; };
+		AF3CB76C2AFE24A1002D51EA /* PingFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF3CB76B2AFE24A1002D51EA /* PingFactory.swift */; };
+		AF3CB76F2AFE262C002D51EA /* PingFactoryProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF3CB76E2AFE262C002D51EA /* PingFactoryProvider.swift */; };
+		AF3CB7712AFE26DE002D51EA /* PingLiveFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF3CB7702AFE26DE002D51EA /* PingLiveFactory.swift */; };
+		AF3CB7732AFE26EB002D51EA /* PingPreviewFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF3CB7722AFE26EB002D51EA /* PingPreviewFactory.swift */; };
+		AF3CB7762AFE2D7B002D51EA /* URLProtocolMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF3CB7752AFE2D7B002D51EA /* URLProtocolMock.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -111,6 +116,11 @@
 		66D212732AEA940500A2C4CE /* PingUI.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = PingUI.xctestplan; sourceTree = "<group>"; };
 		66D212B02AEAF36100A2C4CE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		66D212B22AEAF37900A2C4CE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		AF3CB76B2AFE24A1002D51EA /* PingFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PingFactory.swift; sourceTree = "<group>"; };
+		AF3CB76E2AFE262C002D51EA /* PingFactoryProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PingFactoryProvider.swift; sourceTree = "<group>"; };
+		AF3CB7702AFE26DE002D51EA /* PingLiveFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PingLiveFactory.swift; sourceTree = "<group>"; };
+		AF3CB7722AFE26EB002D51EA /* PingPreviewFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PingPreviewFactory.swift; sourceTree = "<group>"; };
+		AF3CB7752AFE2D7B002D51EA /* URLProtocolMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLProtocolMock.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -146,12 +156,12 @@
 			path = Utils;
 			sourceTree = "<group>";
 		};
-		66180D582AF18E0000526143 /* Testing */ = {
+		66180D582AF18E0000526143 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
 				66180D542AF18ADB00526143 /* ProcessInfo+Testing.swift */,
 			);
-			path = Testing;
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 		66180D5E2AF1C4D600526143 /* Shared */ = {
@@ -321,8 +331,9 @@
 				66180D5E2AF1C4D600526143 /* Shared */,
 				66A65B5D2AFD351900F57272 /* Services */,
 				66A65B142AFCEF2900F57272 /* SwiftData */,
+				AF3CB76D2AFE260F002D51EA /* Factories */,
+				66180D582AF18E0000526143 /* Extensions */,
 				66D212AF2AEAF36100A2C4CE /* Resources */,
-				66180D582AF18E0000526143 /* Testing */,
 				66D2124D2AEA905600A2C4CE /* Ping.entitlements */,
 				66D212B22AEAF37900A2C4CE /* Info.plist */,
 				66D2124E2AEA905600A2C4CE /* Preview Content */,
@@ -334,6 +345,7 @@
 			isa = PBXGroup;
 			children = (
 				66A65B5A2AFD20DC00F57272 /* Models */,
+				AF3CB7742AFE2D69002D51EA /* Mocks */,
 				66D2124F2AEA905600A2C4CE /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
@@ -364,6 +376,25 @@
 				666F36952AEB1C0500EE6D41 /* Localizable.xcstrings */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		AF3CB76D2AFE260F002D51EA /* Factories */ = {
+			isa = PBXGroup;
+			children = (
+				AF3CB76E2AFE262C002D51EA /* PingFactoryProvider.swift */,
+				AF3CB76B2AFE24A1002D51EA /* PingFactory.swift */,
+				AF3CB7702AFE26DE002D51EA /* PingLiveFactory.swift */,
+				AF3CB7722AFE26EB002D51EA /* PingPreviewFactory.swift */,
+			);
+			path = Factories;
+			sourceTree = "<group>";
+		};
+		AF3CB7742AFE2D69002D51EA /* Mocks */ = {
+			isa = PBXGroup;
+			children = (
+				AF3CB7752AFE2D7B002D51EA /* URLProtocolMock.swift */,
+			);
+			path = Mocks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -524,6 +555,7 @@
 			files = (
 				66A65B572AFCF06800F57272 /* PingSchema.swift in Sources */,
 				66A65B592AFCF19200F57272 /* PingModelContainer.swift in Sources */,
+				AF3CB76C2AFE24A1002D51EA /* PingFactory.swift in Sources */,
 				66180D572AF18C7E00526143 /* AppDelegate.swift in Sources */,
 				66CC7BE52AEBC96A007BADF2 /* SiteView.swift in Sources */,
 				66CC7C2E2AEBF310007BADF2 /* MenuItem.swift in Sources */,
@@ -531,6 +563,7 @@
 				66180D602AF1C4EE00526143 /* SiteStatusLabel.swift in Sources */,
 				66180D552AF18ADB00526143 /* ProcessInfo+Testing.swift in Sources */,
 				6643E85B2AF3D70B0030CD43 /* SummaryRow.swift in Sources */,
+				AF3CB76F2AFE262C002D51EA /* PingFactoryProvider.swift in Sources */,
 				661C28DC2AFD7E4600E2042C /* SiteRequestTask.swift in Sources */,
 				66A65B1B2AFCEF4500F57272 /* Site.swift in Sources */,
 				66CC7C292AEBECD7007BADF2 /* SitesView.swift in Sources */,
@@ -542,13 +575,16 @@
 				66D212482AEA905600A2C4CE /* ContentView.swift in Sources */,
 				6643E8642AF423560030CD43 /* SiteStatusHeaderView.swift in Sources */,
 				661C28DE2AFD949700E2042C /* DetailView.swift in Sources */,
+				AF3CB7712AFE26DE002D51EA /* PingLiveFactory.swift in Sources */,
 				66D212462AEA905600A2C4CE /* PingApp.swift in Sources */,
 				66CC7C2C2AEBF2A3007BADF2 /* SummaryView.swift in Sources */,
 				66A65B1A2AFCEF4500F57272 /* SiteStatus.swift in Sources */,
 				66B0C05A2AF0657E00E48C58 /* SiteRow.swift in Sources */,
+				AF3CB7732AFE26EB002D51EA /* PingPreviewFactory.swift in Sources */,
 				6643E85E2AF3D8CA0030CD43 /* SiteNotSelectedView.swift in Sources */,
 				66180D5A2AF1A89000526143 /* AddSiteFormModel.swift in Sources */,
 				66A65B5C2AFD20ED00F57272 /* Site+Preview.swift in Sources */,
+				AF3CB7762AFE2D7B002D51EA /* URLProtocolMock.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

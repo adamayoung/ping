@@ -132,16 +132,6 @@
         }
       }
     },
-    "LAST_%lld_STATUS_CHECKS" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Last %lld Status Checks"
-          }
-        }
-      }
-    },
     "METHOD" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -197,6 +187,16 @@
         }
       }
     },
+    "PREVIOUS_STATUS_CHECKS" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Previous Status Checks"
+          }
+        }
+      }
+    },
     "REFRESH" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -225,17 +225,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Name"
-          }
-        }
-      }
-    },
-    "SITE_STATUS_CHECKING" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Checking..."
           }
         }
       }

@@ -16,8 +16,8 @@ struct PingApp: App {
     @UIApplicationDelegateAdaptor(AppDelegate.self) private var appDelegate
     #endif
 
-    private var sharedModelContainer = ModelContainer.ping
-    private var siteStatusCheckerService = SiteStatusCheckerService()
+    private let sharedModelContainer = PingFactory.shared.modelContainer
+    private let siteStatusCheckerService = PingFactory.shared.siteStatusCheckerService
 
     var body: some Scene {
         WindowGroup {

@@ -11,14 +11,6 @@ struct AddSiteScreen: Screen {
 
     let app: XCUIApplication
 
-    private enum Identifiers {
-        static let view = "addSiteView"
-        static let siteNameField = "siteNameField"
-        static let siteURLField = "siteURLField"
-        static let addButton = "addButton"
-        static let cancelButton = "cancelButton"
-    }
-
     @discardableResult
     func typeName(_ name: String) -> Self {
         siteNameField.tap()
@@ -34,14 +26,9 @@ struct AddSiteScreen: Screen {
     }
 
     @discardableResult
-    func verifyAddButtonIsDisabled() -> Self {
-        XCTAssertFalse(addButton.isEnabled)
-        return self
-    }
-
-    @discardableResult
-    func verifyAddButtonIsEnabled() -> Self {
-        XCTAssertTrue(addButton.isEnabled)
+    func typeTimeout(_ timeout: Int) -> Self {
+        siteTimeoutField.tap()
+        siteTimeoutField.typeText("\(timeout)")
         return self
     }
 
@@ -57,9 +44,31 @@ struct AddSiteScreen: Screen {
         return SitesScreen(app: app)
     }
 
+    @discardableResult
+    func assertAddButtonIsDisabled(file: StaticString = #file, line: UInt = #line) -> Self {
+        XCTAssertFalse(addButton.isEnabled, file: file, line: line)
+        return self
+    }
+
+    @discardableResult
+    func assertAddButtonIsEnabled(file: StaticString = #file, line: UInt = #line) -> Self {
+        XCTAssertTrue(addButton.isEnabled, file: file, line: line)
+        return self
+    }
+
 }
 
 extension AddSiteScreen {
+
+    private enum Identifiers {
+        static let view = "addSiteView"
+        static let siteNameField = "siteNameField"
+        static let siteURLField = "siteURLField"
+        static let siteMethodPicker = "siteMethodPicker"
+        static let siteTimeoutField = "siteTimeoutField"
+        static let addButton = "addButton"
+        static let cancelButton = "cancelButton"
+    }
 
     private var siteNameField: XCUIElement {
         #if os(macOS)
@@ -74,6 +83,14 @@ extension AddSiteScreen {
         app.sheets.groups.textFields[Identifiers.siteURLField]
         #else
         app.textFields[Identifiers.siteURLField]
+        #endif
+    }
+
+    private var siteTimeoutField: XCUIElement {
+        #if os(macOS)
+        app.sheets.groups.textFields[Identifiers.siteTimeoutField]
+        #else
+        app.textFields[Identifiers.siteTimeoutField]
         #endif
     }
 
