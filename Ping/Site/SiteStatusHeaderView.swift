@@ -40,8 +40,6 @@ struct SiteStatusHeaderView: View {
                     }
                 }
 
-            Text(site.request?.url.absoluteString ?? "")
-
             Text(siteStatusText)
                 .font(.system(size: 25))
                 .multilineTextAlignment(.center)
