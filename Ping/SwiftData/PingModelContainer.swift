@@ -56,5 +56,15 @@ extension ModelContainer {
         Site.previews.forEach {
             modelContext.insert($0)
         }
+
+        SiteGroup.previews.forEach {
+            modelContext.insert($0)
+        }
+
+        do {
+            try modelContext.save()
+        } catch let error {
+            fatalError(error.localizedDescription)
+        }
     }
 }

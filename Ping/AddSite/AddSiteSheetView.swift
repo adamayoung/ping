@@ -5,7 +5,6 @@
 //  Created by Adam Young on 01/11/2023.
 //
 
-import SwiftData
 import SwiftUI
 
 struct AddSiteSheetView: View {

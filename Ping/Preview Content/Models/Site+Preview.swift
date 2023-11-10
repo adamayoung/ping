@@ -29,8 +29,7 @@ extension Site {
                 SiteStatus(
                     statusCode: .failure("Request timed out."),
                     time: 10,
-                    timestamp: Date(timeIntervalSince1970: 1699463000)
-                )
+                    timestamp: Date(timeIntervalSince1970: 1699463000))
             ]
         )
     }()

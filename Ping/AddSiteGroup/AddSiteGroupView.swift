@@ -56,7 +56,7 @@ struct AddSiteGroupView: View {
     }
 
     private var siteGroupNameField: some View {
-        TextField("SITE_GROUP_NAME", text: $formModel.name)
+        TextField("NAME", text: $formModel.name)
             .submitLabel(.next)
             .focused($focusedField, equals: .siteGroupName)
             .onSubmit { addSiteGroup() }
@@ -88,5 +88,10 @@ extension AddSiteGroupView {
 }
 
 #Preview {
-    AddSiteGroupView()
+    let modelContainer = PingFactory.shared.modelContainer
+
+    return NavigationStack {
+        AddSiteGroupView()
+    }
+    .modelContainer(modelContainer)
 }

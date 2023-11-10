@@ -52,7 +52,11 @@ extension PingApp {
             site.statuses?.append(status)
         }
 
-        try? sharedModelContainer.mainContext.save()
+        do {
+            try sharedModelContainer.mainContext.save()
+        } catch let error {
+            fatalError(error.localizedDescription)
+        }
     }
 
 }

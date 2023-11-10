@@ -57,13 +57,23 @@
         }
       }
     },
+    "ADD_SITE_GROUP_TO_GET_STARTED" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Add a Site Group to get started."
+          }
+        }
+      }
+    },
     "ADD_SITE_TO_GET_STARTED" : {
       "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Add a site to get started"
+            "value" : "Add a site to get started."
           }
         }
       }
@@ -75,16 +85,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Cancel"
-          }
-        }
-      }
-    },
-    "CHECK_ALL" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Check All"
           }
         }
       }
@@ -106,6 +106,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Checking **%@**..."
+          }
+        }
+      }
+    },
+    "CLOSE" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Close"
           }
         }
       }
@@ -162,6 +172,16 @@
         }
       }
     },
+    "MANAGED_SITE_GROUPS" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Manage Site Groups"
+          }
+        }
+      }
+    },
     "METHOD" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -189,6 +209,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "<No Group>"
+          }
+        }
+      }
+    },
+    "NO_SITE_GROUPS" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No Site Groups"
           }
         }
       }
@@ -265,6 +295,16 @@
         }
       }
     },
+    "REFRESH_SITE_STATUSES" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Refresh Site Statuses"
+          }
+        }
+      }
+    },
     "SITE_GROUP" : {
       "localizations" : {
         "en" : {
@@ -275,12 +315,12 @@
         }
       }
     },
-    "SITE_GROUP_NAME" : {
+    "SITE_GROUPS" : {
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Site Group Name"
+            "value" : "Site Groups"
           }
         }
       }
@@ -333,6 +373,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Sites"
+          }
+        }
+      }
+    },
+    "SITES_IN_A_DELETED_GROUP_WILL_NOT_BE_DELETED" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sites in a deleted group will not be deleted."
           }
         }
       }

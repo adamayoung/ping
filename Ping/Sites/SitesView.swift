@@ -17,6 +17,7 @@ struct SitesView: View {
 
     @State private var isAddingSite = false
     @State private var isAddingSiteGroup = false
+    @State private var isManagingSiteGroups = false
 
     @Query(sort: [SortDescriptor(\SiteGroup.name, comparator: .localizedStandard)]) private var siteGroups: [SiteGroup]
     @Query(sort: [SortDescriptor(\Site.name, comparator: .localizedStandard)]) private var sites: [Site]
@@ -30,27 +31,13 @@ struct SitesView: View {
             }
             #endif
 
-            ForEach(siteGroups) { siteGroup in
-                let sites = sites(for: siteGroup)
-                Section {
-                    siteRows(for: sites)
-                } header: {
-                    Text(verbatim: siteGroup.name)
-                }
-            }
+            siteGroupSections
 
-            let otherSites = sites(for: nil)
-            if !otherSites.isEmpty {
-                Section {
-                    siteRows(for: otherSites)
-                } header: {
-                    Text("OTHER")
-                }
-            }
+            nonSiteGroupSection
         }
         .accessibilityIdentifier("sidebar")
         .scrollDisabled(sites.isEmpty)
-#if os(iOS)
+        #if os(iOS)
         .overlay {
             if sites.isEmpty {
                 NoSitesView {
@@ -58,35 +45,24 @@ struct SitesView: View {
                 }
             }
         }
-#endif
-#if os(macOS)
+        #endif
+        #if os(macOS)
         .listStyle(.sidebar)
-#else
+        #else
         .listStyle(.insetGrouped)
-#endif
+        #endif
         .toolbar {
-//#if os(macOS)
-//            ToolbarItem(placement: .primaryAction) {
-//                Button {
-//                    refreshAllSiteStatuses()
-//                } label: {
-//                    Label("REFRESH_SITE_STATUS", systemImage: "arrow.clockwise")
-//                }
-//                .help("REFRESH_SITE_STATUS")
-//                .accessibilityIdentifier("refreshAllSiteStatusesButton")
-//            }
-//#endif
             ToolbarItem(placement: .primaryAction) {
                 Menu {
                     Section {
                         Button {
                             refreshAllSiteStatuses()
                         } label: {
-                            Label("CHECK_ALL", systemImage: "wifi")
+                            Label("REFRESH_SITE_STATUSES", systemImage: "arrow.clockwise")
                         }
                         .disabled(sites.isEmpty)
                         .help("CHECK_ALL_SITE_STATUSES")
-                        .accessibilityIdentifier("checkAllToolbarButton")
+                        .accessibilityIdentifier("refreshSiteStatusesToolbarButton")
                     }
 
                     Section {
@@ -96,19 +72,30 @@ struct SitesView: View {
                             Label("ADD_SITE", systemImage: "plus")
                         }
                         .help("ADD_SITE")
-                        .accessibilityIdentifier("addSiteToolbarButton")
+                        .accessibilityIdentifier("addSiteToolbarMenuButton")
+                    }
 
+                    Section {
                         Button {
                             isAddingSiteGroup.toggle()
                         } label: {
                             Label("ADD_SITE_GROUP", systemImage: "folder.fill.badge.plus")
                         }
                         .help("ADD_SITE_GROUP")
-                        .accessibilityIdentifier("addSiteGroupToolbarButton")
+                        .accessibilityIdentifier("addSiteGroupToolbarMenuButton")
+
+                        Button {
+                            isManagingSiteGroups.toggle()
+                        } label: {
+                            Label("MANAGED_SITE_GROUPS", systemImage: "folder.fill")
+                        }
+                        .help("MANAGED_SITE_GROUPS")
+                        .accessibilityIdentifier("manageSiteGroupsToolbarMenuButton")
                     }
                 } label: {
                     Label("SITES_MENU", systemImage: "ellipsis.circle")
                 }
+                .accessibilityIdentifier("sitesActionToolbarMenuButton")
             }
         }
 
@@ -125,6 +112,10 @@ struct SitesView: View {
             AddSiteGroupSheetView()
                 .modelContext(modelContext)
         }
+        .sheet(isPresented: $isManagingSiteGroups) {
+            ManageSiteGroupsSheetView()
+                .modelContext(modelContext)
+        }
         .navigationTitle("SITES")
     }
 
@@ -136,6 +127,30 @@ extension SitesView {
         NavigationLink(value: MenuItem.summary) {
             Label("SUMMARY", systemImage: "tablecells")
                 .accessibilityIdentifier("summaryNavigationLink")
+        }
+    }
+
+    @MainActor private var siteGroupSections: some View {
+        ForEach(siteGroups) { siteGroup in
+            let sites = sites(for: siteGroup)
+            if !sites.isEmpty {
+                Section {
+                    siteRows(for: sites)
+                } header: {
+                    Text(verbatim: siteGroup.name)
+                }
+            }
+        }
+    }
+
+    @MainActor @ViewBuilder private var nonSiteGroupSection: some View {
+        let otherSites = sites(for: nil)
+        if !otherSites.isEmpty {
+            Section {
+                siteRows(for: otherSites)
+            } header: {
+                Text("OTHER")
+            }
         }
     }
 
@@ -152,7 +167,9 @@ extension SitesView {
             }
             .accessibilityIdentifier("siteNavigationLink-\(site.id.uuidString)")
         }
-        .onDelete(perform: delete)
+        .onDelete(perform: { indexSet in
+            delete(at: indexSet, in: sites)
+        })
     }
 
 }
@@ -183,13 +200,17 @@ extension SitesView {
         }
     }
 
-    private func delete(at offsets: IndexSet) {
+    private func delete(at offsets: IndexSet, in sites: [Site]) {
         withAnimation {
             for index in offsets {
                 modelContext.delete(sites[index])
             }
 
-            try? modelContext.save()
+            do {
+                try modelContext.save()
+            } catch let error {
+                fatalError(error.localizedDescription)
+            }
         }
     }
 

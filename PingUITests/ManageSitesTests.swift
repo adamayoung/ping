@@ -7,13 +7,14 @@
 
 import XCTest
 
-final class AddAndRemoveSiteTests: UITestCase {
+final class ManageSitesTests: UITestCaseBase {
 
     func testAddSite() {
         let siteName = "Test Site"
 
-        SitesScreen(app: app)
+        initialScreen
             .verifySitesVisible()
+            .tapSitesActionMenuButton()
             .tapAddSiteButton()
             .assertAddButtonIsDisabled()
             .typeName(siteName)
@@ -24,8 +25,9 @@ final class AddAndRemoveSiteTests: UITestCase {
     }
 
     func testCannotAddSiteWithInvalidURL() {
-        SitesScreen(app: app)
+        initialScreen
             .verifySitesVisible()
+            .tapSitesActionMenuButton()
             .tapAddSiteButton()
             .assertAddButtonIsDisabled()
             .typeName("Test Site")
@@ -36,8 +38,9 @@ final class AddAndRemoveSiteTests: UITestCase {
     func testCancellingAddNewSite() {
         let siteName = "Test Site"
 
-        SitesScreen(app: app)
+        initialScreen
             .verifySitesVisible()
+            .tapSitesActionMenuButton()
             .tapAddSiteButton()
             .typeName(siteName)
             .typeURL("https://www.domain.com")
@@ -49,7 +52,7 @@ final class AddAndRemoveSiteTests: UITestCase {
     func testDeleteSiteFromSitesList() {
         let siteID = UUID.googleSiteIDPreview
 
-        SitesScreen(app: app)
+        initialScreen
             .verifySitesVisible()
             .swipLeftAndDeleteSite(withID: siteID)
             .assertSiteNotPresent(withID: siteID)

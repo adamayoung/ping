@@ -186,7 +186,9 @@ extension AddSiteView {
 
 #Preview {
     let modelContainer = PingFactory.shared.modelContainer
+    let statusCheckerService = PingFactory.shared.siteStatusCheckerService
 
     return AddSiteView()
         .modelContainer(modelContainer)
+        .environment(statusCheckerService)
 }

@@ -18,9 +18,9 @@ struct SitesScreen: Screen {
     }
 
     @discardableResult
-    func tapAddSiteButton() -> AddSiteScreen {
-        addSiteButton.tap()
-        return AddSiteScreen(app: app)
+    func tapSitesActionMenuButton() -> SitesScreen.ActionMenu {
+        actionToolbarMenuButton.tap()
+        return SitesScreen.ActionMenu(app: app)
     }
 
     @discardableResult
@@ -66,7 +66,7 @@ extension SitesScreen {
 
     private enum Identifiers {
         static let view = "sidebar"
-        static let addSiteButton = "addSiteToolbarButton"
+        static let actionToolbarMenuButton = "sitesActionToolbarMenuButton"
         static let summaryNavigationLink = "summaryNavigationLink"
         static func siteNavigationLink(siteID: UUID) -> String {
             return "siteNavigationLink-\(siteID.uuidString)"
@@ -82,11 +82,12 @@ extension SitesScreen {
         #endif
     }
 
-    private var addSiteButton: XCUIElement {
+    private var actionToolbarMenuButton: XCUIElement {
         #if os(macOS)
-        app.toolbars.children(matching: .button)["Add Site"].children(matching: .button)[Identifiers.addSiteButton]
+        app.toolbars.children(matching: .button)["Add Site"]
+            .children(matching: .button)[Identifiers.actionToolbarMenuButton]
         #else
-        app.buttons[Identifiers.addSiteButton]
+        app.buttons[Identifiers.actionToolbarMenuButton]
         #endif
     }
 

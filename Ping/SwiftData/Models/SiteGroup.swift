@@ -18,9 +18,14 @@ final class SiteGroup: Identifiable {
     @Relationship(deleteRule: .nullify, inverse: \Site.group)
     var sites: [Site]?
 
-    init(id: UUID = UUID(), name: String) {
+    init(
+        id: UUID = UUID(),
+        name: String,
+        sites: [Site] = []
+    ) {
         self.id = id
         self.name = name
+        self.sites = sites
     }
 
 }

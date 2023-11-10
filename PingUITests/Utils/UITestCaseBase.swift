@@ -7,9 +7,13 @@
 
 import XCTest
 
-class UITestCase: XCTestCase {
+class UITestCaseBase: XCTestCase {
 
     var app: XCUIApplication!
+
+    private(set) lazy var initialScreen = {
+        SitesScreen(app: app)
+    }()
 
     override func setUp() {
         #if os(iOS)
