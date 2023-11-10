@@ -5,35 +5,26 @@
 //  Created by Adam Young on 26/10/2023.
 //
 
-import PingKit
+import SwiftData
 import SwiftUI
 
 @main
+@MainActor
 struct PingApp: App {
 
     #if os(iOS)
     @UIApplicationDelegateAdaptor(AppDelegate.self) private var appDelegate
     #endif
 
-    @State private var store = PingStore.app
+    private var sharedModelContainer = ModelContainer.ping
+    private var siteStatusCheckerService = SiteStatusCheckerService()
 
     var body: some Scene {
         WindowGroup {
             ContentView()
-                .environment(store)
         }
-    }
-
-}
-
-extension PingStore {
-
-    fileprivate static var app: PingStore {
-        if CommandLine.isUITesting {
-            return PingStore.uiTest()
-        }
-
-        return PingStore()
+        .modelContainer(sharedModelContainer)
+        .environment(siteStatusCheckerService)
     }
 
 }

@@ -5,39 +5,42 @@
 //  Created by Adam Young on 02/11/2023.
 //
 
-import PingKit
+import SwiftData
 import SwiftUI
 
 struct SiteStatusHeaderView: View {
 
     var site: Site
-    var siteStatus: SiteStatus
+    var siteStatus: SiteStatus?
+    var isCheckingStatus: Bool
     var refreshSiteStatus: () -> Void
 
-    private var isChecking: Bool {
-        siteStatus.statusCode == .checking
+    private var statusCode: SiteStatus.Code {
+        siteStatus?.statusCode ?? .default
     }
 
     private var formattedTimestamp: String {
-        siteStatus.timestamp.formatted(date: .numeric, time: .shortened)
+        siteStatus?.timestamp.formatted(date: .numeric, time: .shortened) ?? ""
     }
 
     var body: some View {
         VStack(alignment: .center, spacing: 8) {
-            Image(systemName: siteStatus.statusCode.iconName)
+            Image(systemName: statusCode.iconName)
                 .resizable()
                 .aspectRatio(contentMode: .fit)
-                .foregroundStyle(.white, siteStatus.statusCode.iconColor)
+                .foregroundStyle(.white, statusCode.iconColor)
                 .frame(height: 100)
                 .padding()
                 .shadow(color: .secondary, radius: 5, x: 2, y: 2)
-                .opacity(isChecking ? 0 : 1)
+                .opacity(isCheckingStatus ? 0 : 1)
                 .overlay {
-                    if siteStatus.statusCode == .checking {
+                    if isCheckingStatus {
                         ProgressView()
                             .controlSize(.extraLarge)
                     }
                 }
+
+            Text(site.request?.url.absoluteString ?? "")
 
             Text(siteStatusText)
                 .font(.system(size: 25))
@@ -45,27 +48,28 @@ struct SiteStatusHeaderView: View {
 
             Text("\(Image(systemName: "clock")) \(formattedTimestamp)")
                 .foregroundStyle(.secondary)
-                .opacity(isChecking ? 0 : 1)
+                .opacity((isCheckingStatus || statusCode == .unknown) ? 0 : 1)
 
             Button("REFRESH") {
                 refreshSiteStatus()
             }
             .padding(.top)
-            .opacity(isChecking ? 0 : 1)
+            .opacity(isCheckingStatus ? 0 : 1)
         }
-        .animation(.spring, value: siteStatus.statusCode)
+        .animation(.spring, value: statusCode)
     }
 
     private var siteStatusText: LocalizedStringKey {
-        switch siteStatus.statusCode {
+        if isCheckingStatus {
+            return "CHECKING_\(site.name)"
+        }
+
+        switch statusCode {
         case .success:
             return "\(site.name)_IS_UP_AND_RUNNING"
 
         case .failure:
             return "TROUBLE_LOADING_\(site.name)"
-
-        case .checking:
-            return "CHECKING_\(site.name)"
 
         case .unknown:
             return "STATUS_OF_\(site.name)_IS_UNKNOWN"
@@ -75,45 +79,68 @@ struct SiteStatusHeaderView: View {
 }
 
 #Preview("Success") {
-    VStack {
+    let modelContainer = ModelContainer.preview
+    let site = Site.gitHubPreview
+
+    return VStack {
         SiteStatusHeaderView(
-            site: .preview,
+            site: site,
             siteStatus: SiteStatus(statusCode: .success, time: 5),
+            isCheckingStatus: false,
             refreshSiteStatus: { }
         )
         Spacer()
     }
+    .modelContainer(modelContainer)
 }
 
 #Preview("Failure") {
-    VStack {
+    let modelContainer = ModelContainer.preview
+    let site = Site.gitHubPreview
+
+    return VStack {
         SiteStatusHeaderView(
-            site: .preview,
-            siteStatus: SiteStatus(statusCode: .failure(SiteStatusError(errorDescription: "Some error")), time: 5),
+            site: site,
+            siteStatus: SiteStatus(
+                statusCode: .failure("Some error"),
+                time: 5
+            ),
+            isCheckingStatus: false,
             refreshSiteStatus: { }
         )
         Spacer()
     }
+    .modelContainer(modelContainer)
 }
 
 #Preview("Checking") {
-    VStack {
+    let modelContainer = ModelContainer.preview
+    let site = Site.gitHubPreview
+
+    return VStack {
         SiteStatusHeaderView(
-            site: .preview,
-            siteStatus: SiteStatus(statusCode: .checking, time: 5),
+            site: site,
+            siteStatus: SiteStatus(statusCode: .success, time: 5),
+            isCheckingStatus: true,
             refreshSiteStatus: { }
         )
         Spacer()
     }
+    .modelContainer(modelContainer)
 }
 
 #Preview("Unknown") {
-    VStack {
+    let modelContainer = ModelContainer.preview
+    let site = Site.gitHubPreview
+
+    return VStack {
         SiteStatusHeaderView(
-            site: .preview,
+            site: site,
             siteStatus: SiteStatus(statusCode: .unknown, time: 5),
+            isCheckingStatus: false,
             refreshSiteStatus: { }
         )
         Spacer()
     }
+    .modelContainer(modelContainer)
 }

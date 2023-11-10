@@ -5,12 +5,12 @@
 //  Created by Adam Young on 01/11/2023.
 //
 
-import PingKit
+import SwiftData
 import SwiftUI
 
 struct AddSiteSheetView: View {
 
-    @Environment(PingStore.self) private var store
+    @Environment(\.modelContext) private var modelContext
 
     var body: some View {
         #if os(macOS)
@@ -20,25 +20,25 @@ struct AddSiteSheetView: View {
         #endif
     }
 
-    private var macOSAddSiteView: some View {
-        AddSiteView()
-            .padding()
-            .frame(width: 300)
-            .environment(store)
+    @MainActor private var macOSAddSiteView: some View {
+        NavigationStack {
+            AddSiteView()
+                .scrollDisabled(true)
+        }
+        .frame(width: 500, height: 300)
     }
 
-    private var iOSAddSiteView: some View {
-        NavigationView {
+    @MainActor private var iOSAddSiteView: some View {
+        NavigationStack {
             AddSiteView()
-                .environment(store)
         }
     }
 
 }
 
 #Preview {
-    let store = PingStore.preview()
+    let modelContainer = ModelContainer.preview
 
     return AddSiteSheetView()
-        .environment(store)
+        .modelContainer(modelContainer)
 }

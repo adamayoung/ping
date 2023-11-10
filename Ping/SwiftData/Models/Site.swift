@@ -1,0 +1,49 @@
+//
+//  Site.swift
+//  Ping
+//
+//  Created by Adam Young on 29/10/2023.
+//
+
+import Foundation
+import SwiftData
+
+@Model
+final class Site {
+
+    var id: UUID = UUID()
+
+    var name: String = ""
+
+    var isActive: Bool = true
+
+    @Relationship(deleteRule: .cascade, inverse: \SiteStatusRequest.site)
+    var request: SiteStatusRequest?
+
+    @Relationship(deleteRule: .cascade)
+    var statuses: [SiteStatus]?
+
+    var latestStatus: SiteStatus? {
+        let sortedStatuses = statuses?.sorted(by: { $0.timestamp < $1.timestamp }) ?? []
+        return sortedStatuses.last
+    }
+
+    var latestStatusCode: SiteStatus.Code {
+        latestStatus?.statusCode ?? .unknown
+    }
+
+    init(
+        id: UUID = UUID(),
+        name: String,
+        isActive: Bool = true,
+        request: SiteStatusRequest? = nil,
+        statuses: [SiteStatus]? = []
+    ) {
+        self.id = id
+        self.name = name
+        self.isActive = isActive
+        self.request = request
+        self.statuses = statuses
+    }
+
+}

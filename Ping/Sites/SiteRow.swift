@@ -5,31 +5,34 @@
 //  Created by Adam Young on 30/10/2023.
 //
 
-import PingKit
+import SwiftData
 import SwiftUI
 
 struct SiteRow: View {
 
     var site: Site
-    var siteStatus: SiteStatus
+    var siteStatus: SiteStatus?
+    var isCheckingStatus: Bool
 
     var body: some View {
-        SiteStatusLabel(site: site, siteStatus: siteStatus)
+        SiteStatusLabel(site: site, siteStatus: siteStatus, isCheckingStatus: isCheckingStatus)
     }
 
 }
 
 #Preview {
-    let state = PingState.preview
+    let modelContainer = ModelContainer.preview
+    let siteStatusCheckerService = SiteStatusCheckerService.preview
+    let sites = (try? modelContainer.mainContext.fetch(FetchDescriptor<Site>())) ?? []
 
     return NavigationStack {
         List {
-            ForEach(state.sites.all) { site in
-                let status = state.siteStatuses.latestSiteStatus(for: site)
+            ForEach(sites) { site in
                 NavigationLink(destination: EmptyView()) {
                     SiteRow(
                         site: site,
-                        siteStatus: status
+                        siteStatus: site.latestStatus,
+                        isCheckingStatus: siteStatusCheckerService.isChecking(site: site.id)
                     )
                 }
             }
@@ -40,4 +43,5 @@ struct SiteRow: View {
         .listStyle(.insetGrouped)
         #endif
     }
+    .modelContainer(modelContainer)
 }

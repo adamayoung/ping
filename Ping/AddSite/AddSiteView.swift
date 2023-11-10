@@ -5,12 +5,12 @@
 //  Created by Adam Young on 27/10/2023.
 //
 
-import PingKit
+import SwiftData
 import SwiftUI
 
 struct AddSiteView: View {
 
-    @Environment(PingStore.self) private var store
+    @Environment(\.modelContext) private var modelContext
     @Environment(\.dismiss) private var dismiss
 
     @State private var formModel = AddSiteFormModel()
@@ -18,8 +18,9 @@ struct AddSiteView: View {
     @FocusState private var focusedField: Field?
 
     enum Field: Int, Hashable {
-       case siteName
-       case siteURL
+        case siteName
+        case siteURL
+        case timeout
     }
 
     var body: some View {
@@ -28,7 +29,13 @@ struct AddSiteView: View {
                 siteNameField
                 siteURLField
             }
+
+            Section("OPTIONS") {
+                methodPicker
+                timeoutField
+            }
         }
+        .formStyle(.grouped)
         .interactiveDismissDisabled(isAddingSite)
         .onAppear {
             focusedField = .siteName
@@ -86,11 +93,45 @@ struct AddSiteView: View {
             .disableAutocorrection(true)
             .textContentType(.URL)
             .focused($focusedField, equals: .siteURL)
-            .onSubmit {
-                addSite()
-            }
+            .onSubmit { focusedField = .timeout }
             .accessibilityIdentifier("siteURLField")
     }
+
+    private var methodPicker: some View {
+        Picker("METHOD", selection: $formModel.method) {
+            ForEach(AddSiteFormModel.Method.allCases, id: \.self) {
+                Text($0.localizedName)
+            }
+        }
+    }
+
+#if os(iOS)
+    private var timeoutField: some View {
+        LabeledContent("TIMEOUT") {
+            HStack {
+                TextField("TIMEOUT", value: $formModel.timeout, formatter: NumberFormatter())
+                    .multilineTextAlignment(.trailing)
+                    .submitLabel(.next)
+                    .focused($focusedField, equals: .timeout)
+                    .onSubmit { addSite() }
+                    .accessibilityIdentifier("siteTimeoutField")
+                Text("ms")
+                    .foregroundStyle(.primary)
+            }
+        }
+    }
+    #endif
+
+    #if os(macOS)
+    private var timeoutField: some View {
+        TextField("TIMEOUT_MS", value: $formModel.timeout, formatter: NumberFormatter())
+            .multilineTextAlignment(.trailing)
+            .submitLabel(.next)
+            .focused($focusedField, equals: .timeout)
+            .onSubmit { addSite() }
+            .accessibilityIdentifier("siteTimeoutField")
+    }
+    #endif
 
 }
 
@@ -102,20 +143,21 @@ extension AddSiteView {
         }
 
         isAddingSite = true
-        Task {
-            await store.send(.sites(.store(site)))
-            await store.send(.siteStatuses(.checkSiteStatus(site)))
-            await MainActor.run {
-                dismiss()
-            }
+
+        withAnimation {
+            modelContext.insert(site)
         }
+
+        try? modelContext.save()
+
+        dismiss()
     }
 
 }
 
 #Preview {
-    let store = PingStore.preview()
+    let modelContainer = ModelContainer.preview
 
     return AddSiteView()
-        .environment(store)
+        .modelContainer(modelContainer)
 }

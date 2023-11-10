@@ -5,20 +5,21 @@
 //  Created by Adam Young on 31/10/2023.
 //
 
-import PingKit
+import SwiftData
 import SwiftUI
 
 struct SiteStatusLabel: View {
 
     var site: Site
-    var siteStatus: SiteStatus
+    var siteStatus: SiteStatus?
+    var isCheckingStatus: Bool
 
-    private var statusCode: SiteStatusCode {
-        siteStatus.statusCode
+    private var statusCode: SiteStatus.Code {
+        siteStatus?.statusCode ?? .default
     }
 
     private var formattedTimestamp: String {
-        siteStatus.timestamp.formatted(date: .numeric, time: .shortened)
+        siteStatus?.timestamp.formatted(date: .numeric, time: .shortened) ?? ""
     }
 
     var body: some View {
@@ -27,9 +28,9 @@ struct SiteStatusLabel: View {
         } icon: {
             Image(systemName: statusCode.iconName)
                 .foregroundStyle(statusCode.iconColor)
-                .opacity(siteStatus.statusCode == .checking ? 0 : 1)
+                .opacity(isCheckingStatus ? 0 : 1)
                 .overlay {
-                    if siteStatus.statusCode == .checking {
+                    if isCheckingStatus {
                         ProgressView()
                             #if os(macOS)
                             .controlSize(.mini)
@@ -38,7 +39,7 @@ struct SiteStatusLabel: View {
                             #endif
                     }
                 }
-                .animation(.easeIn, value: siteStatus.statusCode)
+                .animation(.easeIn, value: isCheckingStatus)
                 .help(statusCode.localizedName)
                 .accessibilityValue(Text(statusCode.localizedName))
         }
@@ -51,35 +52,53 @@ struct SiteStatusLabel: View {
         VStack(alignment: .leading, spacing: 4) {
             Text(verbatim: site.name)
 
-            Text("\(Image(systemName: "clock")) \(formattedTimestamp)")
-                .font(.caption)
-                .foregroundStyle(Color.secondary)
+            Group {
+                if statusCode == .unknown {
+                    Text(verbatim: "-")
+                } else {
+                    Text("\(Image(systemName: "clock")) \(formattedTimestamp)")
+                }
+            }
+            .font(.caption)
+            .foregroundStyle(Color.secondary)
+
         }
         #endif
     }
 }
 
 #Preview {
-    VStack(alignment: .leading, spacing: 20) {
+    let modelContainer = ModelContainer.preview
+    let googleSite = Site.googlePreview
+    let twitterSite = Site.twitterPreview
+    let gitHubSite = Site.gitHubPreview
+    let microsoft = Site.microsoftPreview
+
+    return VStack(alignment: .leading, spacing: 20) {
         SiteStatusLabel(
-            site: Site.previews[0],
-            siteStatus: SiteStatus(statusCode: .success, time: 5)
+            site: googleSite,
+            siteStatus: SiteStatus(statusCode: .success, time: 5),
+            isCheckingStatus: false
         )
 
         SiteStatusLabel(
-            site: Site.previews[1],
-            siteStatus: SiteStatus(statusCode: .checking, time: 5)
+            site: twitterSite,
+            siteStatus: SiteStatus(statusCode: .unknown, time: 5),
+            isCheckingStatus: false
         )
 
         SiteStatusLabel(
-            site: Site.previews[2],
-            siteStatus: SiteStatus(statusCode: .failure(SiteStatusError(errorDescription: "Some failure")), time: 5)
+            site: gitHubSite,
+            siteStatus: SiteStatus(statusCode: .failure("Error"), time: 5),
+            isCheckingStatus: false
         )
 
         SiteStatusLabel(
-            site: Site.previews[3],
-            siteStatus: SiteStatus(statusCode: .unknown, time: 5)
+            site: microsoft,
+            siteStatus: SiteStatus(statusCode: .unknown, time: 5),
+            isCheckingStatus: true
         )
     }
     .padding()
+    .modelContainer(modelContainer)
 }

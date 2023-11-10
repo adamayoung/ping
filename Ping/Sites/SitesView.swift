@@ -5,42 +5,39 @@
 //  Created by Adam Young on 27/10/2023.
 //
 
-import PingKit
+import SwiftData
 import SwiftUI
 
 struct SitesView: View {
 
     @Binding var menuItem: MenuItem?
 
-    @Environment(PingStore.self) private var store
+    @Environment(\.modelContext) private var modelContext
+    @Environment(SiteStatusCheckerService.self) private var siteStatusCheckerService
+
     @State private var isAddingSite = false
 
-    private var sites: [Site] {
-        store.sites.all
-    }
-
-    private func siteStatus(for site: Site) -> SiteStatus {
-        store.siteStatuses.latestSiteStatus(for: site)
-    }
+    @Query(sort: [SortDescriptor(\Site.name, comparator: .localizedStandard)]) private var sites: [Site]
+    @Query(sort: [SortDescriptor(\SiteStatus.timestamp, order: .reverse)]) private var statuses: [SiteStatus]
 
     var body: some View {
         List(selection: $menuItem) {
-            #if os(macOS)
+#if os(macOS)
             Section {
                 summaryRow
             }
             Section("SITES") {
                 siteRows
             }
-            #else
+#else
             Section {
                 siteRows
             }
-            #endif
+#endif
         }
         .accessibilityIdentifier("sidebar")
         .scrollDisabled(sites.isEmpty)
-        #if os(iOS)
+#if os(iOS)
         .overlay {
             if sites.isEmpty {
                 NoSitesView {
@@ -48,26 +45,24 @@ struct SitesView: View {
                 }
             }
         }
-        #endif
-        #if os(macOS)
+#endif
+#if os(macOS)
         .listStyle(.sidebar)
-        #else
+#else
         .listStyle(.insetGrouped)
-        #endif
+#endif
         .toolbar {
-            #if os(macOS)
+#if os(macOS)
             ToolbarItem(placement: .primaryAction) {
                 Button {
-                    Task {
-                        await refreshAllSiteStatuses()
-                    }
+                    refreshAllSiteStatuses()
                 } label: {
                     Label("REFRESH_SITE_STATUS", systemImage: "arrow.clockwise")
                 }
                 .help("REFRESH_SITE_STATUS")
                 .accessibilityIdentifier("refreshAllSiteStatusesButton")
             }
-            #endif
+#endif
 
             ToolbarItem(placement: .primaryAction) {
                 Button {
@@ -79,36 +74,37 @@ struct SitesView: View {
                 .accessibilityIdentifier("addSiteToolbarButton")
             }
         }
-        #if os(iOS)
+#if os(iOS)
         .refreshable {
-            await refreshAllSiteStatuses()
+            refreshAllSiteStatuses()
         }
-        #endif
+#endif
         .sheet(isPresented: $isAddingSite) {
             AddSiteSheetView()
-                .environment(store)
+                .modelContext(modelContext)
         }
         .navigationTitle("SITES")
-        .task {
-            await fetchData()
-        }
     }
 
 }
 
 extension SitesView {
 
-    private var summaryRow: some View {
+    @MainActor private var summaryRow: some View {
         NavigationLink(value: MenuItem.summary) {
             Label("SUMMARY", systemImage: "tablecells")
                 .accessibilityIdentifier("summaryNavigationLink")
         }
     }
 
-    private var siteRows: some View {
+    @MainActor private var siteRows: some View {
         ForEach(sites) { site in
             NavigationLink(value: MenuItem.site(site)) {
-                SiteRow(site: site, siteStatus: siteStatus(for: site))
+                SiteRow(
+                    site: site,
+                    siteStatus: latestStatus(for: site),
+                    isCheckingStatus: siteStatusCheckerService.isChecking(site: site.id)
+                )
             }
             .accessibilityIdentifier("siteNavigationLink-\(site.id.uuidString)")
         }
@@ -119,37 +115,52 @@ extension SitesView {
 
 extension SitesView {
 
-    private func fetchData() async {
-        if sites.isEmpty {
-            await store.send(.sites(.load))
-            await store.send(.siteStatuses(.load(sites.map(\.id))))
-
-        }
+    @MainActor
+    private func latestStatus(for site: Site) -> SiteStatus? {
+        statuses.first(where: { $0.site == site })
     }
 
-    private func refreshAllSiteStatuses() async {
-        await store.send(.siteStatuses(.checkSiteStatuses(sites)))
+    @MainActor
+    private func refreshAllSiteStatuses() {
+        for site in sites {
+            guard let requestTask = SiteRequestTask(siteRequest: site.request) else {
+                continue
+            }
+
+            Task {
+                let (statusCode, time) = await self.siteStatusCheckerService.checkSiteStatus(using: requestTask)
+                let status = SiteStatus(statusCode: statusCode, time: time)
+
+                await MainActor.run {
+                    withAnimation {
+                        if site.statuses == nil {
+                            site.statuses = []
+                        }
+
+                        site.statuses?.append(status)
+                    }
+                }
+            }
+        }
     }
 
     private func delete(at offsets: IndexSet) {
-        guard let site = (offsets.map { sites[$0] }).first else {
-            return
-        }
-
-        Task {
-            await store.send(.sites(.remove(site)))
+        withAnimation {
+            for index in offsets {
+                modelContext.delete(sites[index])
+            }
         }
     }
 
 }
 
-#Preview {
-    let store = PingStore.preview()
+#Preview("Sites") {
+    let modelContainer = ModelContainer.preview
+    let siteStatusCheckerService = SiteStatusCheckerService.preview
 
-    return NavigationSplitView {
+    return NavigationStack {
         SitesView(menuItem: .constant(.summary))
-    } detail: {
-        Text("Details")
     }
-    .environment(store)
+    .modelContainer(modelContainer)
+    .environment(siteStatusCheckerService)
 }

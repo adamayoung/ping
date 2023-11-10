@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import PingKit
 
 enum MenuItem: Hashable {
 

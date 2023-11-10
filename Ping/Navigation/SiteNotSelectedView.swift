@@ -15,6 +15,9 @@ struct SiteNotSelectedView: View {
                 .font(.headline)
                 .foregroundStyle(Color.secondary)
         }
+        #if os(iOS)
+        .navigationBarTitleDisplayMode(.inline)
+        #endif
     }
 
 }

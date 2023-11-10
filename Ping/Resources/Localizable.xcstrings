@@ -121,6 +121,41 @@
         }
       }
     },
+    "GET" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "GET"
+          }
+        }
+      }
+    },
+    "LAST_%lld_STATUS_CHECKS" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Last %lld Status Checks"
+          }
+        }
+      }
+    },
+    "METHOD" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Method"
+          }
+        }
+      }
+    },
+    "ms" : {
+
+    },
     "NAME" : {
       "localizations" : {
         "en" : {
@@ -148,6 +183,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "No Sites"
+          }
+        }
+      }
+    },
+    "OPTIONS" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Options"
           }
         }
       }
@@ -185,6 +230,7 @@
       }
     },
     "SITE_STATUS_CHECKING" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -263,6 +309,26 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Summary"
+          }
+        }
+      }
+    },
+    "TIMEOUT" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Timeout"
+          }
+        }
+      }
+    },
+    "TIMEOUT_MS" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Timeout (ms)"
           }
         }
       }

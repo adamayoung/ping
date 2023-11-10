@@ -5,28 +5,30 @@
 //  Created by Adam Young on 27/10/2023.
 //
 
-import PingKit
+import SwiftData
 import SwiftUI
 
 struct SummaryView: View {
 
-    @Environment(PingStore.self) private var store
+    @Environment(\.modelContext) private var modelContext
+    @Environment(SiteStatusCheckerService.self) private var siteStatusCheckerService
 
-    private var sites: [Site] {
-        store.sites.all
-    }
-
-    private func siteStatus(for site: Site) -> SiteStatus {
-        store.siteStatuses.latestSiteStatus(for: site)
-    }
+    @Query(sort: [SortDescriptor(\Site.name, comparator: .localizedStandard)]) private var sites: [Site]
+    @Query private var requests: [SiteStatusRequest]
+    @Query(sort: [SortDescriptor(\SiteStatus.timestamp, order: .reverse)]) private var statuses: [SiteStatus]
 
     var body: some View {
         Table(sites) {
             TableColumn("STATUS") { site in
+                let status = latestStatus(for: site)
                 HStack {
                     Spacer()
-                    SiteStatusLabel(site: site, siteStatus: siteStatus(for: site))
-                        .labelStyle(.iconOnly)
+                    SiteStatusLabel(
+                        site: site,
+                        siteStatus: status,
+                        isCheckingStatus: siteStatusCheckerService.isChecking(site: site.id)
+                    )
+                    .labelStyle(.iconOnly)
                     Spacer()
                 }
 
@@ -36,19 +38,37 @@ struct SummaryView: View {
             TableColumn("NAME", value: \.name)
 
             TableColumn("URL") { site in
-                Text(site.request.url.absoluteString)
+                let request = request(for: site)
+                Text(request?.url.absoluteString ?? "")
             }
         }
         .navigationTitle("SUMMARY")
+        #if os(iOS)
+        .navigationBarTitleDisplayMode(.inline)
+        #endif
+    }
+
+}
+
+extension SummaryView {
+
+    private func latestStatus(for site: Site) -> SiteStatus? {
+        statuses.first(where: { $0.site?.persistentModelID == site.persistentModelID })
+    }
+
+    private func request(for site: Site) -> SiteStatusRequest? {
+        requests.first(where: { $0.site?.persistentModelID == site.persistentModelID })
     }
 
 }
 
 #Preview {
-    let store = PingStore.preview()
+    let modelContainer = ModelContainer.preview
+    let siteStatusCheckerService = SiteStatusCheckerService.preview
 
     return NavigationStack {
         SummaryView()
     }
-    .environment(store)
+    .modelContainer(modelContainer)
+    .environment(siteStatusCheckerService)
 }

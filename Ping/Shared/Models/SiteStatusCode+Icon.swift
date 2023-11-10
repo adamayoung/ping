@@ -5,10 +5,9 @@
 //  Created by Adam Young on 02/11/2023.
 //
 
-import PingKit
 import SwiftUI
 
-extension SiteStatusCode {
+extension SiteStatus.Code {
 
     var iconName: String {
         switch self {
@@ -20,9 +19,6 @@ extension SiteStatusCode {
 
         case .unknown:
             return "questionmark.circle.fill"
-
-        default:
-            return ""
         }
     }
 
@@ -34,7 +30,7 @@ extension SiteStatusCode {
         case .failure:
             return .yellow
 
-        default:
+        case .unknown:
             return .gray
         }
     }
@@ -46,9 +42,6 @@ extension SiteStatusCode {
 
         case .failure:
             "SITE_STATUS_FAILURE"
-
-        case .checking:
-            "SITE_STATUS_CHECKING"
 
         case .unknown:
             "SITE_STATUS_UNKNOWN"

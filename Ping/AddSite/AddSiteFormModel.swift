@@ -7,16 +7,19 @@
 
 import Foundation
 import Observation
-import PingKit
+import SwiftData
+import SwiftUI
 
 @Observable
 final class AddSiteFormModel {
 
     var name = ""
     var url = ""
+    var timeout = 10000
+    var method: AddSiteFormModel.Method = .get
 
     var isValid: Bool {
-        Self.isValid(name: name) && Self.isValid(urlString: url)
+        Self.isValid(name: name) && Self.isValid(urlString: url) && Self.isValue(timeout: timeout)
     }
 
     var site: Site? {
@@ -28,11 +31,38 @@ final class AddSiteFormModel {
             return nil
         }
 
-        let siteRequest = SiteStatusRequest(url: url)
-        return Site(name: name, request: siteRequest)
+        let site = Site(name: name)
+        let timeout = TimeInterval(self.timeout) / 1000
+        let method: SiteStatusRequest.Method = {
+            switch self.method {
+            case .get:
+                return .get
+            }
+        }()
+
+        let siteRequest = SiteStatusRequest(url: url, method: method, timeout: timeout)
+        site.request = siteRequest
+
+        return site
     }
 
     init() { }
+
+}
+
+extension AddSiteFormModel {
+
+    enum Method: CaseIterable {
+
+        case get
+
+        var localizedName: LocalizedStringKey {
+            switch self {
+            case .get:
+                return "GET"
+            }
+        }
+    }
 
 }
 
@@ -60,6 +90,14 @@ extension AddSiteFormModel {
         }
 
         guard host.contains(".") && !host.hasSuffix(".") else {
+            return false
+        }
+
+        return true
+    }
+
+    private static func isValue(timeout: Int) -> Bool {
+        guard timeout >= 1000 else {
             return false
         }
 

@@ -5,7 +5,7 @@
 //  Created by Adam Young on 26/10/2023.
 //
 
-import PingKit
+import SwiftData
 import SwiftUI
 
 struct ContentView: View {
@@ -21,22 +21,7 @@ struct ContentView: View {
                 .toolbar(removing: .sidebarToggle)
                 #endif
         } detail: {
-            switch menuItem {
-            case .summary:
-                SummaryView()
-                    .navigationBarTitleDisplayMode(.inline)
-
-            case .site(let site):
-                SiteView(site: site) {
-                    menuItem = nil
-                }
-                .id(site.id)
-                .navigationBarTitleDisplayMode(.inline)
-
-            default:
-                SiteNotSelectedView()
-                    .navigationBarTitleDisplayMode(.inline)
-            }
+            DetailView(menuItem: $menuItem)
         }
         .navigationSplitViewStyle(.balanced)
         #if os(macOS)
@@ -46,9 +31,11 @@ struct ContentView: View {
 
 }
 
-#Preview {
-    let store = PingStore.preview()
+#Preview("Content") {
+    let modelContainer = ModelContainer.preview
+    let siteStatusCheckerService = SiteStatusCheckerService.preview
 
     return ContentView()
-        .environment(store)
+        .modelContainer(modelContainer)
+        .environment(siteStatusCheckerService)
 }

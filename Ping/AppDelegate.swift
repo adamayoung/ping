@@ -24,7 +24,7 @@ final class AppDelegate: NSObject, UIApplicationDelegate {
 extension AppDelegate {
 
     private static func checkForUITests(in application: UIApplication) {
-        guard CommandLine.isUITesting else {
+        guard ProcessInfo.processInfo.isUITesting else {
             return
         }
 
