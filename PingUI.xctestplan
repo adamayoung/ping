@@ -11,8 +11,7 @@
   "defaultOptions" : {
     "codeCoverage" : false,
     "language" : "en-GB",
-    "region" : "GB",
-    "testExecutionOrdering" : "random"
+    "region" : "GB"
   },
   "testTargets" : [
     {

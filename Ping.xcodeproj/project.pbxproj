@@ -7,14 +7,36 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		66049D4C2AF3055E003953C5 /* AddSiteSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66049D4B2AF3055E003953C5 /* AddSiteSheetView.swift */; };
 		6617DA972AED679A0072DC05 /* AddSiteScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6617DA962AED679A0072DC05 /* AddSiteScreen.swift */; };
 		6617DA992AED69C90072DC05 /* SiteScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6617DA982AED69C90072DC05 /* SiteScreen.swift */; };
 		6617DA9B2AED6A4C0072DC05 /* SummaryScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6617DA9A2AED6A4C0072DC05 /* SummaryScreen.swift */; };
-		6617DA9D2AED6B200072DC05 /* UITestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6617DA9C2AED6B200072DC05 /* UITestCase.swift */; };
+		6617DA9D2AED6B200072DC05 /* UITestCaseBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6617DA9C2AED6B200072DC05 /* UITestCaseBase.swift */; };
 		6617DAA02AEDC4DF0072DC05 /* NoSitesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6617DA9F2AEDC4DF0072DC05 /* NoSitesView.swift */; };
+		66180D552AF18ADB00526143 /* ProcessInfo+Testing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66180D542AF18ADB00526143 /* ProcessInfo+Testing.swift */; };
+		66180D572AF18C7E00526143 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66180D562AF18C7E00526143 /* AppDelegate.swift */; };
+		66180D5A2AF1A89000526143 /* AddSiteFormModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66180D592AF1A89000526143 /* AddSiteFormModel.swift */; };
+		66180D602AF1C4EE00526143 /* SiteStatusLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66180D5F2AF1C4EE00526143 /* SiteStatusLabel.swift */; };
+		661C28DC2AFD7E4600E2042C /* SiteStatusRequestTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 661C28DB2AFD7E4600E2042C /* SiteStatusRequestTask.swift */; };
+		661C28DE2AFD949700E2042C /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 661C28DD2AFD949700E2042C /* DetailView.swift */; };
+		661C28E02AFDB34E00E2042C /* SiteStatusRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 661C28DF2AFDB34E00E2042C /* SiteStatusRow.swift */; };
+		6643E85B2AF3D70B0030CD43 /* SummaryRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6643E85A2AF3D70B0030CD43 /* SummaryRow.swift */; };
+		6643E85E2AF3D8CA0030CD43 /* SiteNotSelectedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6643E85D2AF3D8CA0030CD43 /* SiteNotSelectedView.swift */; };
+		6643E8622AF3DB1F0030CD43 /* SiteStatusCode+Icon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6643E8612AF3DB1F0030CD43 /* SiteStatusCode+Icon.swift */; };
+		6643E8642AF423560030CD43 /* SiteStatusHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6643E8632AF423560030CD43 /* SiteStatusHeaderView.swift */; };
+		6661DA152AFEA16F00267392 /* UUID+SiteGroupIDs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6661DA142AFEA16F00267392 /* UUID+SiteGroupIDs.swift */; };
+		666414112AFEF12C00023FC4 /* AddSiteScreen+MethodPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 666414102AFEF12C00023FC4 /* AddSiteScreen+MethodPicker.swift */; };
+		666414132AFEF29200023FC4 /* AddSiteScreen+SiteGroupPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 666414122AFEF29200023FC4 /* AddSiteScreen+SiteGroupPicker.swift */; };
 		666F36962AEB1C0500EE6D41 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 666F36952AEB1C0500EE6D41 /* Localizable.xcstrings */; };
+		66A65B192AFCEF4500F57272 /* SiteStatusRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66A65B162AFCEF4500F57272 /* SiteStatusRequest.swift */; };
+		66A65B1A2AFCEF4500F57272 /* SiteStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66A65B172AFCEF4500F57272 /* SiteStatus.swift */; };
+		66A65B1B2AFCEF4500F57272 /* Site.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66A65B182AFCEF4500F57272 /* Site.swift */; };
+		66A65B572AFCF06800F57272 /* PingSchema.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66A65B562AFCF06800F57272 /* PingSchema.swift */; };
+		66A65B592AFCF19200F57272 /* PingModelContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66A65B582AFCF19200F57272 /* PingModelContainer.swift */; };
+		66A65B5C2AFD20ED00F57272 /* Site+Preview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66A65B5B2AFD20ED00F57272 /* Site+Preview.swift */; };
+		66A65B5F2AFD352B00F57272 /* SiteStatusCheckerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66A65B5E2AFD352B00F57272 /* SiteStatusCheckerService.swift */; };
+		66B0C05A2AF0657E00E48C58 /* SiteRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66B0C0592AF0657E00E48C58 /* SiteRow.swift */; };
 		66CC7BE52AEBC96A007BADF2 /* SiteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66CC7BE42AEBC96A007BADF2 /* SiteView.swift */; };
-		66CC7C222AEBCDAC007BADF2 /* PingKit in Frameworks */ = {isa = PBXBuildFile; productRef = 66CC7C212AEBCDAC007BADF2 /* PingKit */; };
 		66CC7C242AEBD295007BADF2 /* AddSiteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66CC7C232AEBD295007BADF2 /* AddSiteView.swift */; };
 		66CC7C292AEBECD7007BADF2 /* SitesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66CC7C282AEBECD7007BADF2 /* SitesView.swift */; };
 		66CC7C2C2AEBF2A3007BADF2 /* SummaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66CC7C2B2AEBF2A3007BADF2 /* SummaryView.swift */; };
@@ -25,9 +47,27 @@
 		66D212482AEA905600A2C4CE /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66D212472AEA905600A2C4CE /* ContentView.swift */; };
 		66D212502AEA905600A2C4CE /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 66D2124F2AEA905600A2C4CE /* Preview Assets.xcassets */; };
 		66D2125A2AEA905600A2C4CE /* MenuItemTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66D212592AEA905600A2C4CE /* MenuItemTests.swift */; };
-		66D212642AEA905600A2C4CE /* SiteTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66D212632AEA905600A2C4CE /* SiteTests.swift */; };
-		66D212662AEA905600A2C4CE /* PingUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66D212652AEA905600A2C4CE /* PingUITestsLaunchTests.swift */; };
+		66D212642AEA905600A2C4CE /* AddAndRemoveSitesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66D212632AEA905600A2C4CE /* AddAndRemoveSitesTests.swift */; };
 		66D212B12AEAF36100A2C4CE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 66D212B02AEAF36100A2C4CE /* Assets.xcassets */; };
+		AF3CB76C2AFE24A1002D51EA /* PingFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF3CB76B2AFE24A1002D51EA /* PingFactory.swift */; };
+		AF3CB76F2AFE262C002D51EA /* PingFactoryProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF3CB76E2AFE262C002D51EA /* PingFactoryProvider.swift */; };
+		AF3CB7712AFE26DE002D51EA /* PingLiveFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF3CB7702AFE26DE002D51EA /* PingLiveFactory.swift */; };
+		AF3CB7732AFE26EB002D51EA /* PingPreviewFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF3CB7722AFE26EB002D51EA /* PingPreviewFactory.swift */; };
+		AF3CB7762AFE2D7B002D51EA /* URLProtocolMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF3CB7752AFE2D7B002D51EA /* URLProtocolMock.swift */; };
+		AF3CB7792AFE3648002D51EA /* UUID+SiteIDs.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF3CB7782AFE3648002D51EA /* UUID+SiteIDs.swift */; };
+		AF3CB77C2AFE3A0E002D51EA /* SiteStatusResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF3CB77B2AFE3A0E002D51EA /* SiteStatusResult.swift */; };
+		AF3CB77E2AFE412F002D51EA /* SiteGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF3CB77D2AFE412F002D51EA /* SiteGroup.swift */; };
+		AF3CB7812AFE4BEA002D51EA /* AddSiteGroupSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF3CB7802AFE4BEA002D51EA /* AddSiteGroupSheetView.swift */; };
+		AF3CB7832AFE4C3C002D51EA /* AddSiteGroupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF3CB7822AFE4C3C002D51EA /* AddSiteGroupView.swift */; };
+		AF3CB7852AFE4CE9002D51EA /* AddSiteGroupFormModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF3CB7842AFE4CE9002D51EA /* AddSiteGroupFormModel.swift */; };
+		AF3CB7882AFE768A002D51EA /* ManageSiteGroupsSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF3CB7872AFE768A002D51EA /* ManageSiteGroupsSheetView.swift */; };
+		AF3CB78A2AFE7752002D51EA /* ManageSiteGroupsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF3CB7892AFE7752002D51EA /* ManageSiteGroupsView.swift */; };
+		AF3CB78C2AFE7903002D51EA /* SiteGroup+Preview.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF3CB78B2AFE7903002D51EA /* SiteGroup+Preview.swift */; };
+		AF3CB78E2AFE8345002D51EA /* NoSiteGroupsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF3CB78D2AFE8345002D51EA /* NoSiteGroupsView.swift */; };
+		AF3CB7902AFE9607002D51EA /* AddAndRemoveSiteGroupsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF3CB78F2AFE9607002D51EA /* AddAndRemoveSiteGroupsTests.swift */; };
+		AF3CB7922AFE96E1002D51EA /* SitesScreen+ActionMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF3CB7912AFE96E1002D51EA /* SitesScreen+ActionMenu.swift */; };
+		AF3CB7942AFE97F1002D51EA /* AddSiteGroupScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF3CB7932AFE97F1002D51EA /* AddSiteGroupScreen.swift */; };
+		AF3CB7962AFE9821002D51EA /* ManageSiteGroupsScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF3CB7952AFE9821002D51EA /* ManageSiteGroupsScreen.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,13 +88,36 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		66049D4B2AF3055E003953C5 /* AddSiteSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddSiteSheetView.swift; sourceTree = "<group>"; };
 		6617DA962AED679A0072DC05 /* AddSiteScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddSiteScreen.swift; sourceTree = "<group>"; };
 		6617DA982AED69C90072DC05 /* SiteScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SiteScreen.swift; sourceTree = "<group>"; };
 		6617DA9A2AED6A4C0072DC05 /* SummaryScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryScreen.swift; sourceTree = "<group>"; };
-		6617DA9C2AED6B200072DC05 /* UITestCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITestCase.swift; sourceTree = "<group>"; };
+		6617DA9C2AED6B200072DC05 /* UITestCaseBase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITestCaseBase.swift; sourceTree = "<group>"; };
 		6617DA9F2AEDC4DF0072DC05 /* NoSitesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoSitesView.swift; sourceTree = "<group>"; };
+		66180D542AF18ADB00526143 /* ProcessInfo+Testing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ProcessInfo+Testing.swift"; sourceTree = "<group>"; };
+		66180D562AF18C7E00526143 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		66180D592AF1A89000526143 /* AddSiteFormModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddSiteFormModel.swift; sourceTree = "<group>"; };
+		66180D5F2AF1C4EE00526143 /* SiteStatusLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SiteStatusLabel.swift; sourceTree = "<group>"; };
+		661C28DB2AFD7E4600E2042C /* SiteStatusRequestTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SiteStatusRequestTask.swift; sourceTree = "<group>"; };
+		661C28DD2AFD949700E2042C /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
+		661C28DF2AFDB34E00E2042C /* SiteStatusRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SiteStatusRow.swift; sourceTree = "<group>"; };
+		6643E85A2AF3D70B0030CD43 /* SummaryRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryRow.swift; sourceTree = "<group>"; };
+		6643E85D2AF3D8CA0030CD43 /* SiteNotSelectedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SiteNotSelectedView.swift; sourceTree = "<group>"; };
+		6643E8612AF3DB1F0030CD43 /* SiteStatusCode+Icon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SiteStatusCode+Icon.swift"; sourceTree = "<group>"; };
+		6643E8632AF423560030CD43 /* SiteStatusHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SiteStatusHeaderView.swift; sourceTree = "<group>"; };
+		6661DA142AFEA16F00267392 /* UUID+SiteGroupIDs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UUID+SiteGroupIDs.swift"; sourceTree = "<group>"; };
+		666414102AFEF12C00023FC4 /* AddSiteScreen+MethodPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AddSiteScreen+MethodPicker.swift"; sourceTree = "<group>"; };
+		666414122AFEF29200023FC4 /* AddSiteScreen+SiteGroupPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AddSiteScreen+SiteGroupPicker.swift"; sourceTree = "<group>"; };
 		666F36952AEB1C0500EE6D41 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 		666F36982AEB226D00EE6D41 /* .swiftlint.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
+		66A65B162AFCEF4500F57272 /* SiteStatusRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SiteStatusRequest.swift; sourceTree = "<group>"; };
+		66A65B172AFCEF4500F57272 /* SiteStatus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SiteStatus.swift; sourceTree = "<group>"; };
+		66A65B182AFCEF4500F57272 /* Site.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Site.swift; sourceTree = "<group>"; };
+		66A65B562AFCF06800F57272 /* PingSchema.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PingSchema.swift; sourceTree = "<group>"; };
+		66A65B582AFCF19200F57272 /* PingModelContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PingModelContainer.swift; sourceTree = "<group>"; };
+		66A65B5B2AFD20ED00F57272 /* Site+Preview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Site+Preview.swift"; sourceTree = "<group>"; };
+		66A65B5E2AFD352B00F57272 /* SiteStatusCheckerService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SiteStatusCheckerService.swift; sourceTree = "<group>"; };
+		66B0C0592AF0657E00E48C58 /* SiteRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SiteRow.swift; sourceTree = "<group>"; };
 		66CC7BE42AEBC96A007BADF2 /* SiteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SiteView.swift; sourceTree = "<group>"; };
 		66CC7C232AEBD295007BADF2 /* AddSiteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddSiteView.swift; sourceTree = "<group>"; };
 		66CC7C282AEBECD7007BADF2 /* SitesView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SitesView.swift; sourceTree = "<group>"; };
@@ -70,13 +133,30 @@
 		66D212552AEA905600A2C4CE /* PingTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PingTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		66D212592AEA905600A2C4CE /* MenuItemTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuItemTests.swift; sourceTree = "<group>"; };
 		66D2125F2AEA905600A2C4CE /* PingUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PingUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		66D212632AEA905600A2C4CE /* SiteTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SiteTests.swift; sourceTree = "<group>"; };
-		66D212652AEA905600A2C4CE /* PingUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PingUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		66D212632AEA905600A2C4CE /* AddAndRemoveSitesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddAndRemoveSitesTests.swift; sourceTree = "<group>"; };
 		66D212722AEA925600A2C4CE /* Ping.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = Ping.xctestplan; sourceTree = "<group>"; };
 		66D212732AEA940500A2C4CE /* PingUI.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = PingUI.xctestplan; sourceTree = "<group>"; };
 		66D212B02AEAF36100A2C4CE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		66D212B22AEAF37900A2C4CE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
-		AFDC620C2AEBA0440082E898 /* PingKit */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = PingKit; sourceTree = "<group>"; };
+		AF3CB76B2AFE24A1002D51EA /* PingFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PingFactory.swift; sourceTree = "<group>"; };
+		AF3CB76E2AFE262C002D51EA /* PingFactoryProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PingFactoryProvider.swift; sourceTree = "<group>"; };
+		AF3CB7702AFE26DE002D51EA /* PingLiveFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PingLiveFactory.swift; sourceTree = "<group>"; };
+		AF3CB7722AFE26EB002D51EA /* PingPreviewFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PingPreviewFactory.swift; sourceTree = "<group>"; };
+		AF3CB7752AFE2D7B002D51EA /* URLProtocolMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLProtocolMock.swift; sourceTree = "<group>"; };
+		AF3CB7782AFE3648002D51EA /* UUID+SiteIDs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UUID+SiteIDs.swift"; sourceTree = "<group>"; };
+		AF3CB77B2AFE3A0E002D51EA /* SiteStatusResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SiteStatusResult.swift; sourceTree = "<group>"; };
+		AF3CB77D2AFE412F002D51EA /* SiteGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SiteGroup.swift; sourceTree = "<group>"; };
+		AF3CB7802AFE4BEA002D51EA /* AddSiteGroupSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddSiteGroupSheetView.swift; sourceTree = "<group>"; };
+		AF3CB7822AFE4C3C002D51EA /* AddSiteGroupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddSiteGroupView.swift; sourceTree = "<group>"; };
+		AF3CB7842AFE4CE9002D51EA /* AddSiteGroupFormModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddSiteGroupFormModel.swift; sourceTree = "<group>"; };
+		AF3CB7872AFE768A002D51EA /* ManageSiteGroupsSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManageSiteGroupsSheetView.swift; sourceTree = "<group>"; };
+		AF3CB7892AFE7752002D51EA /* ManageSiteGroupsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManageSiteGroupsView.swift; sourceTree = "<group>"; };
+		AF3CB78B2AFE7903002D51EA /* SiteGroup+Preview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SiteGroup+Preview.swift"; sourceTree = "<group>"; };
+		AF3CB78D2AFE8345002D51EA /* NoSiteGroupsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoSiteGroupsView.swift; sourceTree = "<group>"; };
+		AF3CB78F2AFE9607002D51EA /* AddAndRemoveSiteGroupsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddAndRemoveSiteGroupsTests.swift; sourceTree = "<group>"; };
+		AF3CB7912AFE96E1002D51EA /* SitesScreen+ActionMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SitesScreen+ActionMenu.swift"; sourceTree = "<group>"; };
+		AF3CB7932AFE97F1002D51EA /* AddSiteGroupScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddSiteGroupScreen.swift; sourceTree = "<group>"; };
+		AF3CB7952AFE9821002D51EA /* ManageSiteGroupsScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManageSiteGroupsScreen.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,7 +164,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				66CC7C222AEBCDAC007BADF2 /* PingKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -108,15 +187,101 @@
 		6617DA9E2AED6B3B0072DC05 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
-				6617DA9C2AED6B200072DC05 /* UITestCase.swift */,
+				6617DA9C2AED6B200072DC05 /* UITestCaseBase.swift */,
 			);
 			path = Utils;
+			sourceTree = "<group>";
+		};
+		66180D582AF18E0000526143 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				66180D542AF18ADB00526143 /* ProcessInfo+Testing.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		66180D5E2AF1C4D600526143 /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				6643E8602AF3DB100030CD43 /* Models */,
+				6643E85F2AF3DB090030CD43 /* Views */,
+			);
+			path = Shared;
+			sourceTree = "<group>";
+		};
+		6643E85C2AF3D8B00030CD43 /* Navigation */ = {
+			isa = PBXGroup;
+			children = (
+				66D212472AEA905600A2C4CE /* ContentView.swift */,
+				661C28DD2AFD949700E2042C /* DetailView.swift */,
+				66CC7C2D2AEBF310007BADF2 /* MenuItem.swift */,
+				6643E85D2AF3D8CA0030CD43 /* SiteNotSelectedView.swift */,
+			);
+			path = Navigation;
+			sourceTree = "<group>";
+		};
+		6643E85F2AF3DB090030CD43 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				66180D5F2AF1C4EE00526143 /* SiteStatusLabel.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		6643E8602AF3DB100030CD43 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				6643E8612AF3DB1F0030CD43 /* SiteStatusCode+Icon.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		66A65B142AFCEF2900F57272 /* SwiftData */ = {
+			isa = PBXGroup;
+			children = (
+				66A65B582AFCF19200F57272 /* PingModelContainer.swift */,
+				66A65B562AFCF06800F57272 /* PingSchema.swift */,
+				66A65B152AFCEF3500F57272 /* Models */,
+			);
+			path = SwiftData;
+			sourceTree = "<group>";
+		};
+		66A65B152AFCEF3500F57272 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				AF3CB77D2AFE412F002D51EA /* SiteGroup.swift */,
+				66A65B182AFCEF4500F57272 /* Site.swift */,
+				66A65B172AFCEF4500F57272 /* SiteStatus.swift */,
+				66A65B162AFCEF4500F57272 /* SiteStatusRequest.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		66A65B5A2AFD20DC00F57272 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				AF3CB78B2AFE7903002D51EA /* SiteGroup+Preview.swift */,
+				66A65B5B2AFD20ED00F57272 /* Site+Preview.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		66A65B5D2AFD351900F57272 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				66A65B5E2AFD352B00F57272 /* SiteStatusCheckerService.swift */,
+				661C28DB2AFD7E4600E2042C /* SiteStatusRequestTask.swift */,
+				AF3CB77B2AFE3A0E002D51EA /* SiteStatusResult.swift */,
+			);
+			path = Services;
 			sourceTree = "<group>";
 		};
 		66CC7BE32AEBC961007BADF2 /* Site */ = {
 			isa = PBXGroup;
 			children = (
 				66CC7BE42AEBC96A007BADF2 /* SiteView.swift */,
+				6643E8632AF423560030CD43 /* SiteStatusHeaderView.swift */,
+				661C28DF2AFDB34E00E2042C /* SiteStatusRow.swift */,
 			);
 			path = Site;
 			sourceTree = "<group>";
@@ -131,7 +296,9 @@
 		66CC7C252AEBD2AE007BADF2 /* AddSite */ = {
 			isa = PBXGroup;
 			children = (
+				66049D4B2AF3055E003953C5 /* AddSiteSheetView.swift */,
 				66CC7C232AEBD295007BADF2 /* AddSiteView.swift */,
+				66180D592AF1A89000526143 /* AddSiteFormModel.swift */,
 			);
 			path = AddSite;
 			sourceTree = "<group>";
@@ -141,6 +308,8 @@
 			children = (
 				66CC7C282AEBECD7007BADF2 /* SitesView.swift */,
 				6617DA9F2AEDC4DF0072DC05 /* NoSitesView.swift */,
+				66B0C0592AF0657E00E48C58 /* SiteRow.swift */,
+				6643E85A2AF3D70B0030CD43 /* SummaryRow.swift */,
 			);
 			path = Sites;
 			sourceTree = "<group>";
@@ -158,8 +327,13 @@
 			children = (
 				66CC7C302AEC2464007BADF2 /* Screen.swift */,
 				66CC7C322AEC2488007BADF2 /* SitesScreen.swift */,
-				6617DA962AED679A0072DC05 /* AddSiteScreen.swift */,
 				6617DA9A2AED6A4C0072DC05 /* SummaryScreen.swift */,
+				AF3CB7912AFE96E1002D51EA /* SitesScreen+ActionMenu.swift */,
+				6617DA962AED679A0072DC05 /* AddSiteScreen.swift */,
+				666414122AFEF29200023FC4 /* AddSiteScreen+SiteGroupPicker.swift */,
+				666414102AFEF12C00023FC4 /* AddSiteScreen+MethodPicker.swift */,
+				AF3CB7932AFE97F1002D51EA /* AddSiteGroupScreen.swift */,
+				AF3CB7952AFE9821002D51EA /* ManageSiteGroupsScreen.swift */,
 				6617DA982AED69C90072DC05 /* SiteScreen.swift */,
 			);
 			path = Screens;
@@ -169,7 +343,6 @@
 			isa = PBXGroup;
 			children = (
 				66D212442AEA905600A2C4CE /* Ping */,
-				AFDC620B2AEBA0110082E898 /* Packages */,
 				66D212582AEA905600A2C4CE /* PingTests */,
 				66D212622AEA905600A2C4CE /* PingUITests */,
 				66D212722AEA925600A2C4CE /* Ping.xctestplan */,
@@ -194,12 +367,19 @@
 			isa = PBXGroup;
 			children = (
 				66D212452AEA905600A2C4CE /* PingApp.swift */,
-				66D212472AEA905600A2C4CE /* ContentView.swift */,
-				66CC7C2D2AEBF310007BADF2 /* MenuItem.swift */,
+				66180D562AF18C7E00526143 /* AppDelegate.swift */,
+				6643E85C2AF3D8B00030CD43 /* Navigation */,
 				66CC7C272AEBECD7007BADF2 /* Sites */,
 				66CC7C2A2AEBF296007BADF2 /* Summary */,
+				AF3CB77F2AFE4BD5002D51EA /* AddSiteGroup */,
+				AF3CB7862AFE7657002D51EA /* ManageSiteGroups */,
 				66CC7C252AEBD2AE007BADF2 /* AddSite */,
 				66CC7BE32AEBC961007BADF2 /* Site */,
+				66180D5E2AF1C4D600526143 /* Shared */,
+				66A65B5D2AFD351900F57272 /* Services */,
+				66A65B142AFCEF2900F57272 /* SwiftData */,
+				AF3CB76D2AFE260F002D51EA /* Factories */,
+				66180D582AF18E0000526143 /* Extensions */,
 				66D212AF2AEAF36100A2C4CE /* Resources */,
 				66D2124D2AEA905600A2C4CE /* Ping.entitlements */,
 				66D212B22AEAF37900A2C4CE /* Info.plist */,
@@ -211,6 +391,8 @@
 		66D2124E2AEA905600A2C4CE /* Preview Content */ = {
 			isa = PBXGroup;
 			children = (
+				66A65B5A2AFD20DC00F57272 /* Models */,
+				AF3CB7742AFE2D69002D51EA /* Mocks */,
 				66D2124F2AEA905600A2C4CE /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
@@ -219,7 +401,7 @@
 		66D212582AEA905600A2C4CE /* PingTests */ = {
 			isa = PBXGroup;
 			children = (
-				66D212592AEA905600A2C4CE /* MenuItemTests.swift */,
+				AF3CB77A2AFE369B002D51EA /* Navigation */,
 			);
 			path = PingTests;
 			sourceTree = "<group>";
@@ -227,10 +409,11 @@
 		66D212622AEA905600A2C4CE /* PingUITests */ = {
 			isa = PBXGroup;
 			children = (
-				6617DA9E2AED6B3B0072DC05 /* Utils */,
+				66D212632AEA905600A2C4CE /* AddAndRemoveSitesTests.swift */,
+				AF3CB78F2AFE9607002D51EA /* AddAndRemoveSiteGroupsTests.swift */,
 				66CC7C2F2AEC2451007BADF2 /* Screens */,
-				66D212632AEA905600A2C4CE /* SiteTests.swift */,
-				66D212652AEA905600A2C4CE /* PingUITestsLaunchTests.swift */,
+				AF3CB7772AFE362E002D51EA /* Mocks */,
+				6617DA9E2AED6B3B0072DC05 /* Utils */,
 			);
 			path = PingUITests;
 			sourceTree = "<group>";
@@ -244,12 +427,60 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
-		AFDC620B2AEBA0110082E898 /* Packages */ = {
+		AF3CB76D2AFE260F002D51EA /* Factories */ = {
 			isa = PBXGroup;
 			children = (
-				AFDC620C2AEBA0440082E898 /* PingKit */,
+				AF3CB76E2AFE262C002D51EA /* PingFactoryProvider.swift */,
+				AF3CB76B2AFE24A1002D51EA /* PingFactory.swift */,
+				AF3CB7702AFE26DE002D51EA /* PingLiveFactory.swift */,
+				AF3CB7722AFE26EB002D51EA /* PingPreviewFactory.swift */,
 			);
-			path = Packages;
+			path = Factories;
+			sourceTree = "<group>";
+		};
+		AF3CB7742AFE2D69002D51EA /* Mocks */ = {
+			isa = PBXGroup;
+			children = (
+				AF3CB7752AFE2D7B002D51EA /* URLProtocolMock.swift */,
+			);
+			path = Mocks;
+			sourceTree = "<group>";
+		};
+		AF3CB7772AFE362E002D51EA /* Mocks */ = {
+			isa = PBXGroup;
+			children = (
+				AF3CB7782AFE3648002D51EA /* UUID+SiteIDs.swift */,
+				6661DA142AFEA16F00267392 /* UUID+SiteGroupIDs.swift */,
+			);
+			path = Mocks;
+			sourceTree = "<group>";
+		};
+		AF3CB77A2AFE369B002D51EA /* Navigation */ = {
+			isa = PBXGroup;
+			children = (
+				66D212592AEA905600A2C4CE /* MenuItemTests.swift */,
+			);
+			path = Navigation;
+			sourceTree = "<group>";
+		};
+		AF3CB77F2AFE4BD5002D51EA /* AddSiteGroup */ = {
+			isa = PBXGroup;
+			children = (
+				AF3CB7802AFE4BEA002D51EA /* AddSiteGroupSheetView.swift */,
+				AF3CB7822AFE4C3C002D51EA /* AddSiteGroupView.swift */,
+				AF3CB7842AFE4CE9002D51EA /* AddSiteGroupFormModel.swift */,
+			);
+			path = AddSiteGroup;
+			sourceTree = "<group>";
+		};
+		AF3CB7862AFE7657002D51EA /* ManageSiteGroups */ = {
+			isa = PBXGroup;
+			children = (
+				AF3CB7872AFE768A002D51EA /* ManageSiteGroupsSheetView.swift */,
+				AF3CB7892AFE7752002D51EA /* ManageSiteGroupsView.swift */,
+				AF3CB78D2AFE8345002D51EA /* NoSiteGroupsView.swift */,
+			);
+			path = ManageSiteGroups;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -270,7 +501,6 @@
 			);
 			name = Ping;
 			packageProductDependencies = (
-				66CC7C212AEBCDAC007BADF2 /* PingKit */,
 			);
 			productName = Ping;
 			productReference = 66D212422AEA905600A2C4CE /* Ping.app */;
@@ -409,14 +639,48 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				66A65B572AFCF06800F57272 /* PingSchema.swift in Sources */,
+				66A65B592AFCF19200F57272 /* PingModelContainer.swift in Sources */,
+				AF3CB76C2AFE24A1002D51EA /* PingFactory.swift in Sources */,
+				66180D572AF18C7E00526143 /* AppDelegate.swift in Sources */,
 				66CC7BE52AEBC96A007BADF2 /* SiteView.swift in Sources */,
 				66CC7C2E2AEBF310007BADF2 /* MenuItem.swift in Sources */,
 				66CC7C242AEBD295007BADF2 /* AddSiteView.swift in Sources */,
+				66180D602AF1C4EE00526143 /* SiteStatusLabel.swift in Sources */,
+				66180D552AF18ADB00526143 /* ProcessInfo+Testing.swift in Sources */,
+				6643E85B2AF3D70B0030CD43 /* SummaryRow.swift in Sources */,
+				AF3CB76F2AFE262C002D51EA /* PingFactoryProvider.swift in Sources */,
+				661C28DC2AFD7E4600E2042C /* SiteStatusRequestTask.swift in Sources */,
+				AF3CB7832AFE4C3C002D51EA /* AddSiteGroupView.swift in Sources */,
+				AF3CB7882AFE768A002D51EA /* ManageSiteGroupsSheetView.swift in Sources */,
+				66A65B1B2AFCEF4500F57272 /* Site.swift in Sources */,
 				66CC7C292AEBECD7007BADF2 /* SitesView.swift in Sources */,
+				66A65B192AFCEF4500F57272 /* SiteStatusRequest.swift in Sources */,
+				AF3CB7852AFE4CE9002D51EA /* AddSiteGroupFormModel.swift in Sources */,
+				AF3CB78E2AFE8345002D51EA /* NoSiteGroupsView.swift in Sources */,
+				66A65B5F2AFD352B00F57272 /* SiteStatusCheckerService.swift in Sources */,
+				66049D4C2AF3055E003953C5 /* AddSiteSheetView.swift in Sources */,
 				6617DAA02AEDC4DF0072DC05 /* NoSitesView.swift in Sources */,
+				AF3CB78C2AFE7903002D51EA /* SiteGroup+Preview.swift in Sources */,
+				6643E8622AF3DB1F0030CD43 /* SiteStatusCode+Icon.swift in Sources */,
 				66D212482AEA905600A2C4CE /* ContentView.swift in Sources */,
+				6643E8642AF423560030CD43 /* SiteStatusHeaderView.swift in Sources */,
+				661C28DE2AFD949700E2042C /* DetailView.swift in Sources */,
+				AF3CB7712AFE26DE002D51EA /* PingLiveFactory.swift in Sources */,
 				66D212462AEA905600A2C4CE /* PingApp.swift in Sources */,
 				66CC7C2C2AEBF2A3007BADF2 /* SummaryView.swift in Sources */,
+				66A65B1A2AFCEF4500F57272 /* SiteStatus.swift in Sources */,
+				66B0C05A2AF0657E00E48C58 /* SiteRow.swift in Sources */,
+				AF3CB77E2AFE412F002D51EA /* SiteGroup.swift in Sources */,
+				AF3CB7732AFE26EB002D51EA /* PingPreviewFactory.swift in Sources */,
+				6643E85E2AF3D8CA0030CD43 /* SiteNotSelectedView.swift in Sources */,
+				66180D5A2AF1A89000526143 /* AddSiteFormModel.swift in Sources */,
+				66A65B5C2AFD20ED00F57272 /* Site+Preview.swift in Sources */,
+				661C28E02AFDB34E00E2042C /* SiteStatusRow.swift in Sources */,
+				AF3CB7812AFE4BEA002D51EA /* AddSiteGroupSheetView.swift in Sources */,
+				AF3CB7762AFE2D7B002D51EA /* URLProtocolMock.swift in Sources */,
+				AF3CB78A2AFE7752002D51EA /* ManageSiteGroupsView.swift in Sources */,
+				AF3CB77C2AFE3A0E002D51EA /* SiteStatusResult.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -433,13 +697,20 @@
 			buildActionMask = 2147483647;
 			files = (
 				66CC7C332AEC2488007BADF2 /* SitesScreen.swift in Sources */,
-				66D212662AEA905600A2C4CE /* PingUITestsLaunchTests.swift in Sources */,
+				AF3CB7962AFE9821002D51EA /* ManageSiteGroupsScreen.swift in Sources */,
 				6617DA992AED69C90072DC05 /* SiteScreen.swift in Sources */,
-				66D212642AEA905600A2C4CE /* SiteTests.swift in Sources */,
+				AF3CB7942AFE97F1002D51EA /* AddSiteGroupScreen.swift in Sources */,
+				66D212642AEA905600A2C4CE /* AddAndRemoveSitesTests.swift in Sources */,
 				6617DA9B2AED6A4C0072DC05 /* SummaryScreen.swift in Sources */,
-				6617DA9D2AED6B200072DC05 /* UITestCase.swift in Sources */,
+				AF3CB7792AFE3648002D51EA /* UUID+SiteIDs.swift in Sources */,
+				AF3CB7902AFE9607002D51EA /* AddAndRemoveSiteGroupsTests.swift in Sources */,
+				6617DA9D2AED6B200072DC05 /* UITestCaseBase.swift in Sources */,
+				6661DA152AFEA16F00267392 /* UUID+SiteGroupIDs.swift in Sources */,
+				666414132AFEF29200023FC4 /* AddSiteScreen+SiteGroupPicker.swift in Sources */,
+				666414112AFEF12C00023FC4 /* AddSiteScreen+MethodPicker.swift in Sources */,
 				66CC7C312AEC2464007BADF2 /* Screen.swift in Sources */,
 				6617DA972AED679A0072DC05 /* AddSiteScreen.swift in Sources */,
+				AF3CB7922AFE96E1002D51EA /* SitesScreen+ActionMenu.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -519,6 +790,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_STRICT_CONCURRENCY = complete;
 			};
 			name = Debug;
 		};
@@ -574,6 +846,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_STRICT_CONCURRENCY = complete;
 			};
 			name = Release;
 		};
@@ -602,8 +875,8 @@
 				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphoneos*]" = UIStatusBarStyleDefault;
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MARKETING_VERSION = 1.0.0;
@@ -643,8 +916,8 @@
 				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphoneos*]" = UIStatusBarStyleDefault;
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MARKETING_VERSION = 1.0.0;
@@ -674,6 +947,7 @@
 				SDKROOT = auto;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
 				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_STRICT_CONCURRENCY = minimal;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Ping.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Ping";
@@ -696,6 +970,7 @@
 				SDKROOT = auto;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
 				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_STRICT_CONCURRENCY = minimal;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Ping.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Ping";
@@ -785,13 +1060,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCSwiftPackageProductDependency section */
-		66CC7C212AEBCDAC007BADF2 /* PingKit */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = PingKit;
-		};
-/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 66D2123A2AEA905600A2C4CE /* Project object */;
 }

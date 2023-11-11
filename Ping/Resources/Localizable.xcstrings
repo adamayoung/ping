@@ -4,6 +4,27 @@
     "" : {
 
     },
+    "%@ %@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$@ %2$@"
+          }
+        }
+      }
+    },
+    "%@_IS_UP_AND_RUNNING" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "**%@** is up and running"
+          }
+        }
+      }
+    },
     "ADD" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -21,7 +42,38 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Add site"
+            "value" : "Add Site"
+          }
+        }
+      }
+    },
+    "ADD_SITE_GROUP" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Add Site Group"
+          }
+        }
+      }
+    },
+    "ADD_SITE_GROUP_TO_GET_STARTED" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Add a Site Group to get started."
+          }
+        }
+      }
+    },
+    "ADD_SITE_TO_GET_STARTED" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Add a site to get started."
           }
         }
       }
@@ -33,6 +85,37 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Cancel"
+          }
+        }
+      }
+    },
+    "CHECK_ALL_SITE_STATUSES" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Check all Site Statuses"
+          }
+        }
+      }
+    },
+    "CHECKING_%@" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Checking **%@**..."
+          }
+        }
+      }
+    },
+    "CLOSE" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Close"
           }
         }
       }
@@ -67,12 +150,75 @@
         }
       }
     },
+    "ERROR" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Error"
+          }
+        }
+      }
+    },
+    "GET" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "GET"
+          }
+        }
+      }
+    },
+    "MANAGED_SITE_GROUPS" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Manage Site Groups"
+          }
+        }
+      }
+    },
+    "METHOD" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Method"
+          }
+        }
+      }
+    },
     "NAME" : {
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Name"
+          }
+        }
+      }
+    },
+    "NO_GROUP_ITEM" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "<No Group>"
+          }
+        }
+      }
+    },
+    "NO_SITE_GROUPS" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No Site Groups"
           }
         }
       }
@@ -98,6 +244,87 @@
         }
       }
     },
+    "OPTIONS" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Options"
+          }
+        }
+      }
+    },
+    "OTHER" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Other"
+          }
+        }
+      }
+    },
+    "PREVIOUS_STATUS_CHECKS" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Previous Status Checks"
+          }
+        }
+      }
+    },
+    "REFRESH" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Refresh"
+          }
+        }
+      }
+    },
+    "REFRESH_SITE_STATUS" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Refresh Site Status"
+          }
+        }
+      }
+    },
+    "REFRESH_SITE_STATUSES" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Refresh Site Statuses"
+          }
+        }
+      }
+    },
+    "SITE_GROUP" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Site Group"
+          }
+        }
+      }
+    },
+    "SITE_GROUPS" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Site Groups"
+          }
+        }
+      }
+    },
     "SITE_NAME" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -105,6 +332,36 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Name"
+          }
+        }
+      }
+    },
+    "SITE_STATUS_FAILURE" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Failed"
+          }
+        }
+      }
+    },
+    "SITE_STATUS_SUCCESS" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Success"
+          }
+        }
+      }
+    },
+    "SITE_STATUS_UNKNOWN" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Unknown"
           }
         }
       }
@@ -120,12 +377,95 @@
         }
       }
     },
+    "SITES_IN_A_DELETED_GROUP_WILL_NOT_BE_DELETED" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sites in a deleted group will not be deleted."
+          }
+        }
+      }
+    },
+    "SITES_MENU" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sites Menu"
+          }
+        }
+      }
+    },
+    "STATUS" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Status"
+          }
+        }
+      }
+    },
+    "STATUS_OF_%@_IS_UNKNOWN" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Status of **%@** is unknown"
+          }
+        }
+      }
+    },
     "SUMMARY" : {
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Summary"
+          }
+        }
+      }
+    },
+    "TIMEOUT" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Timeout"
+          }
+        }
+      }
+    },
+    "TIMEOUT_MS" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Timeout (ms)"
+          }
+        }
+      }
+    },
+    "TROUBLE_LOADING_%@" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Trouble loading **%@**"
+          }
+        }
+      }
+    },
+    "UNIT_MS" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ms"
           }
         }
       }

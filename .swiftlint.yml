@@ -23,3 +23,5 @@ attributes:
   always_on_same_line:
     - "@Environment"
     - "@AppStorage"
+    - "@UIApplicationDelegateAdaptor"
+    - "@Query"

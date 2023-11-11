@@ -5,44 +5,44 @@
 //  Created by Adam Young on 27/10/2023.
 //
 
-import PingKit
+import SwiftData
 import SwiftUI
 
 struct AddSiteView: View {
 
-    @Environment(PingStore.self) private var store
+    @Environment(\.modelContext) private var modelContext
+    @Environment(SiteStatusCheckerService.self) private var siteStatusCheckerService
     @Environment(\.dismiss) private var dismiss
 
-    @State private var isValid = false
-    @State private var name: String = ""
-    @FocusState private var nameFieldIsFocused: Bool
-    @State private var url: String = ""
-    @FocusState private var urlFieldIsFocused: Bool
+    @Query(sort: [SortDescriptor(\SiteGroup.name, comparator: .localizedStandard)]) private var siteGroups: [SiteGroup]
+
+    @State private var formModel = AddSiteFormModel()
+    @State private var isAddingSite = false
+    @FocusState private var focusedField: Field?
+
+    enum Field: Int, Hashable {
+        case siteName
+        case siteURL
+        case timeout
+    }
 
     var body: some View {
         Form {
             Section {
-                TextField("SITE_NAME", text: $name)
-                    .focused($nameFieldIsFocused)
-                    .accessibilityIdentifier("siteNameField")
+                siteNameField
+                siteURLField
+                siteGroupPicker
+            }
 
-                TextField("URL", text: $url)
-                    #if os(iOS)
-                    .keyboardType(.URL)
-                    .textInputAutocapitalization(.never)
-                    #endif
-                    .disableAutocorrection(true)
-                    .textContentType(.URL)
-                    .focused($urlFieldIsFocused)
-                    .accessibilityIdentifier("siteURLField")
+            Section("OPTIONS") {
+                methodPicker
+                timeoutField
             }
         }
-        .accessibilityIdentifier("addSiteView")
+        .formStyle(.grouped)
+        .interactiveDismissDisabled(isAddingSite)
         .onAppear {
-            nameFieldIsFocused = true
-        }
-        .onChange(of: url) { _, _ in
-            validateForm()
+            focusedField = .siteName
         }
         .navigationTitle("ADD_SITE")
         #if os(iOS)
@@ -55,8 +55,9 @@ struct AddSiteView: View {
                 } label: {
                     Text("CANCEL")
                 }
-                .accessibilityIdentifier("cancelButton")
-                .accessibilityLabel("CANCEL")
+                .help("CANCEL")
+                .disabled(isAddingSite)
+                .accessibilityIdentifier("cancelAddSiteButton")
             }
 
             ToolbarItem(placement: .primaryAction) {
@@ -65,42 +66,113 @@ struct AddSiteView: View {
                 } label: {
                     Text("ADD")
                 }
-                .accessibilityIdentifier("addButton")
-                .accessibilityLabel("ADD_SITE")
-                .disabled(!isValid)
+                .help("ADD_SITE")
+                .accessibilityIdentifier("addSiteButton")
+                .disabled(!formModel.isValid)
             }
         }
     }
+
+    private var siteNameField: some View {
+        TextField("SITE_NAME", text: $formModel.name)
+            .submitLabel(.next)
+            .focused($focusedField, equals: .siteName)
+            .onSubmit { focusedField = .siteURL }
+            .accessibilityIdentifier("siteNameField")
+    }
+
+    private var siteURLField: some View {
+        TextField("URL", text: $formModel.url)
+            #if os(iOS)
+            .keyboardType(.URL)
+            .textInputAutocapitalization(.never)
+            #endif
+            .submitLabel(.return)
+            .disableAutocorrection(true)
+            .textContentType(.URL)
+            .focused($focusedField, equals: .siteURL)
+            .onSubmit { focusedField = .timeout }
+            .accessibilityIdentifier("siteURLField")
+    }
+
+    private var siteGroupPicker: some View {
+        Picker("SITE_GROUP", selection: $formModel.siteGroup) {
+            ForEach(siteGroups) { siteGroup in
+                Text(verbatim: siteGroup.name)
+                    .tag(siteGroup as SiteGroup?)
+                    .accessibilityIdentifier("siteSiteGroupPickerItem-\(siteGroup.id)")
+            }
+
+            Text("NO_GROUP_ITEM")
+                .tag(nil as SiteGroup?)
+        }
+        .accessibilityIdentifier("siteGroupPicker")
+    }
+
+    private var methodPicker: some View {
+        Picker("METHOD", selection: $formModel.method) {
+            ForEach(AddSiteFormModel.Method.allCases, id: \.self) {
+                Text($0.localizedName)
+                    .accessibilityIdentifier("siteMethodPickerItem-\($0.rawValue)")
+            }
+        }
+        .accessibilityIdentifier("siteMethodPicker")
+    }
+
+    #if os(iOS)
+    @MainActor private var timeoutField: some View {
+        LabeledContent("TIMEOUT") {
+            HStack {
+                TextField("TIMEOUT", value: $formModel.timeout, formatter: NumberFormatter())
+                    .multilineTextAlignment(.trailing)
+                    .submitLabel(.next)
+                    .focused($focusedField, equals: .timeout)
+                    .onSubmit { addSite() }
+                    .accessibilityIdentifier("siteTimeoutField")
+                Text("UNIT_MS")
+                    .foregroundStyle(.primary)
+            }
+        }
+    }
+    #endif
+
+    #if os(macOS)
+    @MainActor private var timeoutField: some View {
+        TextField("TIMEOUT_MS", value: $formModel.timeout, formatter: NumberFormatter())
+            .multilineTextAlignment(.trailing)
+            .submitLabel(.next)
+            .focused($focusedField, equals: .timeout)
+            .onSubmit { addSite() }
+            .accessibilityIdentifier("siteTimeoutField")
+    }
+    #endif
 
 }
 
 extension AddSiteView {
 
-    private func validateForm() {
-        if name.isEmpty {
-            isValid = false
-            return
-        }
-
-        let url = URL(string: url)
-
-        if url?.scheme == nil || url?.host() == nil {
-            isValid = false
-            return
-        }
-
-        isValid = true
-    }
-
+    @MainActor
     private func addSite() {
-        let site = Site(
-            id: UUID(),
-            name: name,
-            url: URL(string: url)!
-        )
+        guard let site = formModel.site else {
+            return
+        }
 
-        Task {
-            await store.send(.sites(.add(site)))
+        isAddingSite = true
+
+        withAnimation {
+            modelContext.insert(site)
+        }
+
+        do {
+            try modelContext.save()
+        } catch let error {
+            fatalError(error.localizedDescription)
+        }
+
+        if let requestTask = SiteStatusRequestTask(siteRequest: site.request) {
+            Task {
+                await siteStatusCheckerService.checkSiteStatus(using: requestTask)
+            }
         }
 
         dismiss()
@@ -109,8 +181,10 @@ extension AddSiteView {
 }
 
 #Preview {
-    let store = PingStore.preview
+    let modelContainer = PingFactory.shared.modelContainer
+    let statusCheckerService = PingFactory.shared.siteStatusCheckerService
 
     return AddSiteView()
-        .environment(store)
+        .modelContainer(modelContainer)
+        .environment(statusCheckerService)
 }

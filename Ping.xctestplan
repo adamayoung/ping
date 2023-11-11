@@ -25,27 +25,6 @@
         "identifier" : "66D212542AEA905600A2C4CE",
         "name" : "PingTests"
       }
-    },
-    {
-      "target" : {
-        "containerPath" : "container:Packages\/PingKit",
-        "identifier" : "PingKitTests",
-        "name" : "PingKitTests"
-      }
-    },
-    {
-      "target" : {
-        "containerPath" : "container:Packages\/PingKit",
-        "identifier" : "PingDomainTests",
-        "name" : "PingDomainTests"
-      }
-    },
-    {
-      "target" : {
-        "containerPath" : "container:Packages\/PingKit",
-        "identifier" : "PingDataTests",
-        "name" : "PingDataTests"
-      }
     }
   ],
   "version" : 1

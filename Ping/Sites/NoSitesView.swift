@@ -9,12 +9,22 @@ import SwiftUI
 
 struct NoSitesView: View {
 
+    var addSite: () -> Void
+
     var body: some View {
-        ContentUnavailableView("NO_SITES", systemImage: "globe")
+        ContentUnavailableView {
+            Label("NO_SITES", systemImage: "globe")
+        } description: {
+            Text("ADD_SITE_TO_GET_STARTED")
+        } actions: {
+            Button("ADD_SITE") {
+                addSite()
+            }
+        }
     }
 
 }
 
 #Preview {
-    NoSitesView()
+    NoSitesView(addSite: { })
 }
