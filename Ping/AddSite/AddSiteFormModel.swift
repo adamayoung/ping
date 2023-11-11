@@ -54,9 +54,9 @@ final class AddSiteFormModel {
 
 extension AddSiteFormModel {
 
-    enum Method: CaseIterable {
+    enum Method: String, CaseIterable {
 
-        case get
+        case get = "GET"
 
         var localizedName: LocalizedStringKey {
             switch self {
@@ -79,16 +79,20 @@ extension AddSiteFormModel {
     }
 
     private static func isValid(urlString: String) -> Bool {
-        guard
-            let url = URL(string: urlString),
-            let scheme = url.scheme,
-            let host = url.host()
-        else {
+        guard let url = URL(string: urlString) else {
             return false
         }
 
-        guard scheme == "https" else {
+        guard let scheme = url.scheme else {
             return false
+        }
+
+        guard let host = url.host() else {
+            return true
+        }
+
+        guard scheme == "https" else {
+            return true
         }
 
         guard host.contains(".") && !host.hasSuffix(".") else {

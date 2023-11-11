@@ -13,6 +13,9 @@ struct ManageSiteGroupsSheetView: View {
         NavigationStack {
             ManageSiteGroupsView()
         }
+        #if os(macOS)
+        .frame(width: 500, height: 300)
+        #endif
     }
 
 }

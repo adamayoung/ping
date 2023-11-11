@@ -36,7 +36,7 @@ struct SitesScreen: Screen {
     }
 
     @discardableResult
-    func swipLeftAndDeleteSite(withID id: UUID) -> SitesScreen {
+    func deleteSite(withID id: UUID) -> SitesScreen {
         siteNavigationLink(withID: id).swipeLeft()
         rowDeleteButton.tap()
         return self
@@ -80,8 +80,7 @@ extension SitesScreen {
 
     private var actionToolbarMenuButton: XCUIElement {
         #if os(macOS)
-        app.toolbars.children(matching: .button)["Add Site"]
-            .children(matching: .button)[Identifiers.actionToolbarMenuButton]
+        app.toolbars.popUpButtons[Identifiers.actionToolbarMenuButton]
         #else
         app.buttons[Identifiers.actionToolbarMenuButton]
         #endif
@@ -96,7 +95,11 @@ extension SitesScreen {
     }
 
     private func siteNavigationLink(withName name: String) -> XCUIElement {
+        #if os(macOS)
+        sidebar.buttons[name]
+        #else
         sidebar.buttons.staticTexts[name]
+        #endif
     }
 
     private var rowDeleteButton: XCUIElement {

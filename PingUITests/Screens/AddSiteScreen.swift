@@ -21,8 +21,23 @@ struct AddSiteScreen: Screen {
     @discardableResult
     func typeURL(_ url: String) -> Self {
         urlField.tap()
+        urlField.typeText("https")
+        urlField.typeKey(";", modifierFlags: .shift)
+        urlField.typeText("//")
         urlField.typeText(url)
         return self
+    }
+
+    @discardableResult
+    func tapSiteGroupPicker() -> AddSiteScreen.SiteGroupPicker {
+        siteGroupPicker.tap()
+        return AddSiteScreen.SiteGroupPicker(app: app)
+    }
+
+    @discardableResult
+    func tapMethodPicker() -> AddSiteScreen.MethodPicker {
+        methodPicker.tap()
+        return AddSiteScreen.MethodPicker(app: app)
     }
 
     @discardableResult
@@ -57,6 +72,7 @@ extension AddSiteScreen {
     private enum Identifiers {
         static let nameField = "siteNameField"
         static let urlField = "siteURLField"
+        static let siteGroupPicker = "siteGroupPicker"
         static let methodPicker = "siteMethodPicker"
         static let timeoutField = "siteTimeoutField"
         static let addButton = "addSiteButton"
@@ -79,9 +95,17 @@ extension AddSiteScreen {
         #endif
     }
 
+    private var siteGroupPicker: XCUIElement {
+        #if os(macOS)
+        app.sheets.groups.popUpButtons[Identifiers.siteGroupPicker]
+        #else
+        app.pickers[Identifiers.siteGroupPicker]
+        #endif
+    }
+
     private var methodPicker: XCUIElement {
         #if os(macOS)
-        app.sheets.groups.pickers[Identifiers.methodPicker]
+        app.sheets.groups.popUpButtons[Identifiers.methodPicker]
         #else
         app.pickers[Identifiers.methodPicker]
         #endif
@@ -89,7 +113,7 @@ extension AddSiteScreen {
 
     private var timeoutField: XCUIElement {
         #if os(macOS)
-        app.sheets.groups.textFields[Identifiers.siteTimeoutField]
+        app.sheets.groups.textFields[Identifiers.timeoutField]
         #else
         app.textFields[Identifiers.timeoutField]
         #endif
@@ -109,6 +133,14 @@ extension AddSiteScreen {
         #else
         app.buttons[Identifiers.cancelButton]
         #endif
+    }
+
+}
+
+extension AddSiteScreen {
+
+    enum MethodPickerItem: String {
+        case get = "GET"
     }
 
 }

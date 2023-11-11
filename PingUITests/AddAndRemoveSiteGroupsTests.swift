@@ -1,5 +1,5 @@
 //
-//  ManageSiteGroupsTests.swift
+//  AddAndRemoveSiteGroupsTests.swift
 //  PingUITests
 //
 //  Created by Adam Young on 10/11/2023.
@@ -9,22 +9,23 @@ import Foundation
 
 import XCTest
 
-final class ManageSiteGroupsTests: UITestCaseBase {
+final class AddAndRemoveSiteGroupsTests: UITestCaseBase {
 
     func testAddingNewSiteGroup() {
         let siteGroupName = "Test Site Group"
 
         initialScreen
             .tapSitesActionMenuButton()
-            .tapManageSiteGroupsButton()
-            .tapAddButton()
+            .tapAddSiteGroupButton()
             .typeName(siteGroupName)
             .tapAddButton()
-            .assertSite(withName: siteGroupName, isPresent: true)
+            .tapSitesActionMenuButton()
+            .tapManageSiteGroupsButton()
+            .assertSiteGroup(withName: siteGroupName, isPresent: true)
     }
 
     func testDeleteGroup() {
-        let siteGroupID = UUID.developmentSiteGroupIDPreview
+        let siteGroupID = UUID.developmentSiteGroup
 
         initialScreen
             .tapSitesActionMenuButton()

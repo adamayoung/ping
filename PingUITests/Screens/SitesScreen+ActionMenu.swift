@@ -61,8 +61,7 @@ extension SitesScreen.ActionMenu {
 
     private var addSiteButton: XCUIElement {
         #if os(macOS)
-        app.toolbars.children(matching: .button)["Add Site"]
-            .children(matching: .button)[Identifiers.addSiteToolbarMenuButton]
+        app.toolbars.menuItems[Identifiers.addSiteToolbarMenuButton]
         #else
         app.buttons[Identifiers.addSiteToolbarMenuButton]
         #endif
@@ -70,8 +69,7 @@ extension SitesScreen.ActionMenu {
 
     private var addSiteGroupButton: XCUIElement {
         #if os(macOS)
-        app.toolbars.children(matching: .button)["Add Site"]
-            .children(matching: .button)[Identifiers.addSiteGroupToolbarMenuButton]
+        app.toolbars.menuItems[Identifiers.addSiteGroupToolbarMenuButton]
         #else
         app.buttons[Identifiers.addSiteGroupToolbarMenuButton]
         #endif
@@ -79,8 +77,7 @@ extension SitesScreen.ActionMenu {
 
     private var manageSiteGroupsButton: XCUIElement {
         #if os(macOS)
-        app.toolbars.children(matching: .button)["Add Site"]
-            .children(matching: .button)[Identifiers.manageSiteGroupsToolbarMenuButton]
+        app.toolbars.menuItems[Identifiers.manageSiteGroupsToolbarMenuButton]
         #else
         app.buttons[Identifiers.manageSiteGroupsToolbarMenuButton]
         #endif

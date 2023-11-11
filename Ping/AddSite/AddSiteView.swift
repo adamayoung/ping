@@ -67,12 +67,6 @@ struct AddSiteView: View {
                     Text("ADD")
                 }
                 .help("ADD_SITE")
-                .opacity(isAddingSite ? 0 : 1)
-                .overlay {
-                    if isAddingSite {
-                        ProgressView()
-                    }
-                }
                 .accessibilityIdentifier("addSiteButton")
                 .disabled(!formModel.isValid)
             }
@@ -106,6 +100,7 @@ struct AddSiteView: View {
             ForEach(siteGroups) { siteGroup in
                 Text(verbatim: siteGroup.name)
                     .tag(siteGroup as SiteGroup?)
+                    .accessibilityIdentifier("siteSiteGroupPickerItem-\(siteGroup.id)")
             }
 
             Text("NO_GROUP_ITEM")
@@ -118,6 +113,7 @@ struct AddSiteView: View {
         Picker("METHOD", selection: $formModel.method) {
             ForEach(AddSiteFormModel.Method.allCases, id: \.self) {
                 Text($0.localizedName)
+                    .accessibilityIdentifier("siteMethodPickerItem-\($0.rawValue)")
             }
         }
         .accessibilityIdentifier("siteMethodPicker")

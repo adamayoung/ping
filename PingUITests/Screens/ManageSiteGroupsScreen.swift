@@ -44,9 +44,9 @@ struct ManageSiteGroupsScreen: Screen {
     }
 
     @discardableResult
-    func assertSiteGroup(withName name: String, isPresent: Bool, file: StaticString = #file,
+    func assertSiteGroup(withName name: String, siteCount: Int = 0, isPresent: Bool, file: StaticString = #file,
                          line: UInt = #line) -> Self {
-        let navigationLink = siteGroupNavigationLink(withName: name)
+        let navigationLink = siteGroupNavigationLink(withName: name, siteCount: siteCount)
         XCTAssertEqual(navigationLink.waitForExistence(timeout: 3), isPresent, file: file, line: line)
         return self
     }
@@ -65,19 +65,36 @@ extension ManageSiteGroupsScreen {
     }
 
     private func siteGroupNavigationLink(withID id: UUID) -> XCUIElement {
+        #if os(macOS)
+        app.sheets.tables.buttons[Identifiers.siteGroupNavigationLink(siteGroupID: id)]
+        #else
         app.buttons[Identifiers.siteGroupNavigationLink(siteGroupID: id)]
+        #endif
     }
 
-    private func siteGroupNavigationLink(withName name: String) -> XCUIElement {
-        app.buttons.staticTexts[name]
+    private func siteGroupNavigationLink(withName name: String, siteCount: Int) -> XCUIElement {
+        #if os(macOS)
+        let name = "\(name), \(siteCount)"
+        return app.sheets.tables.buttons[name]
+        #else
+        return app.buttons.staticTexts[name]
+        #endif
     }
 
     private var addButton: XCUIElement {
+        #if os(macOS)
+        app.sheets.toolbars.buttons[Identifiers.addButton]
+        #else
         app.buttons[Identifiers.addButton]
+        #endif
     }
 
     private var closeButton: XCUIElement {
+        #if os(macOS)
+        app.sheets.groups.buttons[Identifiers.closeButton]
+        #else
         app.buttons[Identifiers.closeButton]
+        #endif
     }
 
     private var rowDeleteButton: XCUIElement {
