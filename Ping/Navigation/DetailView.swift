@@ -50,3 +50,14 @@ struct DetailView: View {
             .environment(siteStatusCheckerService)
     }
 }
+
+#Preview("No Site Selected") {
+    let modelContainer = PingFactory.shared.modelContainer
+    let siteStatusCheckerService = PingFactory.shared.siteStatusCheckerService
+
+    return NavigationStack {
+        DetailView(menuItem: .constant(nil))
+            .modelContainer(modelContainer)
+            .environment(siteStatusCheckerService)
+    }
+}

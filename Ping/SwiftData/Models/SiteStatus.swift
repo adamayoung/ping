@@ -15,9 +15,12 @@ final class SiteStatus: Identifiable {
     var statusCode: SiteStatus.Code = SiteStatus.Code.unknown
     var time: TimeInterval = 0
     var timestamp: Date = Date.now
-
     @Relationship(inverse: \Site.statuses)
     var site: Site?
+
+    var formattedTimestamp: String {
+        timestamp.formatted(date: .numeric, time: .shortened)
+    }
 
     init(
         id: UUID = UUID(),

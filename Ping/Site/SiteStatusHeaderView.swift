@@ -19,10 +19,6 @@ struct SiteStatusHeaderView: View {
         siteStatus?.statusCode ?? .default
     }
 
-    private var formattedTimestamp: String {
-        siteStatus?.timestamp.formatted(date: .numeric, time: .shortened) ?? ""
-    }
-
     var body: some View {
         VStack(alignment: .center, spacing: 8) {
             Image(systemName: statusCode.iconName)
@@ -44,7 +40,7 @@ struct SiteStatusHeaderView: View {
                 .font(.system(size: 25))
                 .multilineTextAlignment(.center)
 
-            Text("\(Image(systemName: "clock")) \(formattedTimestamp)")
+            Text("\(Image(systemName: "clock")) \(siteStatus?.formattedTimestamp ?? "")")
                 .foregroundStyle(.secondary)
                 .opacity((isCheckingStatus || statusCode == .unknown) ? 0 : 1)
 

@@ -31,7 +31,6 @@ struct SummaryView: View {
                     .labelStyle(.iconOnly)
                     Spacer()
                 }
-
             }
             .width(40)
 

@@ -52,58 +52,13 @@ struct SitesView: View {
         .listStyle(.insetGrouped)
         #endif
         .toolbar {
-            ToolbarItem(placement: .primaryAction) {
-                Menu {
-                    Section {
-                        Button {
-                            refreshAllSiteStatuses()
-                        } label: {
-                            Label("REFRESH_SITE_STATUSES", systemImage: "arrow.clockwise")
-                        }
-                        .disabled(sites.isEmpty)
-                        .help("CHECK_ALL_SITE_STATUSES")
-                        .accessibilityIdentifier("refreshSiteStatusesToolbarButton")
-                    }
-
-                    Section {
-                        Button {
-                            isAddingSite.toggle()
-                        } label: {
-                            Label("ADD_SITE", systemImage: "plus")
-                        }
-                        .help("ADD_SITE")
-                        .accessibilityIdentifier("addSiteToolbarMenuButton")
-                    }
-
-                    Section {
-                        Button {
-                            isAddingSiteGroup.toggle()
-                        } label: {
-                            Label("ADD_SITE_GROUP", systemImage: "folder.fill.badge.plus")
-                        }
-                        .help("ADD_SITE_GROUP")
-                        .accessibilityIdentifier("addSiteGroupToolbarMenuButton")
-
-                        Button {
-                            isManagingSiteGroups.toggle()
-                        } label: {
-                            Label("MANAGED_SITE_GROUPS", systemImage: "folder.fill")
-                        }
-                        .help("MANAGED_SITE_GROUPS")
-                        .accessibilityIdentifier("manageSiteGroupsToolbarMenuButton")
-                    }
-                } label: {
-                    Label("SITES_MENU", systemImage: "ellipsis.circle")
-                }
-                .accessibilityIdentifier("sitesActionToolbarMenuButton")
-            }
+            toolbar
         }
-
-#if os(iOS)
+        #if os(iOS)
         .refreshable {
             refreshAllSiteStatuses()
         }
-#endif
+        #endif
         .sheet(isPresented: $isAddingSite) {
             AddSiteSheetView()
                 .modelContext(modelContext)
@@ -172,6 +127,54 @@ extension SitesView {
         .onDelete(perform: { indexSet in
             delete(at: indexSet, in: sites)
         })
+    }
+
+    @MainActor @ToolbarContentBuilder private var toolbar: some ToolbarContent {
+        ToolbarItem(placement: .primaryAction) {
+            Menu {
+                Section {
+                    Button {
+                        refreshAllSiteStatuses()
+                    } label: {
+                        Label("REFRESH_SITE_STATUSES", systemImage: "arrow.clockwise")
+                    }
+                    .disabled(sites.isEmpty)
+                    .help("CHECK_ALL_SITE_STATUSES")
+                    .accessibilityIdentifier("refreshSiteStatusesToolbarButton")
+                }
+
+                Section {
+                    Button {
+                        isAddingSite.toggle()
+                    } label: {
+                        Label("ADD_SITE", systemImage: "plus")
+                    }
+                    .help("ADD_SITE")
+                    .accessibilityIdentifier("addSiteToolbarMenuButton")
+                }
+
+                Section {
+                    Button {
+                        isAddingSiteGroup.toggle()
+                    } label: {
+                        Label("ADD_SITE_GROUP", systemImage: "folder.fill.badge.plus")
+                    }
+                    .help("ADD_SITE_GROUP")
+                    .accessibilityIdentifier("addSiteGroupToolbarMenuButton")
+
+                    Button {
+                        isManagingSiteGroups.toggle()
+                    } label: {
+                        Label("MANAGED_SITE_GROUPS", systemImage: "folder.fill")
+                    }
+                    .help("MANAGED_SITE_GROUPS")
+                    .accessibilityIdentifier("manageSiteGroupsToolbarMenuButton")
+                }
+            } label: {
+                Label("SITES_MENU", systemImage: "ellipsis.circle")
+            }
+            .accessibilityIdentifier("sitesActionToolbarMenuButton")
+        }
     }
 
 }
