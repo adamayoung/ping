@@ -35,8 +35,16 @@ struct SitesScreen: Screen {
         return SiteScreen(app: app)
     }
 
+    @available(macOS 14.0, *)
     @discardableResult
-    func deleteSite(withID id: UUID) -> SitesScreen {
+    func contextMenuForSite(id: UUID) -> SitesScreen.SiteContextMenu {
+        siteNavigationLink(withID: id).rightClick()
+        return SitesScreen.SiteContextMenu(app: app)
+    }
+
+    @available(iOS 17.0, *)
+    @discardableResult
+    func swipeLeftAndDeleteSite(withID id: UUID) -> SitesScreen {
         siteNavigationLink(withID: id).swipeLeft()
         rowDeleteButton.tap()
         return self
@@ -95,6 +103,14 @@ extension SitesScreen {
     }
 
     private func siteNavigationLink(withName name: String) -> XCUIElement {
+        #if os(macOS)
+        sidebar.buttons[name]
+        #else
+        sidebar.buttons.staticTexts[name]
+        #endif
+    }
+
+    private func siteNavigationLink(withName name: String, inSiteGroup siteGroupID: UUID) -> XCUIElement {
         #if os(macOS)
         sidebar.buttons[name]
         #else

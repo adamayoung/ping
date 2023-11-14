@@ -1,5 +1,5 @@
 //
-//  AddSiteTests.swift
+//  ManageSitesTests.swift
 //  PingUITests
 //
 //  Created by Adam Young on 26/10/2023.
@@ -7,7 +7,7 @@
 
 import XCTest
 
-final class AddAndRemoveSitesTests: UITestCaseBase {
+final class ManageSitesTests: UITestCaseBase {
 
     func testAddSite() {
         let siteName = "Test Site"
@@ -15,10 +15,28 @@ final class AddAndRemoveSitesTests: UITestCaseBase {
         initialScreen
             .verifySitesVisible()
             .tapSitesActionMenuButton()
-            .tapAddSiteButton()
+            .selectAddSiteMenuItem()
             .assertAddButton(isEnabled: false)
             .typeName(siteName)
             .typeURL("www.domain.com")
+            .assertAddButton(isEnabled: true)
+            .tapAddButton()
+            .assertSite(withName: siteName, isPresent: true)
+    }
+
+    func testAddSiteWithInGroup() {
+        let siteName = "Test Site"
+        let siteGroupID = UUID.developmentSiteGroup
+
+        initialScreen
+            .verifySitesVisible()
+            .tapSitesActionMenuButton()
+            .selectAddSiteMenuItem()
+            .assertAddButton(isEnabled: false)
+            .typeName(siteName)
+            .typeURL("www.domain.com")
+            .tapSiteGroupPicker()
+            .tapSiteGroupItem(withID: siteGroupID)
             .assertAddButton(isEnabled: true)
             .tapAddButton()
             .assertSite(withName: siteName, isPresent: true)
@@ -28,7 +46,7 @@ final class AddAndRemoveSitesTests: UITestCaseBase {
         initialScreen
             .verifySitesVisible()
             .tapSitesActionMenuButton()
-            .tapAddSiteButton()
+            .selectAddSiteMenuItem()
             .assertAddButton(isEnabled: false)
             .typeName("Test Site")
             .typeURL("aaa")
@@ -41,7 +59,7 @@ final class AddAndRemoveSitesTests: UITestCaseBase {
         initialScreen
             .verifySitesVisible()
             .tapSitesActionMenuButton()
-            .tapAddSiteButton()
+            .selectAddSiteMenuItem()
             .typeName(siteName)
             .typeURL("www.domain.com")
             .tapCancelButton()
@@ -55,7 +73,19 @@ final class AddAndRemoveSitesTests: UITestCaseBase {
 
         initialScreen
             .verifySitesVisible()
-            .deleteSite(withID: siteID)
+            .swipeLeftAndDeleteSite(withID: siteID)
+            .assertSite(withID: siteID, isPresent: false)
+    }
+    #endif
+
+    #if os(macOS)
+    func testDeleteSiteFromSitesList() {
+        let siteID = UUID.googleSite
+
+        initialScreen
+            .verifySitesVisible()
+            .contextMenuForSite(id: siteID)
+            .selectDeleteSiteMenuItem()
             .assertSite(withID: siteID, isPresent: false)
     }
     #endif

@@ -9,30 +9,30 @@ import XCTest
 
 extension SitesScreen {
 
-    struct ActionMenu: Screen {
+    struct ActionMenu: Menu {
 
         let app: XCUIApplication
 
         @discardableResult
-        func tapRefreshSiteStatusesButton() -> SitesScreen {
+        func selectRefreshSiteStatusesMenuItem() -> SitesScreen {
             refreshSiteStatusesButton.tap()
             return SitesScreen(app: app)
         }
 
         @discardableResult
-        func tapAddSiteButton() -> AddSiteScreen {
+        func selectAddSiteMenuItem() -> AddSiteScreen {
             addSiteButton.tap()
             return AddSiteScreen(app: app)
         }
 
         @discardableResult
-        func tapAddSiteGroupButton() -> AddSiteGroupScreen {
+        func selectAddSiteGroupMenuItem() -> AddSiteGroupScreen {
             addSiteGroupButton.tap()
             return AddSiteGroupScreen(app: app)
         }
 
         @discardableResult
-        func tapManageSiteGroupsButton() -> ManageSiteGroupsScreen {
+        func selectManageSiteGroupsMenuItem() -> ManageSiteGroupsScreen {
             manageSiteGroupsButton.tap()
             return ManageSiteGroupsScreen(app: app)
         }

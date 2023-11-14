@@ -14,6 +14,9 @@ struct NoSitesView: View {
     var body: some View {
         ContentUnavailableView {
             Label("NO_SITES", systemImage: "globe")
+            #if os(macOS)
+                .labelStyle(.titleOnly)
+            #endif
         } description: {
             Text("ADD_SITE_TO_GET_STARTED")
         } actions: {

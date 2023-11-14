@@ -13,6 +13,8 @@ struct SummaryView: View {
     @Environment(\.modelContext) private var modelContext
     @Environment(SiteStatusCheckerService.self) private var siteStatusCheckerService
 
+    @State private var isAddingSite = false
+
     @Query(sort: [SortDescriptor(\Site.name, comparator: .localizedStandard)]) private var sites: [Site]
     @Query private var requests: [SiteStatusRequest]
     @Query(sort: [SortDescriptor(\SiteStatus.timestamp, order: .reverse)]) private var statuses: [SiteStatus]
@@ -41,6 +43,18 @@ struct SummaryView: View {
                 Text(verbatim: requestURLString)
             }
         }
+        .opacity(sites.isEmpty ? 0 : 1)
+        .overlay {
+            if sites.isEmpty {
+                NoSitesView {
+                    isAddingSite = true
+                }
+            }
+        }
+        .sheet(isPresented: $isAddingSite) {
+            AddSiteSheetView()
+                .modelContext(modelContext)
+        }
         .navigationTitle("SUMMARY")
         #if os(iOS)
         .navigationBarTitleDisplayMode(.inline)
@@ -61,7 +75,8 @@ extension SummaryView {
 
 }
 
-#Preview {
+#if os(macOS)
+#Preview("Summary") {
     let modelContainer = PingFactory.shared.modelContainer
     let siteStatusCheckerService = PingFactory.shared.siteStatusCheckerService
 
@@ -71,3 +86,16 @@ extension SummaryView {
     .modelContainer(modelContainer)
     .environment(siteStatusCheckerService)
 }
+
+#Preview("Summary - No Sites") {
+    let modelContainer = PingFactory.shared.modelContainer
+    let siteStatusCheckerService = PingFactory.shared.siteStatusCheckerService
+    try? modelContainer.mainContext.delete(model: Site.self)
+
+    return NavigationStack {
+        SummaryView()
+    }
+    .modelContainer(modelContainer)
+    .environment(siteStatusCheckerService)
+}
+#endif

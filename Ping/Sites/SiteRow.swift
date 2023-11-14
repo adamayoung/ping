@@ -13,9 +13,17 @@ struct SiteRow: View {
     var site: Site
     var siteStatus: SiteStatus?
     var isCheckingStatus: Bool
+    var onDelete: () -> Void
 
     var body: some View {
         SiteStatusLabel(site: site, siteStatus: siteStatus, isCheckingStatus: isCheckingStatus)
+            #if os(macOS)
+            .contextMenu {
+                SiteRowContextMenu(
+                    onDelete: onDelete
+                )
+            }
+            #endif
     }
 
 }
@@ -28,12 +36,15 @@ struct SiteRow: View {
     return NavigationStack {
         List {
             ForEach(sites) { site in
-                NavigationLink(destination: EmptyView()) {
-                    SiteRow(
-                        site: site,
-                        siteStatus: site.latestStatus,
-                        isCheckingStatus: siteStatusCheckerService.isChecking(site: site.id)
-                    )
+                Section {
+                    NavigationLink(destination: EmptyView()) {
+                        SiteRow(
+                            site: site,
+                            siteStatus: site.latestStatus,
+                            isCheckingStatus: siteStatusCheckerService.isChecking(site: site.id),
+                            onDelete: { }
+                        )
+                    }
                 }
             }
         }

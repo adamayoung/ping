@@ -27,7 +27,7 @@ struct SiteStatusHeaderView: View {
                 .foregroundStyle(.white, statusCode.iconColor)
                 .frame(height: 100)
                 .padding()
-                .shadow(color: .secondary, radius: 5, x: 2, y: 2)
+                .shadow(radius: 10)
                 .opacity(isCheckingStatus ? 0 : 1)
                 .overlay {
                     if isCheckingStatus {
