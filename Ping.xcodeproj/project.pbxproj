@@ -483,11 +483,11 @@
 				66D212442AEA905600A2C4CE /* Ping */,
 				66D212582AEA905600A2C4CE /* PingTests */,
 				66D212622AEA905600A2C4CE /* PingUITests */,
+				66D212432AEA905600A2C4CE /* Products */,
+				66CC7C202AEBCDAC007BADF2 /* Frameworks */,
 				66D212722AEA925600A2C4CE /* Ping.xctestplan */,
 				66D212732AEA940500A2C4CE /* PingUI.xctestplan */,
 				666F36982AEB226D00EE6D41 /* .swiftlint.yml */,
-				66D212432AEA905600A2C4CE /* Products */,
-				66CC7C202AEBCDAC007BADF2 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
