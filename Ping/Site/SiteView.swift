@@ -70,22 +70,7 @@ struct SiteView: View {
             if !statuses.isEmpty {
                 Section("PREVIOUS_STATUS_CHECKS") {
                     ForEach(Array(statuses.prefix(10))) { status in
-                        Label(
-                            title: {
-                                VStack(alignment: .leading) {
-                                    Text(status.statusCode.localizedName)
-                                    if case let .failure(message) = currentStatusCode {
-                                        Text(verbatim: message)
-                                            .font(.caption)
-                                            .foregroundStyle(Color.secondary)
-                                    }
-                                }
-                            },
-                            icon: {
-                                Image(systemName: status.statusCode.iconName)
-                                    .foregroundStyle(status.statusCode.iconColor)
-                            }
-                        )
+                        SiteStatusRow(status: status)
                     }
                 }
             }

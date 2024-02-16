@@ -83,7 +83,7 @@ struct SiteStatusHeaderView: View {
             isCheckingStatus: false,
             refreshSiteStatus: { }
         )
-        Spacer()
+        .padding()
     }
     .modelContainer(modelContainer)
 }
@@ -102,7 +102,7 @@ struct SiteStatusHeaderView: View {
             isCheckingStatus: false,
             refreshSiteStatus: { }
         )
-        Spacer()
+        .padding()
     }
     .modelContainer(modelContainer)
 }
@@ -118,7 +118,7 @@ struct SiteStatusHeaderView: View {
             isCheckingStatus: true,
             refreshSiteStatus: { }
         )
-        Spacer()
+        .padding()
     }
     .modelContainer(modelContainer)
 }
@@ -134,7 +134,7 @@ struct SiteStatusHeaderView: View {
             isCheckingStatus: false,
             refreshSiteStatus: { }
         )
-        Spacer()
+        .padding()
     }
     .modelContainer(modelContainer)
 }
