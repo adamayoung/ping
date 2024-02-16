@@ -109,8 +109,18 @@ extension ManageSiteGroupsView {
 
 }
 
-#Preview {
+#Preview("Manage Site Groups") {
     let modelContainer = PingFactory.shared.modelContainer
+
+    return NavigationStack {
+        ManageSiteGroupsView()
+    }
+    .modelContainer(modelContainer)
+}
+
+#Preview("Manage Site Groups - No Groups") {
+    let modelContainer = PingFactory.shared.modelContainer
+    try? modelContainer.mainContext.delete(model: SiteGroup.self)
 
     return NavigationStack {
         ManageSiteGroupsView()

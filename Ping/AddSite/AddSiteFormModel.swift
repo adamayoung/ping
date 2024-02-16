@@ -87,12 +87,12 @@ extension AddSiteFormModel {
             return false
         }
 
-        guard let host = url.host() else {
-            return true
+        guard scheme == "https" else {
+            return false
         }
 
-        guard scheme == "https" else {
-            return true
+        guard let host = url.host() else {
+            return false
         }
 
         guard host.contains(".") && !host.hasSuffix(".") else {

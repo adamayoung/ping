@@ -53,57 +53,22 @@ struct SitesView: View {
         #endif
         .toolbar {
             ToolbarItem(placement: .primaryAction) {
-                Menu {
-                    Section {
-                        Button {
-                            refreshAllSiteStatuses()
-                        } label: {
-                            Label("REFRESH_SITE_STATUSES", systemImage: "arrow.clockwise")
-                        }
-                        .disabled(sites.isEmpty)
-                        .help("CHECK_ALL_SITE_STATUSES")
-                        .accessibilityIdentifier("refreshSiteStatusesToolbarButton")
+                SitesMenu(
+                    canRefreshAllSites: !sites.isEmpty,
+                    isAddingSite: $isAddingSite,
+                    isAddingSiteGroup: $isAddingSiteGroup,
+                    isManagingSiteGroups: $isManagingSiteGroups,
+                    onRefreshAllSiteStatuses: {
+                        refreshAllSiteStatuses()
                     }
-
-                    Section {
-                        Button {
-                            isAddingSite.toggle()
-                        } label: {
-                            Label("ADD_SITE", systemImage: "plus")
-                        }
-                        .help("ADD_SITE")
-                        .accessibilityIdentifier("addSiteToolbarMenuButton")
-                    }
-
-                    Section {
-                        Button {
-                            isAddingSiteGroup.toggle()
-                        } label: {
-                            Label("ADD_SITE_GROUP", systemImage: "folder.fill.badge.plus")
-                        }
-                        .help("ADD_SITE_GROUP")
-                        .accessibilityIdentifier("addSiteGroupToolbarMenuButton")
-
-                        Button {
-                            isManagingSiteGroups.toggle()
-                        } label: {
-                            Label("MANAGED_SITE_GROUPS", systemImage: "folder.fill")
-                        }
-                        .help("MANAGED_SITE_GROUPS")
-                        .accessibilityIdentifier("manageSiteGroupsToolbarMenuButton")
-                    }
-                } label: {
-                    Label("SITES_MENU", systemImage: "ellipsis.circle")
-                }
-                .accessibilityIdentifier("sitesActionToolbarMenuButton")
+                )
             }
         }
-
-#if os(iOS)
+        #if os(iOS)
         .refreshable {
             refreshAllSiteStatuses()
         }
-#endif
+        #endif
         .sheet(isPresented: $isAddingSite) {
             AddSiteSheetView()
                 .modelContext(modelContext)
@@ -139,7 +104,6 @@ extension SitesView {
                 } header: {
                     Text(verbatim: siteGroup.name)
                 }
-                .accessibilityIdentifier("siteSection-\(siteGroup.id)")
             }
         }
     }
@@ -152,7 +116,6 @@ extension SitesView {
             } header: {
                 Text("OTHER")
             }
-            .accessibilityIdentifier("siteSection-other")
         }
     }
 
@@ -164,14 +127,19 @@ extension SitesView {
                 SiteRow(
                     site: site,
                     siteStatus: latestStatus(for: site),
-                    isCheckingStatus: siteStatusCheckerService.isChecking(site: site.id)
+                    isCheckingStatus: siteStatusCheckerService.isChecking(site: site.id),
+                    onDelete: {
+                        delete(site: site)
+                    }
                 )
             }
             .accessibilityIdentifier("siteNavigationLink-\(site.id.uuidString)")
         }
+        #if os(iOS)
         .onDelete(perform: { indexSet in
             delete(at: indexSet, in: sites)
         })
+        #endif
     }
 
 }
@@ -216,11 +184,36 @@ extension SitesView {
         }
     }
 
+    private func delete(site: Site) {
+        withAnimation {
+            menuItem = MenuItem.default
+            modelContext.delete(site)
+
+            do {
+                try modelContext.save()
+            } catch let error {
+                fatalError(error.localizedDescription)
+            }
+        }
+    }
+
 }
 
 #Preview("Sites") {
     let modelContainer = PingFactory.shared.modelContainer
     let siteStatusCheckerService = PingFactory.shared.siteStatusCheckerService
+
+    return NavigationStack {
+        SitesView(menuItem: .constant(.summary))
+    }
+    .modelContainer(modelContainer)
+    .environment(siteStatusCheckerService)
+}
+
+#Preview("No Sites") {
+    let modelContainer = PingFactory.shared.modelContainer
+    let siteStatusCheckerService = PingFactory.shared.siteStatusCheckerService
+    try? modelContainer.mainContext.delete(model: Site.self)
 
     return NavigationStack {
         SitesView(menuItem: .constant(.summary))

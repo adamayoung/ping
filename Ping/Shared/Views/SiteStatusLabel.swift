@@ -18,10 +18,6 @@ struct SiteStatusLabel: View {
         siteStatus?.statusCode ?? .default
     }
 
-    private var formattedTimestamp: String {
-        siteStatus?.timestamp.formatted(date: .numeric, time: .shortened) ?? ""
-    }
-
     var body: some View {
         Label {
             labelTitle
@@ -56,7 +52,7 @@ struct SiteStatusLabel: View {
                 if statusCode == .unknown {
                     Text(verbatim: " - ")
                 } else {
-                    Text("\(Image(systemName: "clock")) \(formattedTimestamp)")
+                    Text("\(Image(systemName: "clock")) \(siteStatus?.formattedTimestamp ?? "")")
                 }
             }
             .font(.caption)

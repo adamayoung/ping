@@ -32,26 +32,7 @@ struct AddSiteGroupView: View {
         .navigationBarTitleDisplayMode(.inline)
         #endif
         .toolbar {
-            ToolbarItem(placement: .cancellationAction) {
-                Button {
-                    dismiss()
-                } label: {
-                    Text("CANCEL")
-                }
-                .help("CANCEL")
-                .accessibilityIdentifier("cancelAddSiteGroupButton")
-            }
-
-            ToolbarItem(placement: .primaryAction) {
-                Button {
-                    addSiteGroup()
-                } label: {
-                    Text("ADD")
-                }
-                .help("ADD_SITE_GROUP")
-                .accessibilityIdentifier("addSiteGroupButton")
-                .disabled(!formModel.isValid)
-            }
+            toolbar
         }
     }
 
@@ -61,6 +42,29 @@ struct AddSiteGroupView: View {
             .focused($focusedField, equals: .siteGroupName)
             .onSubmit { addSiteGroup() }
             .accessibilityIdentifier("siteGroupNameField")
+    }
+
+    @ToolbarContentBuilder private var toolbar: some ToolbarContent {
+        ToolbarItem(placement: .cancellationAction) {
+            Button {
+                dismiss()
+            } label: {
+                Text("CANCEL")
+            }
+            .help("CANCEL")
+            .accessibilityIdentifier("cancelAddSiteGroupButton")
+        }
+
+        ToolbarItem(placement: .primaryAction) {
+            Button {
+                addSiteGroup()
+            } label: {
+                Text("ADD")
+            }
+            .help("ADD_SITE_GROUP")
+            .accessibilityIdentifier("addSiteGroupButton")
+            .disabled(!formModel.isValid)
+        }
     }
 
 }

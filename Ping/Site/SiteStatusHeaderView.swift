@@ -19,10 +19,6 @@ struct SiteStatusHeaderView: View {
         siteStatus?.statusCode ?? .default
     }
 
-    private var formattedTimestamp: String {
-        siteStatus?.timestamp.formatted(date: .numeric, time: .shortened) ?? ""
-    }
-
     var body: some View {
         VStack(alignment: .center, spacing: 8) {
             Image(systemName: statusCode.iconName)
@@ -31,7 +27,7 @@ struct SiteStatusHeaderView: View {
                 .foregroundStyle(.white, statusCode.iconColor)
                 .frame(height: 100)
                 .padding()
-                .shadow(color: .secondary, radius: 5, x: 2, y: 2)
+                .shadow(radius: 10)
                 .opacity(isCheckingStatus ? 0 : 1)
                 .overlay {
                     if isCheckingStatus {
@@ -44,7 +40,7 @@ struct SiteStatusHeaderView: View {
                 .font(.system(size: 25))
                 .multilineTextAlignment(.center)
 
-            Text("\(Image(systemName: "clock")) \(formattedTimestamp)")
+            Text("\(Image(systemName: "clock")) \(siteStatus?.formattedTimestamp ?? "")")
                 .foregroundStyle(.secondary)
                 .opacity((isCheckingStatus || statusCode == .unknown) ? 0 : 1)
 
@@ -87,7 +83,7 @@ struct SiteStatusHeaderView: View {
             isCheckingStatus: false,
             refreshSiteStatus: { }
         )
-        Spacer()
+        .padding()
     }
     .modelContainer(modelContainer)
 }
@@ -106,7 +102,7 @@ struct SiteStatusHeaderView: View {
             isCheckingStatus: false,
             refreshSiteStatus: { }
         )
-        Spacer()
+        .padding()
     }
     .modelContainer(modelContainer)
 }
@@ -122,7 +118,7 @@ struct SiteStatusHeaderView: View {
             isCheckingStatus: true,
             refreshSiteStatus: { }
         )
-        Spacer()
+        .padding()
     }
     .modelContainer(modelContainer)
 }
@@ -138,7 +134,7 @@ struct SiteStatusHeaderView: View {
             isCheckingStatus: false,
             refreshSiteStatus: { }
         )
-        Spacer()
+        .padding()
     }
     .modelContainer(modelContainer)
 }

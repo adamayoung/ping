@@ -12,10 +12,6 @@ struct SiteStatusRow: View {
 
     var status: SiteStatus
 
-    private var formattedTimestamp: String {
-        status.timestamp.formatted(date: .numeric, time: .shortened)
-    }
-
     var body: some View {
         Label(
             title: {
@@ -28,7 +24,7 @@ struct SiteStatusRow: View {
                             .foregroundStyle(Color.secondary)
                     }
 
-                    Text("\(Image(systemName: "clock")) \(formattedTimestamp)")
+                    Text("\(Image(systemName: "clock")) \(status.formattedTimestamp)")
                         .font(.caption)
                         .foregroundStyle(.secondary)
                 }

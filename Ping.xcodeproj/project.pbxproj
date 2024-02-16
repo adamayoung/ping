@@ -36,6 +36,16 @@
 		66A65B5C2AFD20ED00F57272 /* Site+Preview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66A65B5B2AFD20ED00F57272 /* Site+Preview.swift */; };
 		66A65B5F2AFD352B00F57272 /* SiteStatusCheckerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66A65B5E2AFD352B00F57272 /* SiteStatusCheckerService.swift */; };
 		66B0C05A2AF0657E00E48C58 /* SiteRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66B0C0592AF0657E00E48C58 /* SiteRow.swift */; };
+		66CC55842B02CE8B00A8C4CF /* AddSiteGroupFormModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66CC55832B02CE8B00A8C4CF /* AddSiteGroupFormModelTests.swift */; };
+		66CC55872B02D1F800A8C4CF /* AddSiteFormModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66CC55862B02D1F800A8C4CF /* AddSiteFormModelTests.swift */; };
+		66CC558B2B02DBBF00A8C4CF /* SiteStatusCodeIconTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66CC558A2B02DBBF00A8C4CF /* SiteStatusCodeIconTests.swift */; };
+		66CC558D2B02DCC900A8C4CF /* SiteStatusCode+Name.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66CC558C2B02DCC900A8C4CF /* SiteStatusCode+Name.swift */; };
+		66CC558F2B02DD0200A8C4CF /* SiteStatusCodeNameTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66CC558E2B02DD0200A8C4CF /* SiteStatusCodeNameTests.swift */; };
+		66CC55922B02DEE900A8C4CF /* SiteStatusRequestTaskTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66CC55912B02DEE900A8C4CF /* SiteStatusRequestTaskTests.swift */; };
+		66CC55992B02E1AC00A8C4CF /* SiteStatusRequestTask+SiteStatusRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66CC55982B02E1AC00A8C4CF /* SiteStatusRequestTask+SiteStatusRequest.swift */; };
+		66CC559C2B02E20800A8C4CF /* SiteStatusRequestTaskMapperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66CC559B2B02E20800A8C4CF /* SiteStatusRequestTaskMapperTests.swift */; };
+		66CC559E2B02E71300A8C4CF /* SiteStatusCheckerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66CC559D2B02E71300A8C4CF /* SiteStatusCheckerService.swift */; };
+		66CC55A12B02E94E00A8C4CF /* PingSchemeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66CC55A02B02E94E00A8C4CF /* PingSchemeTests.swift */; };
 		66CC7BE52AEBC96A007BADF2 /* SiteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66CC7BE42AEBC96A007BADF2 /* SiteView.swift */; };
 		66CC7C242AEBD295007BADF2 /* AddSiteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66CC7C232AEBD295007BADF2 /* AddSiteView.swift */; };
 		66CC7C292AEBECD7007BADF2 /* SitesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66CC7C282AEBECD7007BADF2 /* SitesView.swift */; };
@@ -47,7 +57,7 @@
 		66D212482AEA905600A2C4CE /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66D212472AEA905600A2C4CE /* ContentView.swift */; };
 		66D212502AEA905600A2C4CE /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 66D2124F2AEA905600A2C4CE /* Preview Assets.xcassets */; };
 		66D2125A2AEA905600A2C4CE /* MenuItemTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66D212592AEA905600A2C4CE /* MenuItemTests.swift */; };
-		66D212642AEA905600A2C4CE /* AddAndRemoveSitesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66D212632AEA905600A2C4CE /* AddAndRemoveSitesTests.swift */; };
+		66D212642AEA905600A2C4CE /* ManageSitesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66D212632AEA905600A2C4CE /* ManageSitesTests.swift */; };
 		66D212B12AEAF36100A2C4CE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 66D212B02AEAF36100A2C4CE /* Assets.xcassets */; };
 		AF3CB76C2AFE24A1002D51EA /* PingFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF3CB76B2AFE24A1002D51EA /* PingFactory.swift */; };
 		AF3CB76F2AFE262C002D51EA /* PingFactoryProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF3CB76E2AFE262C002D51EA /* PingFactoryProvider.swift */; };
@@ -64,10 +74,16 @@
 		AF3CB78A2AFE7752002D51EA /* ManageSiteGroupsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF3CB7892AFE7752002D51EA /* ManageSiteGroupsView.swift */; };
 		AF3CB78C2AFE7903002D51EA /* SiteGroup+Preview.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF3CB78B2AFE7903002D51EA /* SiteGroup+Preview.swift */; };
 		AF3CB78E2AFE8345002D51EA /* NoSiteGroupsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF3CB78D2AFE8345002D51EA /* NoSiteGroupsView.swift */; };
-		AF3CB7902AFE9607002D51EA /* AddAndRemoveSiteGroupsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF3CB78F2AFE9607002D51EA /* AddAndRemoveSiteGroupsTests.swift */; };
+		AF3CB7902AFE9607002D51EA /* ManageSiteGroupsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF3CB78F2AFE9607002D51EA /* ManageSiteGroupsTests.swift */; };
 		AF3CB7922AFE96E1002D51EA /* SitesScreen+ActionMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF3CB7912AFE96E1002D51EA /* SitesScreen+ActionMenu.swift */; };
 		AF3CB7942AFE97F1002D51EA /* AddSiteGroupScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF3CB7932AFE97F1002D51EA /* AddSiteGroupScreen.swift */; };
 		AF3CB7962AFE9821002D51EA /* ManageSiteGroupsScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF3CB7952AFE9821002D51EA /* ManageSiteGroupsScreen.swift */; };
+		AFB237DE2B038F4C005084A9 /* SitesMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFB237DD2B038F4C005084A9 /* SitesMenu.swift */; };
+		AFB237F02B03B751005084A9 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = AFB237F22B03B751005084A9 /* InfoPlist.strings */; };
+		AFB237F52B03BC07005084A9 /* SiteRowContextMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFB237F42B03BC07005084A9 /* SiteRowContextMenu.swift */; };
+		AFB237F72B03C0F1005084A9 /* SitesScreen+SiteContextMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFB237F62B03C0F1005084A9 /* SitesScreen+SiteContextMenu.swift */; };
+		AFB237F92B03C129005084A9 /* Menu.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFB237F82B03C129005084A9 /* Menu.swift */; };
+		AFB237FB2B03CA86005084A9 /* ManageSiteGroupsTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFB237FA2B03CA86005084A9 /* ManageSiteGroupsTable.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -118,6 +134,16 @@
 		66A65B5B2AFD20ED00F57272 /* Site+Preview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Site+Preview.swift"; sourceTree = "<group>"; };
 		66A65B5E2AFD352B00F57272 /* SiteStatusCheckerService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SiteStatusCheckerService.swift; sourceTree = "<group>"; };
 		66B0C0592AF0657E00E48C58 /* SiteRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SiteRow.swift; sourceTree = "<group>"; };
+		66CC55832B02CE8B00A8C4CF /* AddSiteGroupFormModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddSiteGroupFormModelTests.swift; sourceTree = "<group>"; };
+		66CC55862B02D1F800A8C4CF /* AddSiteFormModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddSiteFormModelTests.swift; sourceTree = "<group>"; };
+		66CC558A2B02DBBF00A8C4CF /* SiteStatusCodeIconTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SiteStatusCodeIconTests.swift; sourceTree = "<group>"; };
+		66CC558C2B02DCC900A8C4CF /* SiteStatusCode+Name.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SiteStatusCode+Name.swift"; sourceTree = "<group>"; };
+		66CC558E2B02DD0200A8C4CF /* SiteStatusCodeNameTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SiteStatusCodeNameTests.swift; sourceTree = "<group>"; };
+		66CC55912B02DEE900A8C4CF /* SiteStatusRequestTaskTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SiteStatusRequestTaskTests.swift; sourceTree = "<group>"; };
+		66CC55982B02E1AC00A8C4CF /* SiteStatusRequestTask+SiteStatusRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SiteStatusRequestTask+SiteStatusRequest.swift"; sourceTree = "<group>"; };
+		66CC559B2B02E20800A8C4CF /* SiteStatusRequestTaskMapperTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SiteStatusRequestTaskMapperTests.swift; sourceTree = "<group>"; };
+		66CC559D2B02E71300A8C4CF /* SiteStatusCheckerService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SiteStatusCheckerService.swift; sourceTree = "<group>"; };
+		66CC55A02B02E94E00A8C4CF /* PingSchemeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PingSchemeTests.swift; sourceTree = "<group>"; };
 		66CC7BE42AEBC96A007BADF2 /* SiteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SiteView.swift; sourceTree = "<group>"; };
 		66CC7C232AEBD295007BADF2 /* AddSiteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddSiteView.swift; sourceTree = "<group>"; };
 		66CC7C282AEBECD7007BADF2 /* SitesView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SitesView.swift; sourceTree = "<group>"; };
@@ -133,7 +159,7 @@
 		66D212552AEA905600A2C4CE /* PingTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PingTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		66D212592AEA905600A2C4CE /* MenuItemTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuItemTests.swift; sourceTree = "<group>"; };
 		66D2125F2AEA905600A2C4CE /* PingUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PingUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		66D212632AEA905600A2C4CE /* AddAndRemoveSitesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddAndRemoveSitesTests.swift; sourceTree = "<group>"; };
+		66D212632AEA905600A2C4CE /* ManageSitesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManageSitesTests.swift; sourceTree = "<group>"; };
 		66D212722AEA925600A2C4CE /* Ping.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = Ping.xctestplan; sourceTree = "<group>"; };
 		66D212732AEA940500A2C4CE /* PingUI.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = PingUI.xctestplan; sourceTree = "<group>"; };
 		66D212B02AEAF36100A2C4CE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -153,10 +179,17 @@
 		AF3CB7892AFE7752002D51EA /* ManageSiteGroupsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManageSiteGroupsView.swift; sourceTree = "<group>"; };
 		AF3CB78B2AFE7903002D51EA /* SiteGroup+Preview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SiteGroup+Preview.swift"; sourceTree = "<group>"; };
 		AF3CB78D2AFE8345002D51EA /* NoSiteGroupsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoSiteGroupsView.swift; sourceTree = "<group>"; };
-		AF3CB78F2AFE9607002D51EA /* AddAndRemoveSiteGroupsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddAndRemoveSiteGroupsTests.swift; sourceTree = "<group>"; };
+		AF3CB78F2AFE9607002D51EA /* ManageSiteGroupsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManageSiteGroupsTests.swift; sourceTree = "<group>"; };
 		AF3CB7912AFE96E1002D51EA /* SitesScreen+ActionMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SitesScreen+ActionMenu.swift"; sourceTree = "<group>"; };
 		AF3CB7932AFE97F1002D51EA /* AddSiteGroupScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddSiteGroupScreen.swift; sourceTree = "<group>"; };
 		AF3CB7952AFE9821002D51EA /* ManageSiteGroupsScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManageSiteGroupsScreen.swift; sourceTree = "<group>"; };
+		AFB237DD2B038F4C005084A9 /* SitesMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SitesMenu.swift; sourceTree = "<group>"; };
+		AFB237F12B03B751005084A9 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		AFB237F32B03B754005084A9 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		AFB237F42B03BC07005084A9 /* SiteRowContextMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SiteRowContextMenu.swift; sourceTree = "<group>"; };
+		AFB237F62B03C0F1005084A9 /* SitesScreen+SiteContextMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SitesScreen+SiteContextMenu.swift"; sourceTree = "<group>"; };
+		AFB237F82B03C129005084A9 /* Menu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Menu.swift; sourceTree = "<group>"; };
+		AFB237FA2B03CA86005084A9 /* ManageSiteGroupsTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManageSiteGroupsTable.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -232,6 +265,7 @@
 			isa = PBXGroup;
 			children = (
 				6643E8612AF3DB1F0030CD43 /* SiteStatusCode+Icon.swift */,
+				66CC558C2B02DCC900A8C4CF /* SiteStatusCode+Name.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -269,11 +303,111 @@
 		66A65B5D2AFD351900F57272 /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				66A65B5E2AFD352B00F57272 /* SiteStatusCheckerService.swift */,
+				66CC55942B02E0BF00A8C4CF /* SiteStatusChecker */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		66CC55822B02CE7300A8C4CF /* AddSIteGroup */ = {
+			isa = PBXGroup;
+			children = (
+				66CC55832B02CE8B00A8C4CF /* AddSiteGroupFormModelTests.swift */,
+			);
+			path = AddSIteGroup;
+			sourceTree = "<group>";
+		};
+		66CC55852B02D1E900A8C4CF /* AddSite */ = {
+			isa = PBXGroup;
+			children = (
+				66CC55862B02D1F800A8C4CF /* AddSiteFormModelTests.swift */,
+			);
+			path = AddSite;
+			sourceTree = "<group>";
+		};
+		66CC55882B02DB9700A8C4CF /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				66CC55892B02DBAE00A8C4CF /* Models */,
+			);
+			path = Shared;
+			sourceTree = "<group>";
+		};
+		66CC55892B02DBAE00A8C4CF /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				66CC558A2B02DBBF00A8C4CF /* SiteStatusCodeIconTests.swift */,
+				66CC558E2B02DD0200A8C4CF /* SiteStatusCodeNameTests.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		66CC55902B02DEB200A8C4CF /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				66CC55952B02E0DB00A8C4CF /* SiteStatusChecker */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		66CC55932B02E0B600A8C4CF /* Models */ = {
+			isa = PBXGroup;
+			children = (
 				661C28DB2AFD7E4600E2042C /* SiteStatusRequestTask.swift */,
 				AF3CB77B2AFE3A0E002D51EA /* SiteStatusResult.swift */,
 			);
-			path = Services;
+			path = Models;
+			sourceTree = "<group>";
+		};
+		66CC55942B02E0BF00A8C4CF /* SiteStatusChecker */ = {
+			isa = PBXGroup;
+			children = (
+				66CC55932B02E0B600A8C4CF /* Models */,
+				66CC55972B02E1A300A8C4CF /* Mappers */,
+				66A65B5E2AFD352B00F57272 /* SiteStatusCheckerService.swift */,
+			);
+			path = SiteStatusChecker;
+			sourceTree = "<group>";
+		};
+		66CC55952B02E0DB00A8C4CF /* SiteStatusChecker */ = {
+			isa = PBXGroup;
+			children = (
+				66CC55962B02E0E300A8C4CF /* Models */,
+				66CC559A2B02E1ED00A8C4CF /* Mappers */,
+				66CC559D2B02E71300A8C4CF /* SiteStatusCheckerService.swift */,
+			);
+			path = SiteStatusChecker;
+			sourceTree = "<group>";
+		};
+		66CC55962B02E0E300A8C4CF /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				66CC55912B02DEE900A8C4CF /* SiteStatusRequestTaskTests.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		66CC55972B02E1A300A8C4CF /* Mappers */ = {
+			isa = PBXGroup;
+			children = (
+				66CC55982B02E1AC00A8C4CF /* SiteStatusRequestTask+SiteStatusRequest.swift */,
+			);
+			path = Mappers;
+			sourceTree = "<group>";
+		};
+		66CC559A2B02E1ED00A8C4CF /* Mappers */ = {
+			isa = PBXGroup;
+			children = (
+				66CC559B2B02E20800A8C4CF /* SiteStatusRequestTaskMapperTests.swift */,
+			);
+			path = Mappers;
+			sourceTree = "<group>";
+		};
+		66CC559F2B02E93900A8C4CF /* SwiftData */ = {
+			isa = PBXGroup;
+			children = (
+				66CC55A02B02E94E00A8C4CF /* PingSchemeTests.swift */,
+			);
+			path = SwiftData;
 			sourceTree = "<group>";
 		};
 		66CC7BE32AEBC961007BADF2 /* Site */ = {
@@ -307,9 +441,11 @@
 			isa = PBXGroup;
 			children = (
 				66CC7C282AEBECD7007BADF2 /* SitesView.swift */,
+				AFB237DD2B038F4C005084A9 /* SitesMenu.swift */,
 				6617DA9F2AEDC4DF0072DC05 /* NoSitesView.swift */,
-				66B0C0592AF0657E00E48C58 /* SiteRow.swift */,
 				6643E85A2AF3D70B0030CD43 /* SummaryRow.swift */,
+				66B0C0592AF0657E00E48C58 /* SiteRow.swift */,
+				AFB237F42B03BC07005084A9 /* SiteRowContextMenu.swift */,
 			);
 			path = Sites;
 			sourceTree = "<group>";
@@ -326,9 +462,11 @@
 			isa = PBXGroup;
 			children = (
 				66CC7C302AEC2464007BADF2 /* Screen.swift */,
+				AFB237F82B03C129005084A9 /* Menu.swift */,
 				66CC7C322AEC2488007BADF2 /* SitesScreen.swift */,
-				6617DA9A2AED6A4C0072DC05 /* SummaryScreen.swift */,
 				AF3CB7912AFE96E1002D51EA /* SitesScreen+ActionMenu.swift */,
+				AFB237F62B03C0F1005084A9 /* SitesScreen+SiteContextMenu.swift */,
+				6617DA9A2AED6A4C0072DC05 /* SummaryScreen.swift */,
 				6617DA962AED679A0072DC05 /* AddSiteScreen.swift */,
 				666414122AFEF29200023FC4 /* AddSiteScreen+SiteGroupPicker.swift */,
 				666414102AFEF12C00023FC4 /* AddSiteScreen+MethodPicker.swift */,
@@ -345,11 +483,11 @@
 				66D212442AEA905600A2C4CE /* Ping */,
 				66D212582AEA905600A2C4CE /* PingTests */,
 				66D212622AEA905600A2C4CE /* PingUITests */,
+				66D212432AEA905600A2C4CE /* Products */,
+				66CC7C202AEBCDAC007BADF2 /* Frameworks */,
 				66D212722AEA925600A2C4CE /* Ping.xctestplan */,
 				66D212732AEA940500A2C4CE /* PingUI.xctestplan */,
 				666F36982AEB226D00EE6D41 /* .swiftlint.yml */,
-				66D212432AEA905600A2C4CE /* Products */,
-				66CC7C202AEBCDAC007BADF2 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -402,6 +540,11 @@
 			isa = PBXGroup;
 			children = (
 				AF3CB77A2AFE369B002D51EA /* Navigation */,
+				66CC55822B02CE7300A8C4CF /* AddSIteGroup */,
+				66CC55852B02D1E900A8C4CF /* AddSite */,
+				66CC55882B02DB9700A8C4CF /* Shared */,
+				66CC55902B02DEB200A8C4CF /* Services */,
+				66CC559F2B02E93900A8C4CF /* SwiftData */,
 			);
 			path = PingTests;
 			sourceTree = "<group>";
@@ -409,8 +552,8 @@
 		66D212622AEA905600A2C4CE /* PingUITests */ = {
 			isa = PBXGroup;
 			children = (
-				66D212632AEA905600A2C4CE /* AddAndRemoveSitesTests.swift */,
-				AF3CB78F2AFE9607002D51EA /* AddAndRemoveSiteGroupsTests.swift */,
+				66D212632AEA905600A2C4CE /* ManageSitesTests.swift */,
+				AF3CB78F2AFE9607002D51EA /* ManageSiteGroupsTests.swift */,
 				66CC7C2F2AEC2451007BADF2 /* Screens */,
 				AF3CB7772AFE362E002D51EA /* Mocks */,
 				6617DA9E2AED6B3B0072DC05 /* Utils */,
@@ -423,6 +566,7 @@
 			children = (
 				66D212B02AEAF36100A2C4CE /* Assets.xcassets */,
 				666F36952AEB1C0500EE6D41 /* Localizable.xcstrings */,
+				AFB237F22B03B751005084A9 /* InfoPlist.strings */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -478,6 +622,7 @@
 			children = (
 				AF3CB7872AFE768A002D51EA /* ManageSiteGroupsSheetView.swift */,
 				AF3CB7892AFE7752002D51EA /* ManageSiteGroupsView.swift */,
+				AFB237FA2B03CA86005084A9 /* ManageSiteGroupsTable.swift */,
 				AF3CB78D2AFE8345002D51EA /* NoSiteGroupsView.swift */,
 			);
 			path = ManageSiteGroups;
@@ -550,7 +695,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1500;
-				LastUpgradeCheck = 1500;
+				LastUpgradeCheck = 1520;
 				TargetAttributes = {
 					66D212412AEA905600A2C4CE = {
 						CreatedOnToolsVersion = 15.0.1;
@@ -572,6 +717,7 @@
 			knownRegions = (
 				en,
 				Base,
+				fr,
 			);
 			mainGroup = 66D212392AEA905600A2C4CE;
 			productRefGroup = 66D212432AEA905600A2C4CE /* Products */;
@@ -591,6 +737,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				66D212B12AEAF36100A2C4CE /* Assets.xcassets in Resources */,
+				AFB237F02B03B751005084A9 /* InfoPlist.strings in Resources */,
 				66D212502AEA905600A2C4CE /* Preview Assets.xcassets in Resources */,
 				666F36962AEB1C0500EE6D41 /* Localizable.xcstrings in Resources */,
 			);
@@ -658,17 +805,20 @@
 				66A65B192AFCEF4500F57272 /* SiteStatusRequest.swift in Sources */,
 				AF3CB7852AFE4CE9002D51EA /* AddSiteGroupFormModel.swift in Sources */,
 				AF3CB78E2AFE8345002D51EA /* NoSiteGroupsView.swift in Sources */,
+				66CC55992B02E1AC00A8C4CF /* SiteStatusRequestTask+SiteStatusRequest.swift in Sources */,
 				66A65B5F2AFD352B00F57272 /* SiteStatusCheckerService.swift in Sources */,
 				66049D4C2AF3055E003953C5 /* AddSiteSheetView.swift in Sources */,
 				6617DAA02AEDC4DF0072DC05 /* NoSitesView.swift in Sources */,
 				AF3CB78C2AFE7903002D51EA /* SiteGroup+Preview.swift in Sources */,
 				6643E8622AF3DB1F0030CD43 /* SiteStatusCode+Icon.swift in Sources */,
+				66CC558D2B02DCC900A8C4CF /* SiteStatusCode+Name.swift in Sources */,
 				66D212482AEA905600A2C4CE /* ContentView.swift in Sources */,
 				6643E8642AF423560030CD43 /* SiteStatusHeaderView.swift in Sources */,
 				661C28DE2AFD949700E2042C /* DetailView.swift in Sources */,
 				AF3CB7712AFE26DE002D51EA /* PingLiveFactory.swift in Sources */,
 				66D212462AEA905600A2C4CE /* PingApp.swift in Sources */,
 				66CC7C2C2AEBF2A3007BADF2 /* SummaryView.swift in Sources */,
+				AFB237DE2B038F4C005084A9 /* SitesMenu.swift in Sources */,
 				66A65B1A2AFCEF4500F57272 /* SiteStatus.swift in Sources */,
 				66B0C05A2AF0657E00E48C58 /* SiteRow.swift in Sources */,
 				AF3CB77E2AFE412F002D51EA /* SiteGroup.swift in Sources */,
@@ -678,9 +828,11 @@
 				66A65B5C2AFD20ED00F57272 /* Site+Preview.swift in Sources */,
 				661C28E02AFDB34E00E2042C /* SiteStatusRow.swift in Sources */,
 				AF3CB7812AFE4BEA002D51EA /* AddSiteGroupSheetView.swift in Sources */,
+				AFB237F52B03BC07005084A9 /* SiteRowContextMenu.swift in Sources */,
 				AF3CB7762AFE2D7B002D51EA /* URLProtocolMock.swift in Sources */,
 				AF3CB78A2AFE7752002D51EA /* ManageSiteGroupsView.swift in Sources */,
 				AF3CB77C2AFE3A0E002D51EA /* SiteStatusResult.swift in Sources */,
+				AFB237FB2B03CA86005084A9 /* ManageSiteGroupsTable.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -688,7 +840,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				66CC55A12B02E94E00A8C4CF /* PingSchemeTests.swift in Sources */,
+				66CC559E2B02E71300A8C4CF /* SiteStatusCheckerService.swift in Sources */,
+				66CC558F2B02DD0200A8C4CF /* SiteStatusCodeNameTests.swift in Sources */,
+				66CC559C2B02E20800A8C4CF /* SiteStatusRequestTaskMapperTests.swift in Sources */,
+				66CC558B2B02DBBF00A8C4CF /* SiteStatusCodeIconTests.swift in Sources */,
+				66CC55922B02DEE900A8C4CF /* SiteStatusRequestTaskTests.swift in Sources */,
+				66CC55842B02CE8B00A8C4CF /* AddSiteGroupFormModelTests.swift in Sources */,
 				66D2125A2AEA905600A2C4CE /* MenuItemTests.swift in Sources */,
+				66CC55872B02D1F800A8C4CF /* AddSiteFormModelTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -700,14 +860,16 @@
 				AF3CB7962AFE9821002D51EA /* ManageSiteGroupsScreen.swift in Sources */,
 				6617DA992AED69C90072DC05 /* SiteScreen.swift in Sources */,
 				AF3CB7942AFE97F1002D51EA /* AddSiteGroupScreen.swift in Sources */,
-				66D212642AEA905600A2C4CE /* AddAndRemoveSitesTests.swift in Sources */,
+				66D212642AEA905600A2C4CE /* ManageSitesTests.swift in Sources */,
 				6617DA9B2AED6A4C0072DC05 /* SummaryScreen.swift in Sources */,
 				AF3CB7792AFE3648002D51EA /* UUID+SiteIDs.swift in Sources */,
-				AF3CB7902AFE9607002D51EA /* AddAndRemoveSiteGroupsTests.swift in Sources */,
+				AF3CB7902AFE9607002D51EA /* ManageSiteGroupsTests.swift in Sources */,
 				6617DA9D2AED6B200072DC05 /* UITestCaseBase.swift in Sources */,
 				6661DA152AFEA16F00267392 /* UUID+SiteGroupIDs.swift in Sources */,
 				666414132AFEF29200023FC4 /* AddSiteScreen+SiteGroupPicker.swift in Sources */,
 				666414112AFEF12C00023FC4 /* AddSiteScreen+MethodPicker.swift in Sources */,
+				AFB237F72B03C0F1005084A9 /* SitesScreen+SiteContextMenu.swift in Sources */,
+				AFB237F92B03C129005084A9 /* Menu.swift in Sources */,
 				66CC7C312AEC2464007BADF2 /* Screen.swift in Sources */,
 				6617DA972AED679A0072DC05 /* AddSiteScreen.swift in Sources */,
 				AF3CB7922AFE96E1002D51EA /* SitesScreen+ActionMenu.swift in Sources */,
@@ -729,12 +891,25 @@
 		};
 /* End PBXTargetDependency section */
 
+/* Begin PBXVariantGroup section */
+		AFB237F22B03B751005084A9 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				AFB237F12B03B751005084A9 /* en */,
+				AFB237F32B03B754005084A9 /* fr */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
 /* Begin XCBuildConfiguration section */
 		66D212672AEA905600A2C4CE /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -764,6 +939,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
@@ -799,6 +975,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -828,6 +1005,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -858,6 +1036,7 @@
 				CODE_SIGN_ENTITLEMENTS = Ping/Ping.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"Ping/Preview Content\"";
 				DEVELOPMENT_TEAM = B43ZJ6HHUE;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -865,7 +1044,7 @@
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Ping/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = Ping;
+				INFOPLIST_KEY_CFBundleDisplayName = "$(PRODUCT_NAME)";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.developer-tools";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
@@ -899,6 +1078,7 @@
 				CODE_SIGN_ENTITLEMENTS = Ping/Ping.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"Ping/Preview Content\"";
 				DEVELOPMENT_TEAM = B43ZJ6HHUE;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -906,7 +1086,7 @@
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Ping/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = Ping;
+				INFOPLIST_KEY_CFBundleDisplayName = "$(PRODUCT_NAME)";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.developer-tools";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
@@ -939,6 +1119,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = B43ZJ6HHUE;
 				GENERATE_INFOPLIST_FILE = YES;
 				MARKETING_VERSION = 1.0.0;
@@ -962,6 +1143,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = B43ZJ6HHUE;
 				GENERATE_INFOPLIST_FILE = YES;
 				MARKETING_VERSION = 1.0.0;
@@ -984,6 +1166,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = B43ZJ6HHUE;
 				GENERATE_INFOPLIST_FILE = YES;
 				MARKETING_VERSION = 1.0.0;
@@ -1005,6 +1188,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = B43ZJ6HHUE;
 				GENERATE_INFOPLIST_FILE = YES;
 				MARKETING_VERSION = 1.0.0;

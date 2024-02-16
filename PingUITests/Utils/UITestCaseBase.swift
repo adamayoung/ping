@@ -9,7 +9,7 @@ import XCTest
 
 class UITestCaseBase: XCTestCase {
 
-    var app: XCUIApplication!
+    private var app: XCUIApplication!
 
     private(set) lazy var initialScreen = {
         SitesScreen(app: app)

@@ -1,0 +1,10 @@
+/* 
+  InfoPlist.strings
+  Ping
+
+  Created by Adam Young on 14/11/2023.
+  
+*/
+
+"CFBundleName" = "Ping";
+"CFBundleDisplayName" = "Ping";

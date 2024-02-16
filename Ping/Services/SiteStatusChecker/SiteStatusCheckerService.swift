@@ -13,7 +13,7 @@ import SwiftData
 final class SiteStatusCheckerService: NSObject {
 
     var siteStatusPublisher: AnyPublisher<SiteStatusResult, Never> {
-        return siteStatusSubject
+        siteStatusSubject
             .receive(on: RunLoop.main)
             .eraseToAnyPublisher()
     }
@@ -75,6 +75,8 @@ final class SiteStatusCheckerService: NSObject {
 
 extension SiteStatusCheckerService {
 
+    private static let validHTTPStatusCodes = 200...299
+
     private static func statusCode(for response: URLResponse) -> SiteStatus.Code {
         guard let httpResponse = response as? HTTPURLResponse else {
             return .unknown
@@ -89,7 +91,7 @@ extension SiteStatusCheckerService {
     }
 
     private static func isValidStatusCode(_ statusCode: Int) -> Bool {
-        (200...299).contains(statusCode)
+        validHTTPStatusCodes.contains(statusCode)
     }
 
 }
