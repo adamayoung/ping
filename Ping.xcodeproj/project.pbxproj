@@ -183,6 +183,7 @@
 		AF3CB7912AFE96E1002D51EA /* SitesScreen+ActionMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SitesScreen+ActionMenu.swift"; sourceTree = "<group>"; };
 		AF3CB7932AFE97F1002D51EA /* AddSiteGroupScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddSiteGroupScreen.swift; sourceTree = "<group>"; };
 		AF3CB7952AFE9821002D51EA /* ManageSiteGroupsScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManageSiteGroupsScreen.swift; sourceTree = "<group>"; };
+		AF8D298F2B7FAEC90011FA31 /* PingData */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = PingData; path = ../ISP/AdamBet/PingData; sourceTree = "<group>"; };
 		AFB237DD2B038F4C005084A9 /* SitesMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SitesMenu.swift; sourceTree = "<group>"; };
 		AFB237F12B03B751005084A9 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		AFB237F32B03B754005084A9 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -481,6 +482,7 @@
 			isa = PBXGroup;
 			children = (
 				66D212442AEA905600A2C4CE /* Ping */,
+				AF8D298F2B7FAEC90011FA31 /* PingData */,
 				66D212582AEA905600A2C4CE /* PingTests */,
 				66D212622AEA905600A2C4CE /* PingUITests */,
 				66D212432AEA905600A2C4CE /* Products */,
