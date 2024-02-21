@@ -5,6 +5,7 @@
 //  Created by Adam Young on 10/11/2023.
 //
 
+import PingData
 import SwiftUI
 
 struct AddSiteGroupView: View {
@@ -92,10 +93,9 @@ extension AddSiteGroupView {
 }
 
 #Preview {
-    let modelContainer = PingFactory.shared.modelContainer
-
-    return NavigationStack {
+    NavigationStack {
         AddSiteGroupView()
     }
-    .modelContainer(modelContainer)
+    .generateSampleData()
+    .pingDataContainer(inMemory: true)
 }

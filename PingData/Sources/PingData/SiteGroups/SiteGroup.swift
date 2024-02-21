@@ -1,24 +1,24 @@
 //
 //  SiteGroup.swift
-//  Ping
+//  PingData
 //
-//  Created by Adam Young on 10/11/2023.
+//  Created by Adam Young on 16/02/2024.
 //
 
 import Foundation
 import SwiftData
 
 @Model
-final class SiteGroup: Identifiable {
+public final class SiteGroup: Identifiable {
 
-    private(set) var id: UUID = UUID()
+    public private(set) var id: UUID = UUID()
 
-    var name: String = ""
+    public var name: String = ""
 
     @Relationship(deleteRule: .nullify, inverse: \Site.group)
-    var sites: [Site]?
+    public var sites: [Site]?
 
-    init(
+    public init(
         id: UUID = UUID(),
         name: String,
         sites: [Site] = []

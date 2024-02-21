@@ -11,8 +11,8 @@ import SwiftData
 @MainActor
 protocol PingFactoryProvider {
 
-    var modelContainer: ModelContainer { get }
+//    var modelContainer: ModelContainer { get }
 
-    var siteStatusCheckerService: SiteStatusCheckerService { get }
+//    var siteStatusCheckerService: SiteStatusCheckerService { get }
 
 }

@@ -7,12 +7,19 @@
 
 import Foundation
 
-struct SiteStatusRequestTask: Sendable {
+public struct SiteStatusRequestTask: Sendable {
 
-    let siteID: UUID
-    let url: URL
-    let method: String
-    let timeout: TimeInterval
+    public let siteID: UUID
+    public let url: URL
+    public let method: String
+    public let timeout: TimeInterval
+
+    public init(siteID: UUID, url: URL, method: String, timeout: TimeInterval) {
+        self.siteID = siteID
+        self.url = url
+        self.method = method
+        self.timeout = timeout
+    }
 
 }
 

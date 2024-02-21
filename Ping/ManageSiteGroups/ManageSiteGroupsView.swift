@@ -5,6 +5,7 @@
 //  Created by Adam Young on 10/11/2023.
 //
 
+import PingData
 import SwiftData
 import SwiftUI
 
@@ -110,20 +111,16 @@ extension ManageSiteGroupsView {
 }
 
 #Preview("Manage Site Groups") {
-    let modelContainer = PingFactory.shared.modelContainer
-
-    return NavigationStack {
+    NavigationStack {
         ManageSiteGroupsView()
     }
-    .modelContainer(modelContainer)
+    .generateSampleData()
+    .pingDataContainer(inMemory: true)
 }
 
 #Preview("Manage Site Groups - No Groups") {
-    let modelContainer = PingFactory.shared.modelContainer
-    try? modelContainer.mainContext.delete(model: SiteGroup.self)
-
-    return NavigationStack {
+    NavigationStack {
         ManageSiteGroupsView()
     }
-    .modelContainer(modelContainer)
+    .pingDataContainer(inMemory: true)
 }

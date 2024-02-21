@@ -5,6 +5,7 @@
 //  Created by Adam Young on 10/11/2023.
 //
 
+import PingData
 import SwiftData
 import SwiftUI
 
@@ -39,14 +40,14 @@ struct SiteStatusRow: View {
 }
 
 #Preview {
-    let modelContainer = ModelContainer.preview
-    let statuses = Site.gitHubPreview.statuses ?? []
+    let statuses = Site.gitHub.statuses ?? []
 
     return List {
         ForEach(statuses) { status in
             SiteStatusRow(status: status)
         }
     }
-    .modelContainer(modelContainer)
+    .generateSampleData()
+    .pingDataContainer(inMemory: true)
 
 }

@@ -5,6 +5,7 @@
 //  Created by Adam Young on 14/11/2023.
 //
 
+import PingData
 import SwiftData
 import SwiftUI
 

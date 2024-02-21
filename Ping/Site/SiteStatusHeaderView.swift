@@ -5,6 +5,7 @@
 //  Created by Adam Young on 02/11/2023.
 //
 
+import PingData
 import SwiftData
 import SwiftUI
 
@@ -73,8 +74,7 @@ struct SiteStatusHeaderView: View {
 }
 
 #Preview("Success") {
-    let modelContainer = ModelContainer.preview
-    let site = Site.gitHubPreview
+    let site = Site.gitHub
 
     return VStack {
         SiteStatusHeaderView(
@@ -85,12 +85,12 @@ struct SiteStatusHeaderView: View {
         )
         .padding()
     }
-    .modelContainer(modelContainer)
+    .generateSampleData()
+    .pingDataContainer(inMemory: true)
 }
 
 #Preview("Failure") {
-    let modelContainer = ModelContainer.preview
-    let site = Site.gitHubPreview
+    let site = Site.gitHub
 
     return VStack {
         SiteStatusHeaderView(
@@ -104,12 +104,12 @@ struct SiteStatusHeaderView: View {
         )
         .padding()
     }
-    .modelContainer(modelContainer)
+    .generateSampleData()
+    .pingDataContainer(inMemory: true)
 }
 
 #Preview("Checking") {
-    let modelContainer = PingFactory.shared.modelContainer
-    let site = Site.gitHubPreview
+    let site = Site.gitHub
 
     return VStack {
         SiteStatusHeaderView(
@@ -120,12 +120,12 @@ struct SiteStatusHeaderView: View {
         )
         .padding()
     }
-    .modelContainer(modelContainer)
+    .generateSampleData()
+    .pingDataContainer(inMemory: true)
 }
 
 #Preview("Unknown") {
-    let modelContainer = PingFactory.shared.modelContainer
-    let site = Site.gitHubPreview
+    let site = Site.gitHub
 
     return VStack {
         SiteStatusHeaderView(
@@ -136,5 +136,6 @@ struct SiteStatusHeaderView: View {
         )
         .padding()
     }
-    .modelContainer(modelContainer)
+    .generateSampleData()
+    .pingDataContainer(inMemory: true)
 }

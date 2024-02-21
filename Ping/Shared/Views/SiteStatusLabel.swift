@@ -5,6 +5,7 @@
 //  Created by Adam Young on 31/10/2023.
 //
 
+import PingData
 import SwiftData
 import SwiftUI
 
@@ -64,11 +65,10 @@ struct SiteStatusLabel: View {
 }
 
 #Preview {
-    let modelContainer = PingFactory.shared.modelContainer
-    let googleSite = Site.googlePreview
-    let twitterSite = Site.twitterPreview
-    let gitHubSite = Site.gitHubPreview
-    let microsoft = Site.microsoftPreview
+    let googleSite = Site.google
+    let twitterSite = Site.twitter
+    let gitHubSite = Site.gitHub
+    let microsoft = Site.microsoft
 
     return VStack(alignment: .leading, spacing: 20) {
         SiteStatusLabel(
@@ -96,5 +96,6 @@ struct SiteStatusLabel: View {
         )
     }
     .padding()
-    .modelContainer(modelContainer)
+    .generateSampleData()
+    .pingDataContainer(inMemory: true)
 }

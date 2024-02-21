@@ -1,24 +1,24 @@
 //
-//  SiteStatusRequest.swift
-//  Ping
+//  File.swift
+//  
 //
-//  Created by Adam Young on 02/11/2023.
+//  Created by Adam Young on 16/02/2024.
 //
 
 import Foundation
 import SwiftData
 
 @Model
-final class SiteStatusRequest {
+public final class SiteStatusRequest {
 
-    var url: URL = URL(string: "https://www.example.com")!
-    var method: Method = SiteStatusRequest.Method.get
-    var timeout: TimeInterval = 5
+    public var url: URL = URL(string: "https://www.example.com")!
+    public var method: Method = SiteStatusRequest.Method.get
+    public var timeout: TimeInterval = 5
 
     @Relationship(inverse: \SiteStatus.site)
-    var site: Site?
+    public var site: Site?
 
-    init(
+    public init(
         url: URL,
         method: SiteStatusRequest.Method = .get,
         timeout: TimeInterval = 5,

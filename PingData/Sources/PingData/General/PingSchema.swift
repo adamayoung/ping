@@ -1,8 +1,8 @@
 //
 //  PingSchema.swift
-//  Ping
+//  PingData
 //
-//  Created by Adam Young on 09/11/2023.
+//  Created by Adam Young on 16/02/2024.
 //
 
 import Foundation

@@ -1,36 +1,36 @@
 //
 //  Site.swift
-//  Ping
+//  PingData
 //
-//  Created by Adam Young on 29/10/2023.
+//  Created by Adam Young on 16/02/2024.
 //
 
 import Foundation
 import SwiftData
 
 @Model
-final class Site: Identifiable {
+public final class Site: Identifiable {
 
-    var id: UUID = UUID()
+    public var id: UUID = UUID()
 
-    var name: String = ""
+    public var name: String = ""
 
-    var isActive: Bool = true
+    public var isActive: Bool = true
 
     @Relationship(deleteRule: .cascade, inverse: \SiteStatusRequest.site)
-    var request: SiteStatusRequest?
+    public var request: SiteStatusRequest?
 
     @Relationship(deleteRule: .cascade)
-    var statuses: [SiteStatus]?
+    public var statuses: [SiteStatus]?
 
-    var group: SiteGroup?
+    public var group: SiteGroup?
 
-    var latestStatus: SiteStatus? {
+    public var latestStatus: SiteStatus? {
         let sortedStatuses = statuses?.sorted(by: { $0.timestamp < $1.timestamp }) ?? []
         return sortedStatuses.last
     }
 
-    init(
+    public init(
         id: UUID = UUID(),
         name: String,
         isActive: Bool = true,

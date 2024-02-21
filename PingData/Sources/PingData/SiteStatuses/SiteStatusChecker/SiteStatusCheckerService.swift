@@ -6,13 +6,13 @@
 //
 
 import Combine
-import Foundation
 import SwiftData
+import SwiftUI
 
 @Observable
-final class SiteStatusCheckerService: NSObject {
+public final class SiteStatusCheckerService: NSObject {
 
-    var siteStatusPublisher: AnyPublisher<SiteStatusResult, Never> {
+    public var siteStatusPublisher: AnyPublisher<SiteStatusResult, Never> {
         siteStatusSubject
             .receive(on: RunLoop.main)
             .eraseToAnyPublisher()
@@ -23,7 +23,7 @@ final class SiteStatusCheckerService: NSObject {
     private let urlSession: URLSession
     private let siteStatusSubject = PassthroughSubject<SiteStatusResult, Never>()
 
-    convenience init(urlSession: URLSession = .shared) {
+    public convenience init(urlSession: URLSession = .shared) {
         self.init(
             urlSession: urlSession,
             checkingSites: []
@@ -35,11 +35,11 @@ final class SiteStatusCheckerService: NSObject {
         self.checkingSites = checkingSites
     }
 
-    func isChecking(site siteID: UUID) -> Bool {
+    public func isChecking(site siteID: UUID) -> Bool {
         checkingSites.contains(siteID)
     }
 
-    func checkSiteStatus(using requestTask: SiteStatusRequestTask) async {
+    public func checkSiteStatus(using requestTask: SiteStatusRequestTask) async {
         await setIsChecking(true, for: requestTask.siteID)
 
         let siteStatusCode: SiteStatus.Code
@@ -92,14 +92,6 @@ extension SiteStatusCheckerService {
 
     private static func isValidStatusCode(_ statusCode: Int) -> Bool {
         validHTTPStatusCodes.contains(statusCode)
-    }
-
-}
-
-extension SiteStatusCheckerService {
-
-    static func preview(urlSession: URLSession, checkingSites: [UUID] = []) -> SiteStatusCheckerService {
-        SiteStatusCheckerService(urlSession: urlSession, checkingSites: checkingSites)
     }
 
 }

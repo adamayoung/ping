@@ -21,8 +21,7 @@ struct ManageSiteGroupsSheetView: View {
 }
 
 #Preview {
-    let modelContainer = PingFactory.shared.modelContainer
-
-    return ManageSiteGroupsSheetView()
-        .modelContainer(modelContainer)
+    ManageSiteGroupsSheetView()
+        .generateSampleData()
+        .pingDataContainer(inMemory: true)
 }

@@ -7,7 +7,7 @@
 
 import Foundation
 
-extension SiteStatusRequestTask {
+public extension SiteStatusRequestTask {
 
     init?(siteRequest: SiteStatusRequest?) {
         guard let siteRequest, let siteID = siteRequest.site?.id else {

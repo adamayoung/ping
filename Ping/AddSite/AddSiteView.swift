@@ -5,6 +5,7 @@
 //  Created by Adam Young on 27/10/2023.
 //
 
+import PingData
 import SwiftData
 import SwiftUI
 
@@ -181,10 +182,8 @@ extension AddSiteView {
 }
 
 #Preview {
-    let modelContainer = PingFactory.shared.modelContainer
-    let statusCheckerService = PingFactory.shared.siteStatusCheckerService
-
-    return AddSiteView()
-        .modelContainer(modelContainer)
-        .environment(statusCheckerService)
+    AddSiteView()
+        .siteStatusCheckerService(preview: true)
+        .generateSampleData()
+        .pingDataContainer(inMemory: true)
 }

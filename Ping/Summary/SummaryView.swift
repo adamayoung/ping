@@ -5,6 +5,7 @@
 //  Created by Adam Young on 27/10/2023.
 //
 
+import PingData
 import SwiftData
 import SwiftUI
 
@@ -77,25 +78,20 @@ extension SummaryView {
 
 #if os(macOS)
 #Preview("Summary") {
-    let modelContainer = PingFactory.shared.modelContainer
-    let siteStatusCheckerService = PingFactory.shared.siteStatusCheckerService
-
-    return NavigationStack {
+    NavigationStack {
         SummaryView()
     }
-    .modelContainer(modelContainer)
-    .environment(siteStatusCheckerService)
+    .siteStatusCheckerService(preview: true)
+    .generateSampleData()
+    .pingDataContainer(inMemory: true)
 }
 
 #Preview("Summary - No Sites") {
-    let modelContainer = PingFactory.shared.modelContainer
-    let siteStatusCheckerService = PingFactory.shared.siteStatusCheckerService
-    try? modelContainer.mainContext.delete(model: Site.self)
-
-    return NavigationStack {
+    NavigationStack {
         SummaryView()
     }
-    .modelContainer(modelContainer)
-    .environment(siteStatusCheckerService)
+    .siteStatusCheckerService(preview: true)
+    .generateSampleData()
+    .pingDataContainer(inMemory: true)
 }
 #endif

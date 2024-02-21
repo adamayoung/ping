@@ -5,6 +5,7 @@
 //  Created by Adam Young on 09/11/2023.
 //
 
+import PingData
 import SwiftData
 import SwiftUI
 
@@ -30,34 +31,28 @@ struct DetailView: View {
 }
 
 #Preview("Summary") {
-    let modelContainer = PingFactory.shared.modelContainer
-    let siteStatusCheckerService = PingFactory.shared.siteStatusCheckerService
-
-    return NavigationStack {
+    NavigationStack {
         DetailView(menuItem: .constant(.summary))
     }
-    .modelContainer(modelContainer)
-    .environment(siteStatusCheckerService)
+    .siteStatusCheckerService(preview: true)
+    .generateSampleData()
+    .pingDataContainer(inMemory: true)
 }
 
 #Preview("Site") {
-    let modelContainer = PingFactory.shared.modelContainer
-    let siteStatusCheckerService = PingFactory.shared.siteStatusCheckerService
-
-    return NavigationStack {
-        DetailView(menuItem: .constant(.site(Site.gitHubPreview)))
-            .modelContainer(modelContainer)
-            .environment(siteStatusCheckerService)
+    NavigationStack {
+        DetailView(menuItem: .constant(.site(.gitHub)))
     }
+    .siteStatusCheckerService(preview: true)
+    .generateSampleData()
+    .pingDataContainer(inMemory: true)
 }
 
 #Preview("No Site Selected") {
-    let modelContainer = PingFactory.shared.modelContainer
-    let siteStatusCheckerService = PingFactory.shared.siteStatusCheckerService
-
     return NavigationStack {
         DetailView(menuItem: .constant(nil))
-            .modelContainer(modelContainer)
-            .environment(siteStatusCheckerService)
     }
+    .siteStatusCheckerService(preview: true)
+    .generateSampleData()
+    .pingDataContainer(inMemory: true)
 }

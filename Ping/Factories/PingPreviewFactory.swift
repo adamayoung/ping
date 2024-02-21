@@ -6,18 +6,15 @@
 //
 
 import Foundation
+import PingData
 import SwiftData
 
 @MainActor
 final class PingPreviewFactory: PingFactoryProvider {
 
-    let modelContainer: ModelContainer = {
-        .preview
-    }()
-
-    let siteStatusCheckerService: SiteStatusCheckerService = {
-        SiteStatusCheckerService.preview(urlSession: urlSession, checkingSites: [.microsoftSiteIDPreview])
-    }()
+//    let siteStatusCheckerService: SiteStatusCheckerService = {
+//        SiteStatusCheckerService.preview(urlSession: urlSession, checkingSites: [.microsoftSiteID])
+//    }()
 
     init() { }
 
@@ -28,20 +25,20 @@ extension PingPreviewFactory {
     private static let urlSession: URLSession = {
         let configuration = URLSessionConfiguration.ephemeral
         URLProtocolMock.responseConfigs = [
-            URL.googleURLPreview: (
-                HTTPURLResponse(url: URL.googleURLPreview, statusCode: 500, httpVersion: "2.0", headerFields: nil),
+            URL.google: (
+                HTTPURLResponse(url: URL.google, statusCode: 500, httpVersion: "2.0", headerFields: nil),
                 nil
             ),
-            URL.gitHubURLPreview: (
-                HTTPURLResponse(url: URL.googleURLPreview, statusCode: 200, httpVersion: "2.0", headerFields: nil),
+            URL.gitHub: (
+                HTTPURLResponse(url: URL.google, statusCode: 200, httpVersion: "2.0", headerFields: nil),
                 nil
             ),
-            URL.twitterURLPreview: (
-                HTTPURLResponse(url: URL.twitterURLPreview, statusCode: 200, httpVersion: "2.0", headerFields: nil),
+            URL.twitter: (
+                HTTPURLResponse(url: URL.twitter, statusCode: 200, httpVersion: "2.0", headerFields: nil),
                 nil
             ),
-            URL.microsoftURLPreview: (
-                HTTPURLResponse(url: URL.microsoftURLPreview, statusCode: 200, httpVersion: "2.0", headerFields: nil),
+            URL.microsoft: (
+                HTTPURLResponse(url: URL.microsoft, statusCode: 200, httpVersion: "2.0", headerFields: nil),
                 nil
             )
         ]

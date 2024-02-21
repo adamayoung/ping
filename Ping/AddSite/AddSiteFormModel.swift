@@ -7,6 +7,7 @@
 
 import Foundation
 import Observation
+import PingData
 import SwiftData
 import SwiftUI
 

@@ -5,6 +5,7 @@
 //  Created by Adam Young on 26/10/2023.
 //
 
+import PingData
 import SwiftData
 import SwiftUI
 
@@ -32,10 +33,8 @@ struct ContentView: View {
 }
 
 #Preview("Content") {
-    let modelContainer = PingFactory.shared.modelContainer
-    let siteStatusCheckerService = PingFactory.shared.siteStatusCheckerService
-
     return ContentView()
-        .modelContainer(modelContainer)
-        .environment(siteStatusCheckerService)
+        .siteStatusCheckerService(preview: true)
+        .generateSampleData()
+        .pingDataContainer(inMemory: true)
 }

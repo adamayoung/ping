@@ -34,10 +34,8 @@ struct AddSiteSheetView: View {
 }
 
 #Preview {
-    let modelContainer = PingFactory.shared.modelContainer
-    let siteStatusCheckerService = PingFactory.shared.siteStatusCheckerService
-
-    return AddSiteSheetView()
-        .modelContainer(modelContainer)
-        .environment(siteStatusCheckerService)
+    AddSiteSheetView()
+        .siteStatusCheckerService(preview: true)
+        .generateSampleData()
+        .pingDataContainer(inMemory: true)
 }

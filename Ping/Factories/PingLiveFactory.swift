@@ -11,13 +11,9 @@ import SwiftData
 @MainActor
 final class PingLiveFactory: PingFactoryProvider {
 
-    let modelContainer: ModelContainer = {
-        .ping
-    }()
-
-    let siteStatusCheckerService: SiteStatusCheckerService = {
-        SiteStatusCheckerService(urlSession: urlSession)
-    }()
+//    let siteStatusCheckerService: SiteStatusCheckerService = {
+//        SiteStatusCheckerService(urlSession: urlSession)
+//    }()
 
     init() { }
 

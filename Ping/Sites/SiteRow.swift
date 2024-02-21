@@ -5,6 +5,7 @@
 //  Created by Adam Young on 30/10/2023.
 //
 
+import PingData
 import SwiftData
 import SwiftUI
 
@@ -28,31 +29,31 @@ struct SiteRow: View {
 
 }
 
-#Preview {
-    let modelContainer = PingFactory.shared.modelContainer
-    let siteStatusCheckerService = PingFactory.shared.siteStatusCheckerService
-    let sites = (try? modelContainer.mainContext.fetch(FetchDescriptor<Site>())) ?? []
-
-    return NavigationStack {
-        List {
-            ForEach(sites) { site in
-                Section {
-                    NavigationLink(destination: EmptyView()) {
-                        SiteRow(
-                            site: site,
-                            siteStatus: site.latestStatus,
-                            isCheckingStatus: siteStatusCheckerService.isChecking(site: site.id),
-                            onDelete: { }
-                        )
-                    }
-                }
-            }
-        }
-        #if os(macOS)
-        .listStyle(.sidebar)
-        #else
-        .listStyle(.insetGrouped)
-        #endif
-    }
-    .modelContainer(modelContainer)
-}
+//#Preview {
+//    let sites: [Site] = [] //(try? modelContainer.mainContext.fetch(FetchDescriptor<Site>())) ?? []
+//
+//    NavigationStack {
+//        List {
+//            ForEach(sites) { site in
+//                Section {
+//                    NavigationLink(destination: EmptyView()) {
+//                        SiteRow(
+//                            site: site,
+//                            siteStatus: site.latestStatus,
+//                            isCheckingStatus: siteStatusCheckerService.isChecking(site: site.id),
+//                            onDelete: { }
+//                        )
+//                    }
+//                }
+//            }
+//        }
+//        #if os(macOS)
+//        .listStyle(.sidebar)
+//        #else
+//        .listStyle(.insetGrouped)
+//        #endif
+//    }
+//    .siteStatusCheckerService(preview: true)
+//    .generateSampleData()
+//    .pingDataContainer(inMemory: true)
+//}

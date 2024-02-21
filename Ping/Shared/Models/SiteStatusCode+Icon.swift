@@ -5,6 +5,7 @@
 //  Created by Adam Young on 02/11/2023.
 //
 
+import PingData
 import SwiftUI
 
 extension SiteStatus.Code {

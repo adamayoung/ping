@@ -5,6 +5,7 @@
 //  Created by Adam Young on 27/10/2023.
 //
 
+import PingData
 import SwiftData
 import SwiftUI
 
@@ -153,49 +154,37 @@ extension SiteView {
 }
 
 #Preview("Success") {
-    let modelContainer = PingFactory.shared.modelContainer
-    let siteStatusCheckerService = PingFactory.shared.siteStatusCheckerService
-    let site = Site.gitHubPreview
-
-    return NavigationStack {
-        SiteView(site: site)
+    NavigationStack {
+        SiteView(site: .gitHub)
     }
-    .modelContainer(modelContainer)
-    .environment(siteStatusCheckerService)
+    .siteStatusCheckerService(preview: true)
+    .generateSampleData()
+    .pingDataContainer(inMemory: true)
 }
 
 #Preview("Failure") {
-    let modelContainer = PingFactory.shared.modelContainer
-    let siteStatusCheckerService = PingFactory.shared.siteStatusCheckerService
-    let site = Site.googlePreview
-
-    return NavigationStack {
-        SiteView(site: site)
+    NavigationStack {
+        SiteView(site: .google)
     }
-    .modelContainer(modelContainer)
-    .environment(siteStatusCheckerService)
+    .siteStatusCheckerService(preview: true)
+    .generateSampleData()
+    .pingDataContainer(inMemory: true)
 }
 
 #Preview("Checking") {
-    let modelContainer = PingFactory.shared.modelContainer
-    let siteStatusCheckerService = PingFactory.shared.siteStatusCheckerService
-    let site = Site.microsoftPreview
-
-    return NavigationStack {
-        SiteView(site: site)
+    NavigationStack {
+        SiteView(site: .microsoft)
     }
-    .modelContainer(modelContainer)
-    .environment(siteStatusCheckerService)
+    .siteStatusCheckerService(preview: true)
+    .generateSampleData()
+    .pingDataContainer(inMemory: true)
 }
 
 #Preview("Unknown") {
-    let modelContainer = PingFactory.shared.modelContainer
-    let siteStatusCheckerService = PingFactory.shared.siteStatusCheckerService
-    let site = Site.twitterPreview
-
-    return NavigationStack {
-        SiteView(site: site)
+    NavigationStack {
+        SiteView(site: .twitter)
     }
-    .modelContainer(modelContainer)
-    .environment(siteStatusCheckerService)
+    .siteStatusCheckerService(preview: true)
+    .generateSampleData()
+    .pingDataContainer(inMemory: true)
 }
